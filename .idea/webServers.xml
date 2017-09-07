@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="04964a66-6522-409b-8481-58edb0766dd7" name="mikryukova2" url="http://mikryukova2.tmweb.ru">
+        <fileTransfer host="mikryukova2.tmweb.ru" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" showHiddenFiles="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="a817867b-3dee-40dc-a255-0dbc1e4978c0" name="shipulin" url="http://gorizont.w365-1.ru">
+        <fileTransfer host="77.222.57.4" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

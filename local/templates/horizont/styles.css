@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    box-shadow: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font:400 15px/1 "Lato";
+    color:#666;
+    height: 100%;
+}
+body.overflow {
+    overflow: hidden;
+}
+
+a, a:hover,
+input:focus,
+select:focus,
+button {
+    outline: none;
+}
+section{
+    border-bottom: 1px solid transparent;
+}
+a{
+    color: #079aba;
+    font:400 14px/1 "OpenSans";
+    transition: all .5s;
+}
+a:hover,
+a:focus,
+a:active{
+    color: #1ab9db;
+}

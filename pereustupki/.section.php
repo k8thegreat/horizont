@@ -1,0 +1,6 @@
+<?
+$sSectionName = "Переуступки";
+$arDirProperties = Array(
+
+);
+?>
