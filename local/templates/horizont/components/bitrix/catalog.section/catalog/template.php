@@ -113,7 +113,7 @@ $containerName = 'container-'.$navParams['NavNum'];
                         <?foreach ($arResult["UF_MORE_PHOTO"] as $photo){
                             ?>
                             <div class="item">
-                                <a href="<?=$photo?>" class="thumb">
+                                <a href="<?=CFile::GetPath($photo)?>" class="thumb" data-fancybox="main-images">
                                     <?
                                     $file = CFile::ResizeImageGet($photo, array('width'=>758, 'height'=>320), BX_RESIZE_IMAGE_EXACT, true);
                                     $img = '<img src="'.$file['src'].'" width="'.$file['width'].'" height="'.$file['height'].'" />';

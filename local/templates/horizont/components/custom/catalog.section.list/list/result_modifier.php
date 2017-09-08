@@ -21,12 +21,12 @@ foreach ($arResult['SECTIONS'] as &$arSection){
             "IBLOCK_SECTION_ID" => $arSection["ID"],
             "PROPERTY_rooms" => $roomsVal["ID"]
         );
-        $res = CIBlockElement::GetList(Array("PROPERTY_price_discount" => "asc"), $arFilter, false, array(),array("IBLOCK_ID", "ID",  "PROPERTY_price_discount"));
+        $res = CIBlockElement::GetList(Array("PROPERTY_price" => "asc"), $arFilter, false, array(),array("IBLOCK_ID", "ID",  "PROPERTY_price_discount", "PROPERTY_price"));
         if($ob = $res->GetNextElement())
         {
             $arProps = $ob->GetProperties();
 
-            $arSection["ITEMS_PRICE"][$key] = $arProps["price_discount"]["VALUE"];
+            $arSection["ITEMS_PRICE"][$key] = ($arProps["price_discount"]["VALUE"] ? $arProps["price_discount"]["VALUE"] : $arProps["price"]["VALUE"]);
 
         }
     }
