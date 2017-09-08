@@ -380,7 +380,24 @@ $(".tabs").tabs({});
         });
     }
 
+
 });
+function CallPrint(strid) {
+    var prtContent = document.getElementById(strid);
+    var prtCSS = '';
+    var WinPrint = window.open('','','left=50,top=50,width=800,height =640,toolbar=0,scrollbars=1,status=0');
+
+    var print = document.createElement("div");
+    print.className = "contentpane";
+    print.setAttribute("id", "print");
+    print.appendChild(prtContent.cloneNode(true));
+
+    WinPrint.document.body.appendChild(print);
+
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+}
 function scrollTop(){
     if ($(window).scrollTop() > 400) {
         $('.scroll-top')

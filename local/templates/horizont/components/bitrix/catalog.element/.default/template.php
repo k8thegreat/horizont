@@ -94,13 +94,31 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="javascript:CallPrint('apartment-detail');" class="print" title="Распечатать">
                                 <?=PRINT_ICON?>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <?=SHARE_ICON?>
+                            <a href="" class="share-link">
+                                <span class="icon"><?=SHARE_ICON?></span>
+                                <div class="share-block">
+                                    <?$APPLICATION->IncludeComponent("bitrix:main.share", "share", Array(
+                                        "COMPOSITE_FRAME_MODE" => "A",	// Голосование шаблона компонента по умолчанию
+                                        "COMPOSITE_FRAME_TYPE" => "AUTO",	// Содержимое компонента
+                                        "HANDLERS" => array(	// Используемые соц. закладки и сети
+                                            0 => "facebook",
+                                            1 => "twitter",
+                                            2 => "vk",
+                                        ),
+                                        "HIDE" => "N",	// Скрыть панель закладок по умолчанию
+                                        "PAGE_TITLE" => $arResult["~NAME"],	// Заголовок страницы
+                                        "PAGE_URL" => $arResult["~DETAIL_PAGE_URL"],	// URL страницы относительно корня сайта
+                                        "SHORTEN_URL_KEY" => "",	// Ключ API для bit.ly
+                                        "SHORTEN_URL_LOGIN" => "",	// Логин для bit.ly
+                                    ),
+                                        false
+                                    );?>
+                                </div>
                             </a>
                         </li>
                     </ul>
