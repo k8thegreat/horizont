@@ -113,10 +113,17 @@ if($_POST["go"]) {
                         );
 
                     }
+                    $sectionID = $arBuildings[$item["properties"]["zhk-id"]]["ID"];
+                    if($item["properties"]["building-type"]){
+
+                        $arFields = Array(
+                            "UF_BUILDING_TYPE" => $item["properties"]["building-type"]
+                        );
+                    }
                     if($arFields) {
                         $bs = new CIBlockSection;
                         $bs->Update($sectionID, $arFields);
-                        echo $item["properties"]["zhk-name"];
+
                     }
                     /*$arFields = $ob->GetFields();
                     if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
@@ -135,6 +142,7 @@ if($_POST["go"]) {
                     $arItemPropsArray = array(
                         "region" => $item["properties"]["location"]["region"],
                         "locality_name" => $item["properties"]["location"]["locality-name"],
+                        "district" => $item["properties"]["location"]["district"],
                         "sub_locality_name" => $item["properties"]["location"]["sub-locality-name"],
                         "metro_id" => $propMetroArr[$item["properties"]["metro-id"]]["ID"],
                         "flat_number" => $item["properties"]["flat-number"],
@@ -177,7 +185,9 @@ if($_POST["go"]) {
                             "DESCRIPTION" => $item["properties"]["description"],
                             "DESCRIPTION_TYPE" => "TEXT",
                             "UF_METRO" => $item["properties"]["location"]["metro"]["name"],
+                            "UF_BUILDING_TYPE" => $item["properties"]["building-type"],
                             "UF_SUBLOCALITY" => $item["properties"]["location"]["locality-name"],
+                            "UF_DISTRICT" => $item["properties"]["location"]["district"],
                             "UF_ADDRESS" => $item["properties"]["location"]["address"],
                             "UF_LOCATION" => serialize(array("lat" => $item["properties"]["Latitude"], "long" => $item["properties"]["Longitude"]))
 

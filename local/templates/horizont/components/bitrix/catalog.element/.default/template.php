@@ -85,7 +85,8 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
             </div>
             <div>
                 <div class="price-apartment">
-                    <span><?=number_format($arResult["PROPERTIES"]["price_discount"]["VALUE"], 0, ".", " ")?></span> руб.
+                    <?$price = ($arResult["PROPERTIES"]["price_discount"]["VALUE"] ? $arResult["PROPERTIES"]["price_discount"]["VALUE"] : $arResult["PROPERTIES"]["price"]["VALUE"])?>
+                    <span><?=number_format($price, 0, ".", " ")?></span> руб.
                     <ul>
                         <li>
                             <a href="">
@@ -187,11 +188,23 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                             <td><?=$arResult["PROPERTIES"]["ready"]["VALUE"]?> (<?=$arResult["PROPERTIES"]["building_section"]["VALUE"]?>)</td>
                         </tr>
                         <?}?>
+                        <?if($arResult["UF_BUILDING_TYPE"]){?>
+                            <tr>
+                                <td>Тип дома:</td>
+                                <td><?=$arResult["UF_BUILDING_TYPE"]?></td>
+                            </tr>
+                        <?}?>
                         <?if($arResult["PROPERTIES"]["renovation"]["VALUE"]){?>
                         <tr>
                             <td>Отделка:</td>
                             <td><?=$arResult["PROPERTIES"]["renovation"]["VALUE"]?></td>
                         </tr>
+                        <?}?>
+                        <?if($arResult["PROPERTIES"]["floor"]["VALUE"]){?>
+                            <tr>
+                                <td>Этаж:</td>
+                                <td><?=$arResult["PROPERTIES"]["floor"]["VALUE"]?> (<?=$arResult["PROPERTIES"]["floors_total"]["VALUE"]?>)</td>
+                            </tr>
                         <?}?>
                         <?if($arResult["PROPERTIES"]["payment"]["VALUE"]){?>
                         <tr>
@@ -216,6 +229,12 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                             <td>Пл. общая</td>
                             <td><?=$arResult["PROPERTIES"]["area"]["VALUE"]?> м²</td>
                         </tr>
+                        <?}?>
+                        <?if($arResult["PROPERTIES"]["kitchen_space"]["VALUE"]){?>
+                            <tr>
+                                <td>Пл. кухни</td>
+                                <td><?=$arResult["PROPERTIES"]["kitchen_space"]["VALUE"]?> м²</td>
+                            </tr>
                         <?}?>
                         </tbody>
                     </table>

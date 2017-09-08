@@ -50,7 +50,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
 				$this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);
                 ?>
                 <div id="<? echo $this->GetEditAreaId($arSection['ID']); ?>">
-                    <a href="<?=$arSection['SECTION_PAGE_URL']?>" class="one-result">
+                    <a href="<?=$arSection['SECTION_PAGE_URL']?>" class="one-result" target="_blank">
                         <div class="result-content-top">
                             <div>
                                 <h2 class="name-rc"><?=$arSection["NAME"]?></h2>

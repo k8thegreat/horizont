@@ -31,6 +31,8 @@ foreach ($arResult["ITEMS"] as $arItem){
 
 }
 $arResult["METRO"] = $arResult["ITEMS"][0]["PROPERTIES"]["metro_id"];
+$arResult["RENOVATION"] = $arResult["ITEMS"][0]["PROPERTIES"]["renovation"];
+$arResult["FLOORS"] = $arResult["ITEMS"][0]["PROPERTIES"]["floors_total"];
 foreach ($arResultTmp as $key => &$arSection) {
 
     ksort($arSection["GROUPS"]);
@@ -44,9 +46,6 @@ $rsSections = CIBlockSection::GetList(array(), array("IBLOCK_ID" => $arResult["I
 if ($arSection2 = $rsSections->GetNext())
 {
     $arResult = array_merge($arResult, $arSection2);
-    if($arSection2["UF_MORE_PHOTO"]){
-        $arResult["UF_MORE_PHOTO"] = unserialize($arSection2["UF_MORE_PHOTO"]);
-    }
     if($arSection2["UF_DEVELOPER"]) {
         $res = CIBlockElement::GetByID($arSection2["UF_DEVELOPER"]);
         if ($ar_res = $res->GetNext())

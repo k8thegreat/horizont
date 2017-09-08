@@ -18,15 +18,10 @@ if ($arSection = $rsSections->GetNext())
     if($arSection["UF_LOCATION"]){
         $arResult["UF_LOCATION"] = unserialize($arSection["UF_LOCATION"]);
     }
-    if($arSection["UF_SUBLOCALITY"]){
-        $arResult["UF_SUBLOCALITY"] = $arSection["UF_SUBLOCALITY"];
-    }
-    if($arSection["UF_METRO"]){
-        $arResult["UF_METRO"] = $arSection["UF_METRO"];
-    }
-    if($arSection["UF_ADDRESS"]){
-        $arResult["UF_ADDRESS"] = $arSection["UF_ADDRESS"];
-    }
+    $arResult["UF_SUBLOCALITY"] = $arSection["UF_SUBLOCALITY"];
+    $arResult["UF_BUILDING_TYPE"] = $arSection["UF_BUILDING_TYPE"];
+    $arResult["UF_METRO"] = $arSection["UF_METRO"];
+    $arResult["UF_ADDRESS"] = $arSection["UF_ADDRESS"];
     if($arSection["UF_BANKS"]){
         $arResult["UF_BANKS"] = unserialize($arSection["UF_BANKS"]);
         foreach ($arResult["UF_BANKS"] as $bank){

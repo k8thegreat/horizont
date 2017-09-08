@@ -84,7 +84,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
                         '</div>',
                         '</div>',
                         '</div>',
-                        '<a href="<?=$arSection["SECTION_PAGE_URL"]?>" class="thumb">',
+                        '<a href="<?=$arSection["SECTION_PAGE_URL"]?>" class="thumb" target="_blank">',
                         '<?=$arSection["PICTURE"]?>',
                         '</a>',
                         '<div class="result-content">',

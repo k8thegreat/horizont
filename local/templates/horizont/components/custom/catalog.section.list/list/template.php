@@ -54,7 +54,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
                 <div id="<? echo $this->GetEditAreaId($arSection['ID']); ?>">
                     <div class="one-result">
                         <?if ($arSection["PICTURE"]){?>
-                            <a href="<?= $arSection['SECTION_PAGE_URL'] ?>" class="thumb">
+                            <a href="<?= $arSection['SECTION_PAGE_URL'] ?>" class="thumb" target="_blank">
                                 <?
                                 $file = CFile::ResizeImageGet($arSection["PICTURE"], array('width' => 365, 'height' => 230), BX_RESIZE_IMAGE_EXACT, true);
                                 $img = '<img src="' . $file['src'] . '" width="' . $file['width'] . '" height="' . $file['height'] . '" />';
@@ -114,7 +114,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
                                     <?}?>
                                 </ul>
                             </div>
-                            <a href="<?= $arSection['SECTION_PAGE_URL'] ?>" class="btn btn-border">Перейти на страницу комплекса</a>
+                            <a href="<?= $arSection['SECTION_PAGE_URL'] ?>" target="_blank" class="btn btn-border">Перейти на страницу комплекса</a>
                         </div>
                     </div>
                 </div>

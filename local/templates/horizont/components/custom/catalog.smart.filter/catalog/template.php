@@ -72,7 +72,7 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
                                     }?>
                                 </ul>
                                 <ul class="drop-list" id="tab-location">
-                                    <?foreach ($arResult["ITEMS"][1]["VALUES"] as $item){?>
+                                    <?foreach (array_merge($arResult["ITEMS"][61]["VALUES"], $arResult["ITEMS"][1]["VALUES"]) as $item){?>
                                         <li>
                                         <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
                                             <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
@@ -237,7 +237,7 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
 
                         ];
 
-                        $( "#autocomplete" ).catcomplete({
+                        $("#autocomplete").catcomplete({
                             delay: 0,
                             source: data,
                             appendTo: ".ui-front"
@@ -246,6 +246,7 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
                             var control_name = $(this).attr("data-control");
                             //$(".hidden-items").prop("checked", false);
                             $("[name='"+control_name+"']").click();
+                            $("#autocomplete").val("");
                         });
                         });
                 </script>
@@ -335,7 +336,6 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
                             <div class="input-default drop-wrapper">
                                 <button class="drop-btn">Город и обл.</button>
                                 <div class="drop-body">
-
                                     <div class="drop-content">
                                         <ul class="drop-list">
                                             <?foreach ($arResult["ITEMS"][46]["VALUES"] as $item){?>
