@@ -97,15 +97,31 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
                             <div class="drop-content">
                                 <div class="drop-content">
                                     <ul class="drop-list">
-                                        <?foreach ($arResult["ITEMS"][21]["VALUES"] as $item){?>
-                                            <li>
-                                            <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
-                                                <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
-                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
-                                            </label>
-                                            </li><?
+                                        <?
+                                        $currQuater = ceil(date("n")/3);
+                                        $currYear = date("Y");
+                                        foreach ($arResult["ITEMS"][62]["VALUES"] as $item){
+                                            $arr = explode(" ", $item["VALUE"]);
+                                            if($currYear < $arr[1] || ($currYear==$arr[1] && $currQuater<=$arr[0])) {
+                                                ?>
+                                                <li>
+                                                <label class="checkbox" for="<?= $item["CONTROL_ID"] ?>">
+                                                    <input type="radio" name="deadline" class="checkbox"
+                                                           value="<?= $item["HTML_VALUE"] ?>"
+                                                           id="<?= $item["CONTROL_ID"] ?>" <? echo $item["CHECKED"] ? 'checked="checked"' : '' ?>/>
+                                                    <span data-name="<?= $item["CONTROL_NAME"] ?>">до <?= $arr[0]." кв. ".$arr[1] ?></span>
+                                                </label>
+                                                </li><?
+                                            }
                                         }?>
                                     </ul>
+                                    <div style="display: none;">
+                                    <?
+                                    foreach ($arResult["ITEMS"][62]["VALUES"] as $item){?>
+                                        <input type="hidden" onclick="smartFilter.click(this)" value="<?= $item["HTML_VALUE"] ?>"
+                                                   id="<?= $item["CONTROL_ID"] ?>-val" name="<?= $item["CONTROL_NAME"] ?>" <? echo $item["CHECKED"] ? 'checked="checked"' : '' ?>/>
+                                    <?}?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

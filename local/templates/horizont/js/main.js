@@ -33,7 +33,7 @@ $(document).ready(function(){
         var selectFilters = $this.closest('.filter-bar').find('.filters');
         var selectFiltersSpan = $this.closest('.filter-bar').find('.filters span');
 
-        console.log($checkbox);
+
         if($checker.prop("checked") && $checkbox === 'checkbox'){
             if(selectFiltersSpan.length < 1){
                 selectFilters.prepend(
@@ -56,6 +56,11 @@ $(document).ready(function(){
                 selectFilters.prepend(
                     '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
                 );
+            }
+
+            if($checker.attr("name")=="deadline"){
+                id = $checker.attr("id");
+                $("#"+id+"-val").prop("checked",true);
             }
         }else{
             if(selectFiltersSpan.length > 1){
@@ -379,6 +384,7 @@ $(".tabs").tabs({});
             autoplayHoverPause:true
         });
     }
+
 
 
 });

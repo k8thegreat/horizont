@@ -98,9 +98,8 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                                 <?=PRINT_ICON?>
                             </a>
                         </li>
-                        <li>
-                            <a href="" class="share-link">
-                                <span class="icon"><?=SHARE_ICON?></span>
+                        <li class="share">
+                            <a href="" class="share-link"><?=SHARE_ICON?></a>
                                 <div class="share-block">
                                     <?$APPLICATION->IncludeComponent("bitrix:main.share", "share", Array(
                                         "COMPOSITE_FRAME_MODE" => "A",	// Голосование шаблона компонента по умолчанию
@@ -119,7 +118,7 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                                         false
                                     );?>
                                 </div>
-                            </a>
+
                         </li>
                     </ul>
                 </div>

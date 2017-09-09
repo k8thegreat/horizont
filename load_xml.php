@@ -12,7 +12,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 if($_POST["go"]) {
     set_time_limit(0);
   //ini_set('memory_limit', '6000M');
-    global $arDevelopers, $arBanks, $arBuildings, $propRoomsArr, $propMetroArr, $propPaymentArr, $propSectionPaymentArr, $propStateArr, $limit;
+    global $arDevelopers, $arBanks, $arBuildings, $propRoomsArr, $propMetroArr, $propPaymentArr, $propSectionPaymentArr, $propStateArr, $propReadyArr, $limit;
 
 
     if (CModule::IncludeModule("iblock")) {
@@ -56,6 +56,10 @@ if($_POST["go"]) {
         while ($enum_fields = $property_enums->GetNext()) {
             $propStateArr[$enum_fields["XML_ID"]] = $enum_fields;
         }
+        $property_enums = CIBlockPropertyEnum::GetList(Array("SORT" => "ASC"), Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "CODE" => "ready3"));
+        while ($enum_fields = $property_enums->GetNext()) {
+            $propReadyArr[$enum_fields["XML_ID"]] = $enum_fields["ID"];
+        }
         $property_enums = CUserFieldEnum::GetList(array(), array("USER_FIELD_NAME" => "UF_PAYMENT"));
         while ($enum_fields = $property_enums->GetNext()) {
             $propSectionPaymentArr[$enum_fields["XML_ID"]] = $enum_fields;
@@ -70,7 +74,7 @@ if($_POST["go"]) {
 
         $reader->onEvent('parseoffer', function ($context) {
 
-            global $arDevelopers, $arBanks, $arBuildings, $USER, $propRoomsArr, $propMetroArr, $propPaymentArr, $propStateArr, $propSectionPaymentArr;
+            global $arDevelopers, $arBanks, $arBuildings, $USER, $propRoomsArr, $propMetroArr, $propPaymentArr, $propReadyArr, $propStateArr, $propSectionPaymentArr;
 
             $item = xml2array($context->getResult());
 
@@ -81,9 +85,11 @@ if($_POST["go"]) {
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
                 if ($ob = $res->GetNextElement()) {
                     $arFields = $ob->GetFields();
-                    CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
-                        "building_state" => $propStateArr[$item["properties"]["building-state"]]
-                    ));
+                    if($propReadyArr[$item["properties"]["ready-quarter"].".".$item["properties"]["built-year"]]) {
+                        CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
+                            "ready" => $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]]
+                        ));
+                    }
                     //$arFields = $ob->GetFields();
                     /*CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
                         "ceiling_height" => $item["properties"]["ceiling-height"]
@@ -166,10 +172,23 @@ if($_POST["go"]) {
                         "price_discount" => $item["properties"]["price-discount"]["value"],
                         "developer" => $item["properties"]["developer-name"],
                         "zhk" => $item["properties"]["zhk-name"],
-                        "ready2" => convertQuaterToDate($item["properties"]["ready-quarter"], $item["properties"]["built-year"]),
+                       // "ready" => convertQuaterToDate($item["properties"]["ready-quarter"], $item["properties"]["built-year"]),
                         "building_state" => $propStateArr[$item["properties"]["building-state"]]
                     );
+                    if($propReadyArr[$item["properties"]["ready-quarter"].".".$item["properties"]["built-year"]]) {
+                        $arItemPropsArray["ready"] = $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]];
+                    }else{
+                        $PROPERTY_CODE  =  'ready' ;
+                        $properties  = CIBlockProperty::GetList(Array(),  Array("ACTIVE" => "Y", "IBLOCK_ID" => CATALOG_IBLOCK_ID, "CODE" => $PROPERTY_CODE));
+                        if($prop_fields = $properties->GetNext()){
+                            $PROPERTY_ID = $prop_fields["ID"];
+                        }
+                        $ibpenum = new CIBlockPropertyEnum;
+                        if($PropID = $ibpenum->Add(Array('PROPERTY_ID'=>$PROPERTY_ID, 'XML_ID' => $item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"],  'VALUE'=>$item["properties"]["ready-quarter"]." ".$item["properties"]["built-year"]))){
+                            $arItemPropsArray["ready"] = $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]] = $PropID;
 
+                        }
+                    }
                     if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
                     elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
                     elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
