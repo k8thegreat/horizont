@@ -75,9 +75,10 @@ foreach ($arResult['SECTIONS'] as &$arSection){
     $res = CIBlockElement::GetList(Array("PROPERTY_ready" => "asc"), $arFilter, array("PROPERTY_ready"), array(), array("IBLOCK_ID", "ID",  "PROPERTY_ready"));
     while($ob = $res->GetNext())
     {
-        $arSection["UF_READY"][] = str_replace("квартал", "кв.", $ob["PROPERTY_READY_VALUE"]);
+        $arSection["UF_READY"][] = $ob["PROPERTY_READY_VALUE"];
 
     }
+    sort($arSection["UF_READY"]);
     $arFilter = Array(
         "IBLOCK_ID"=>$arParams["IBLOCK_ID"],
         "ACTIVE"=>"Y",

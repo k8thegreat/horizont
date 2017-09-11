@@ -57,11 +57,11 @@ $(document).ready(function(){
                     '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
                 );
             }
-
-            if($checker.attr("name")=="deadline"){
-                id = $checker.attr("id");
-                $("#"+id+"-val").prop("checked",true);
+            if($checker.hasClass("deadline-ready") && $checker.prop("checked")){
+                $("input[class='deadline-date']").prop("checked",false);
             }
+            if($checker.hasClass("deadline-date") && $checker.prop("checked"))
+                $("input[class='deadline-ready']").prop("checked",false);
         }else{
             if(selectFiltersSpan.length > 1){
                 selectFilters.find('[data-filter-name="'+ filterName +'"]').remove();

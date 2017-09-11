@@ -80,7 +80,7 @@ JCSmartFilter.prototype.reload = function(input)
 				var set_filter = BX('set_filter');
 				set_filter.disabled = true;
 			}
-alert(this.ajaxURL);
+
 			this.curFilterinput = input;
 			BX.ajax.loadJSON(
 				this.ajaxURL,

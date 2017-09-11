@@ -38,6 +38,7 @@ foreach ($arResultTmp as $key => &$arSection) {
     ksort($arSection["GROUPS"]);
     $arResult["READY"][] = $key;
 }
+sort($arResult["READY"]);
 
 $arResult["MIN_PRICE"] = $minPrice;
 $arResult["ITEMS"] = $arResultTmp;

@@ -79,17 +79,58 @@ if($_POST["go"]) {
             $item = xml2array($context->getResult());
 
             if ($item["id"] && is_array($item["properties"])) {
+
                 //if($arBuildings[$item["properties"]["zhk-id"]])
                 $arSelect = Array("ID", "NAME", "XML_ID");
                 $arFilter = Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "XML_ID" => $item["id"], "ACTIVE" => "Y");
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
                 if ($ob = $res->GetNextElement()) {
                     $arFields = $ob->GetFields();
-                    if($propReadyArr[$item["properties"]["ready-quarter"].".".$item["properties"]["built-year"]]) {
-                        CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
-                            "ready" => $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]]
-                        ));
-                    }
+                    $el = new CIBlockElement;
+
+                    $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
+
+                    $arItemPropsArray = array(
+                        "region" => $item["properties"]["location"]["region"],
+                        "locality_name" => $item["properties"]["location"]["locality-name"],
+                        "district" => $item["properties"]["location"]["district"],
+                        "sub_locality_name" => $item["properties"]["location"]["sub-locality-name"],
+                        "metro_id" => $propMetroArr[$item["properties"]["metro-id"]]["ID"],
+                        "flat_number" => $item["properties"]["flat-number"],
+                        "corpus_name" => $item["properties"]["corpus-name"],
+                        "corpus_id" => $item["properties"]["corpus-id"],
+                        "levels" => $item["properties"]["levels"],
+                        "price_base" => $item["properties"]["price-base"]["value"],
+                        "area" => $item["properties"]["area"]["value"],
+                        "living_space" => $item["properties"]["living-space"]["value"],
+                        "kitchen_space" => $item["properties"]["kitchen-space"]["value"],
+                        "bathroom_unit" => $item["properties"]["bathroom-unit"],
+                        "floor" => $item["properties"]["floor"],
+                        "floors_total" => $item["properties"]["floors-total"],
+                        "rooms" => $propRoomsArr[$rooms]["ID"],
+                        "building_section" => $item["properties"]["building-section"],
+                        "renovation" => $item["properties"]["renovation"],
+                        "ceiling_height" => $item["properties"]["ceiling-height"],
+                        "balcony_space" => $item["properties"]["balcony-space"]["value"],
+                        "price_discount" => $item["properties"]["price-discount"]["value"],
+                        "developer" => $item["properties"]["developer-name"],
+                        "zhk" => $item["properties"]["zhk-name"],
+                        "ready" => floatval($item["properties"]["built-year"].".".$item["properties"]["ready-quarter"]),
+                        "building_state" => $propStateArr[$item["properties"]["building-state"]]
+                    );
+                    if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
+                    elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
+                    elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
+
+                    $arLoadItemArray = Array(
+                        "NAME" => "Квартира " . $item["properties"]["flat-number"],
+                        "PROPERTY_VALUES"=> $arItemPropsArray
+                    );
+                    if ($item["properties"]["image"][0])
+                        $arLoadItemArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($item["properties"]["image"][0]);
+                    $res = $el->Update($arFields["ID"], $arLoadItemArray);
+
+
                     //$arFields = $ob->GetFields();
                     /*CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
                         "ceiling_height" => $item["properties"]["ceiling-height"]
@@ -155,7 +196,6 @@ if($_POST["go"]) {
                         "corpus_name" => $item["properties"]["corpus-name"],
                         "corpus_id" => $item["properties"]["corpus-id"],
                         "levels" => $item["properties"]["levels"],
-                        "order_status" => $item["properties"]["order-status"],
                         "price_base" => $item["properties"]["price-base"]["value"],
                         "area" => $item["properties"]["area"]["value"],
                         "living_space" => $item["properties"]["living-space"]["value"],
@@ -163,7 +203,6 @@ if($_POST["go"]) {
                         "bathroom_unit" => $item["properties"]["bathroom-unit"],
                         "floor" => $item["properties"]["floor"],
                         "floors_total" => $item["properties"]["floors-total"],
-                        "ready" => $item["properties"]["ready-quarter"] . " квартал " . $item["properties"]["built-year"],
                         "rooms" => $propRoomsArr[$rooms]["ID"],
                         "building_section" => $item["properties"]["building-section"],
                         "renovation" => $item["properties"]["renovation"],
@@ -172,10 +211,10 @@ if($_POST["go"]) {
                         "price_discount" => $item["properties"]["price-discount"]["value"],
                         "developer" => $item["properties"]["developer-name"],
                         "zhk" => $item["properties"]["zhk-name"],
-                       // "ready" => convertQuaterToDate($item["properties"]["ready-quarter"], $item["properties"]["built-year"]),
+                        "ready" => floatval($item["properties"]["built-year"].".".$item["properties"]["ready-quarter"]),
                         "building_state" => $propStateArr[$item["properties"]["building-state"]]
                     );
-                    if($propReadyArr[$item["properties"]["ready-quarter"].".".$item["properties"]["built-year"]]) {
+                    /*if($propReadyArr[$item["properties"]["ready-quarter"].".".$item["properties"]["built-year"]]) {
                         $arItemPropsArray["ready"] = $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]];
                     }else{
                         $PROPERTY_CODE  =  'ready' ;
@@ -188,7 +227,7 @@ if($_POST["go"]) {
                             $arItemPropsArray["ready"] = $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]] = $PropID;
 
                         }
-                    }
+                    }*/
                     if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
                     elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
                     elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
@@ -331,6 +370,7 @@ if($_POST["go"]) {
 
                     } else
                         echo "Error: " . $el->LAST_ERROR;
+
                 }
             }
         });

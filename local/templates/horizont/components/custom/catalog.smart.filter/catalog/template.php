@@ -13,11 +13,6 @@
 $this->setFrameMode(true);
 
 ?>
-<?
-
-if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
-?>
-
 <div class="mobile-nav-filter">
     <button class="filter-back">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 451.847 451.847" xml:space="preserve">
@@ -33,6 +28,7 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
         <?foreach($arResult["HIDDEN"] as $arItem):?>
             <input type="hidden" name="<?echo $arItem["CONTROL_NAME"]?>" id="<?echo $arItem["CONTROL_ID"]?>" value="<?echo $arItem["HTML_VALUE"]?>" />
         <?endforeach;?>
+
         <div class="drop-filter-bar">
             <div class="drop-filter">
                 <div>
@@ -97,31 +93,31 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
                             <div class="drop-content">
                                 <div class="drop-content">
                                     <ul class="drop-list">
+                                        <li>
+                                            <label class="checkbox" for="<?=$arResult["ITEMS"][60]["VALUES"][102]["CONTROL_ID"]?>">
+                                                <input class="deadline-ready" type="radio" name="<?=$arResult["ITEMS"][60]["VALUES"][102]["CONTROL_NAME"]?>" value="Y" id="<?=$arResult["ITEMS"][60]["VALUES"][102]["CONTROL_ID"]?>" onclick="smartFilter.click(this)"/>
+                                                <span data-name="arrFilter_63"><?=$arResult["ITEMS"][60]["VALUES"][102]["VALUE"]?></span>
+                                            </label>
+                                        </li>
                                         <?
-                                        $currQuater = ceil(date("n")/3);
-                                        $currYear = date("Y");
-                                        foreach ($arResult["ITEMS"][62]["VALUES"] as $item){
-                                            $arr = explode(" ", $item["VALUE"]);
-                                            if($currYear < $arr[1] || ($currYear==$arr[1] && $currQuater<=$arr[0])) {
+                                        $currQuarter = ceil(date("n")/3);
+                                        $currYear = intval(date("Y"));
+                                        for ($year=$currYear; $year<($currYear+5); $year++){
+                                            for($quarter=1; $quarter<5;$quarter++){
+                                                if($year==$currYear && $quarter<$currQuarter) continue;
+                                                $value = $year.".".$quarter;
                                                 ?>
                                                 <li>
-                                                <label class="checkbox" for="<?= $item["CONTROL_ID"] ?>">
-                                                    <input type="radio" name="deadline" class="checkbox"
-                                                           value="<?= $item["HTML_VALUE"] ?>"
-                                                           id="<?= $item["CONTROL_ID"] ?>" <? echo $item["CHECKED"] ? 'checked="checked"' : '' ?>/>
-                                                    <span data-name="<?= $item["CONTROL_NAME"] ?>">до <?= $arr[0]." кв. ".$arr[1] ?></span>
+                                                <label class="checkbox" for="arrFilter_63_<?=$year?>_<?=$quarter?>">
+                                                    <input class="deadline-date" type="radio" name="arrFilter_63_MAX" class="checkbox" onclick="smartFilter.click(this)"
+                                                           value="<?=$value?>"
+                                                           id="arrFilter_63_<?=$year?>_<?=$quarter?>"<?=(($_REQUEST["arrFilter_63_MAX"]==$value) ? " checked" : "")?> />
+                                                    <span data-name="arrFilter_63">до <?= $quarter." кв. ".$year ?></span>
                                                 </label>
                                                 </li><?
                                             }
                                         }?>
                                     </ul>
-                                    <div style="display: none;">
-                                    <?
-                                    foreach ($arResult["ITEMS"][62]["VALUES"] as $item){?>
-                                        <input type="hidden" onclick="smartFilter.click(this)" value="<?= $item["HTML_VALUE"] ?>"
-                                                   id="<?= $item["CONTROL_ID"] ?>-val" name="<?= $item["CONTROL_NAME"] ?>" <? echo $item["CHECKED"] ? 'checked="checked"' : '' ?>/>
-                                    <?}?>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +132,7 @@ if($_GET["test"]=="Y") print_r($arResult["ITEMS"][36]);
                                     <?foreach ($arResult["ITEMS"][22]["VALUES"] as $item){?>
                                         <li>
                                         <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
-                                            <input type="checkbox" onclick="smartFilter.click(this)" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
+                                            <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
                                             <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
                                         </label>
                                         </li><?

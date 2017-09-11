@@ -90,7 +90,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
                         '<div class="result-content">',
                         '<div class="result-dop-con">',
                         '<ul class="left-con">',
-                        <?if($arSection["UF_READY"]){?>'<li><span>Сроки сдачи:</span><?=(count($arSection["UF_READY"])>1 ?  "<b>".$arSection["UF_READY"][0]." - ".$arSection["UF_READY"][count($arSection["UF_READY"])-1]."</b>" : "<b>".$arSection["UF_READY"][0]."</b>")?></li>',<?}?>
+                        <?if($arSection["UF_READY"]){?>'<li><span>Сроки сдачи:</span><?=(count($arSection["UF_READY"])>1 ?  "<b>".formatReadyDate($arSection["UF_READY"][0])." - ".formatReadyDate($arSection["UF_READY"][count($arSection["UF_READY"])-1])."</b>" : "<b>".formatReadyDate($arSection["UF_READY"][0])."</b>")?></li>',<?}?>
                         <?=($arSection["UF_PAYMENT"] ? "'<li><span>Варианты оплаты:</span> <b>".implode(", ",$arSection["UF_PAYMENT"])."</b></li>'," : "")?>
                         <?=($arSection["UF_DEVELOPER"] ? "'<li><span>Застройщик:</span> <b>".$arSection["UF_DEVELOPER"]["NAME"]."</b></li>'," : "")?>
                         '</ul>',

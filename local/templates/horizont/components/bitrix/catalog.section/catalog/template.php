@@ -101,7 +101,7 @@ $containerName = 'container-'.$navParams['NavNum'];
                     </div>
                     <ul class="detail">
                         <?if($arResult["UF_DEVELOPER"]){?><li><span>Застройщик:</span><?=$arResult["UF_DEVELOPER"]["NAME"]?></li><?}?>
-                        <?if($arResult["READY"]){?><li><span>Сроки сдачи:</span><?=implode(", ", $arResult["READY"])?></li><?}?>
+                        <?if($arResult["READY"]){?><li><span>Сроки сдачи:</span><?=(count($arResult["READY"])>1 ?  "".formatReadyDate($arResult["READY"][0])." - ".formatReadyDate($arResult["READY"][count($arResult["READY"])-1])."" : "".formatReadyDate($arResult["READY"][0])."")?></li><?}?>
                         <?if($arResult["UF_BUILDING_TYPE"]){?><li><span>Тип здания:</span><?=$arResult["UF_BUILDING_TYPE"]?></li><?}?>
                         <?if($arResult["FLOORS"]){?><li><span>Этажность:</span><?=$arResult["FLOORS"]["VALUE"]?></li><?}?>
                         <?if($arResult["RENOVATION"]){?><li><span>Отделка:</span><?=$arResult["RENOVATION"]["VALUE"]?></li><?}?>
@@ -140,7 +140,7 @@ $containerName = 'container-'.$navParams['NavNum'];
     ?>
             <div class="filter-life-complex">
                 <ul>
-                    <li><?=$key?></li>
+                    <li><?=formatReadyDate($key)?></li>
                     <li>Корпуса: <?=implode(", ",$arSection1["CORPUS"])?></li>
                 </ul>
                 <?if($i==0){?>

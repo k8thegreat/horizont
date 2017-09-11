@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Получить ипотеку стало ещё проще <strong>Заявки, поданные нашим ипотечным центром, одобряют более чем в 90% случаях</strong>");
+$APPLICATION->SetTitle("Ипотека");
 ?><section class="builder-small-slide shadow" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/img/builders/slide-bg.png);">
     <?$APPLICATION->IncludeComponent(
             "bitrix:breadcrumb",
@@ -96,9 +96,9 @@ $APPLICATION->SetTitle("Получить ипотеку стало ещё про
 	false
 );?>
 
-        <h2 class="title-big no-strong">мгновенный рассчет ипотечного кредита</h2>
+        <h2 class="title-big no-strong">Мгновенный рассчет ипотечного кредита</h2>
         <div class="gray-card">
-            <h4> Минимальная ставка банков на сегодняшний день <b>11%</b></h4>
+            <h4>Минимальная ставка банков на сегодняшний день <b>11%</b></h4>
             <div class="mortgage-calculation">
 
                     <?php

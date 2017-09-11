@@ -14,7 +14,7 @@
                 <div class="footer-list">
                     <?
                     global $arFooterItemsFilter;
-                    $arFooterItemsFilter = array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "UF_SHOW_IN_FOOTER" => "Y");
+                    $arFooterItemsFilter = array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "!UF_SHOW_IN_FOOTER" => "");
                     ?>
                     <?$APPLICATION->IncludeComponent("custom:catalog.section.list", "footer_objects", Array(
 	"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
@@ -35,12 +35,14 @@
 			0 => "",
 			1 => "",
 		),
+		"ITEMS_COUNT" => 6,
 		"SHOW_PARENT_NAME" => "N",	// Показывать название раздела
 		"TOP_DEPTH" => "",	// Максимальная отображаемая глубина разделов
 		"VIEW_MODE" => "TILE",	// Вид списка подразделов
 		"FILTER_NAME" => "arFooterItemsFilter",
 		"COMPONENT_TEMPLATE" => "objects",
 		"HIDE_SECTION_NAME" => "N",	// Не показывать названия подразделов
+
 	),
 	false
 );?>

@@ -39,6 +39,15 @@ function getColoredIcon($id){
     return $result;
 }
 
+function formatReadyDate($str){
+    $numbers = array(1 => "I", 2 => "II", 3 => "III", 4 => "IV");
+    $arr = explode(".", $str);
+    $quarter = intval($arr[1]);
+    $year = intval($arr[0]);
+    $result = $numbers[$quarter]." кв. ".$year;
+    return $result;
+}
+
 function cmp($a, $b)
 {
     $aArr = explode(" ", $a);

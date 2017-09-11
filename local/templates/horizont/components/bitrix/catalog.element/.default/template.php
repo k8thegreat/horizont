@@ -77,9 +77,9 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                 </div>
                 <div class="thumb">
                     <?if($arResult["PREVIEW_PICTURE"]["ID"]){
-                        $file = CFile::ResizeImageGet($arResult["PREVIEW_PICTURE"]["ID"], array('width'=>370, 'height'=>500), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+                        $file = CFile::ResizeImageGet($arResult["PREVIEW_PICTURE"]["ID"], array('width'=>370, 'height'=>450), BX_RESIZE_IMAGE_PROPORTIONAL, true);
                         $img = '<img src="'.$file['src'].'" width="'.$file['width'].'" height="'.$file['height'].'" />';
-                        echo $img;
+                        ?><a href="<?=CFile::GetPath($arResult["PREVIEW_PICTURE"]["ID"])?>" data-fancybox="image"><?=$img?></a><?
 					}?>
                 </div>
             </div>
@@ -125,10 +125,16 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                 <div class="detailed-information">
                     <table class="table-modal">
                         <tbody>
+                        <?if($arResult["PROPERTIES"]["developer"]["VALUE"]){?>
+                            <tr>
+                                <td>Застройщик:</td>
+                                <td><?=$arResult["PROPERTIES"]["developer"]["VALUE"]?></td>
+                            </tr>
+                        <?}?>
                         <?if($arResult["PROPERTIES"]["ready"]["VALUE"]){?>
                         <tr>
                             <td>Срок сдачи:</td>
-                            <td><?=$arResult["PROPERTIES"]["ready"]["VALUE"]?> (<?=$arResult["PROPERTIES"]["building_section"]["VALUE"]?>)</td>
+                            <td><?=formatReadyDate($arResult["PROPERTIES"]["ready"]["VALUE"])?> (<?=$arResult["PROPERTIES"]["building_section"]["VALUE"]?>)</td>
                         </tr>
                         <?}?>
                         <?if($arResult["UF_BUILDING_TYPE"]){?>
