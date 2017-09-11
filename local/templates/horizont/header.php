@@ -10,6 +10,7 @@
     <meta name="description" content=""/>
     <link rel="icon" href="favicon.png" type="image/png" sizes="30x30">
     <?
+    $APPLICATION->AddHeadScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery-2.2.1.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/owl.carousel.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/fancybox/jquery.fancybox.min.js");

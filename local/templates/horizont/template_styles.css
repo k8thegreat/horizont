@@ -2838,6 +2838,9 @@ header.scroll .logo img{
 .ya-map{
     position: relative;
 }
+.ya-map ymaps{
+    z-index: 10;
+}
 .shadow-map::before{
     content: '';
     position: absolute;
