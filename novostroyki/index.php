@@ -13,7 +13,20 @@ $APPLICATION->SetTitle("Новостройки");
             )
         );?>
         <div class="container">
-            <h1 class="title-big">поиск новостроек <strong>в Петербурге и Ленинградской области</strong></h1>
+            <h1 class="title-big">
+                <?$APPLICATION->IncludeComponent(
+                    "bitrix:main.include",
+                    "",
+                    Array(
+                        "AREA_FILE_SHOW" => "file",
+                        "AREA_FILE_SUFFIX" => "inc",
+                        "COMPOSITE_FRAME_MODE" => "A",
+                        "COMPOSITE_FRAME_TYPE" => "AUTO",
+                        "EDIT_TEMPLATE" => "",
+                        "PATH" => "/includes/novostroyki_title.php"
+                    )
+                );?>
+            </h1>
         </div>
     </section>
     <section class="filter-bar-wrapper bg-gray" id="go-filter">
@@ -267,4 +280,4 @@ $APPLICATION->SetTitle("Новостройки");
 		)
 	),
 	false
-);?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

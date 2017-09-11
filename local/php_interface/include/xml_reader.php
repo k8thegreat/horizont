@@ -11,6 +11,7 @@ class AbstractAdvertisementXMLReader {
     public $counter_offer;
     public $limit_offer;
     public $step_limit_offer;
+    public $deleted;
 
     // события
     protected $_eventStack = array();
@@ -72,12 +73,12 @@ class AbstractAdvertisementXMLReader {
                 if($step_counter == $this->step_limit_offer){
                     //sleep(5);
                     $step_counter = 0;
-                    echo "sleep ".$this->counter_offer."<br/>";
                 }
 
             }
         }
         $this->reader->close();
+        $this->fireEvent('afterParse');
     }
 
     /*

@@ -11,9 +11,11 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.ph
 
 if($_POST["go"]) {
     set_time_limit(0);
-  //ini_set('memory_limit', '6000M');
-    global $arDevelopers, $arBanks, $arBuildings, $propRoomsArr, $propMetroArr, $propPaymentArr, $propSectionPaymentArr, $propStateArr, $propReadyArr, $limit;
 
+  //ini_set('memory_limit', '6000M');
+    global $timestamp_start, $arDevelopers, $arBanks, $arBuildings, $propRoomsArr, $propMetroArr, $propPaymentArr, $propSectionPaymentArr, $propStateArr, $propReadyArr, $limit;
+
+    $timestamp_start = time();
 
     if (CModule::IncludeModule("iblock")) {
 
@@ -72,6 +74,24 @@ if($_POST["go"]) {
             $context->clearResult();
         });
 
+
+        $reader->onEvent('afterParse', function ($name, $context) {
+            global $timestamp_start;
+            $element = new CIBlockElement;
+            $rsElements = CIBlockElement::GetList(array(), array(
+                "IBLOCK_ID" =>  CATALOG_IBLOCK_ID,
+                "ACTIVE" => "Y",
+                "<TIMESTAMP_X" => $timestamp_start
+            ), false, false, array("ID"));
+            while ($arElement = $rsElements->Fetch())
+            {
+                $element->Delete($arElement["ID"]);
+                $context->deleted++;
+            }
+        });
+
+
+
         $reader->onEvent('parseoffer', function ($context) {
 
             global $arDevelopers, $arBanks, $arBuildings, $USER, $propRoomsArr, $propMetroArr, $propPaymentArr, $propReadyArr, $propStateArr, $propSectionPaymentArr;
@@ -81,13 +101,17 @@ if($_POST["go"]) {
             if ($item["id"] && is_array($item["properties"])) {
 
                 //if($arBuildings[$item["properties"]["zhk-id"]])
-                $arSelect = Array("ID", "NAME", "XML_ID");
+                $arSelect = Array("ID", "NAME", "XML_ID", "PROPERTY_crc");
                 $arFilter = Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "XML_ID" => $item["id"], "ACTIVE" => "Y");
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
-                if ($ob = $res->GetNextElement()) {
+                if ($ob = $res->GetNextElement()){
                     $arFields = $ob->GetFields();
+                    $arProps = $ob->GetProperties();
+                    print_r($arProps);
+                    die();
                     $el = new CIBlockElement;
 
+                    $crc = md5(json_encode($item["properties"]));
                     $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
 
                     $arItemPropsArray = array(
@@ -116,7 +140,8 @@ if($_POST["go"]) {
                         "developer" => $item["properties"]["developer-name"],
                         "zhk" => $item["properties"]["zhk-name"],
                         "ready" => floatval($item["properties"]["built-year"].".".$item["properties"]["ready-quarter"]),
-                        "building_state" => $propStateArr[$item["properties"]["building-state"]]
+                        "building_state" => $propStateArr[$item["properties"]["building-state"]],
+                        "crc" => $crc
                     );
                     if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
                     elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
@@ -186,6 +211,9 @@ if($_POST["go"]) {
                     $el = new CIBlockElement;
                     $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
 
+                    $crc = md5(json_encode($item["properties"]));
+
+
                     $arItemPropsArray = array(
                         "region" => $item["properties"]["location"]["region"],
                         "locality_name" => $item["properties"]["location"]["locality-name"],
@@ -212,22 +240,9 @@ if($_POST["go"]) {
                         "developer" => $item["properties"]["developer-name"],
                         "zhk" => $item["properties"]["zhk-name"],
                         "ready" => floatval($item["properties"]["built-year"].".".$item["properties"]["ready-quarter"]),
-                        "building_state" => $propStateArr[$item["properties"]["building-state"]]
+                        "building_state" => $propStateArr[$item["properties"]["building-state"]],
+                        "crc" => $crc
                     );
-                    /*if($propReadyArr[$item["properties"]["ready-quarter"].".".$item["properties"]["built-year"]]) {
-                        $arItemPropsArray["ready"] = $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]];
-                    }else{
-                        $PROPERTY_CODE  =  'ready' ;
-                        $properties  = CIBlockProperty::GetList(Array(),  Array("ACTIVE" => "Y", "IBLOCK_ID" => CATALOG_IBLOCK_ID, "CODE" => $PROPERTY_CODE));
-                        if($prop_fields = $properties->GetNext()){
-                            $PROPERTY_ID = $prop_fields["ID"];
-                        }
-                        $ibpenum = new CIBlockPropertyEnum;
-                        if($PropID = $ibpenum->Add(Array('PROPERTY_ID'=>$PROPERTY_ID, 'XML_ID' => $item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"],  'VALUE'=>$item["properties"]["ready-quarter"]." ".$item["properties"]["built-year"]))){
-                            $arItemPropsArray["ready"] = $propReadyArr[$item["properties"]["ready-quarter"] . "." . $item["properties"]["built-year"]] = $PropID;
-
-                        }
-                    }*/
                     if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
                     elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
                     elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
@@ -377,6 +392,7 @@ if($_POST["go"]) {
 
         $reader->parse();
         echo $reader->counter_offer;
+        echo $reader->deleted;
     }
 }
 ?>

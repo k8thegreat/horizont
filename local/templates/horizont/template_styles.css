@@ -2501,7 +2501,7 @@ header.scroll .logo img{
 /*------------------------------------------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------------------------------------*/
-.title-big > strong{
+.title-big  strong{
     width: 100%;
     display: block;
     font:400 25px/1 "OpenSans";
@@ -3242,7 +3242,7 @@ header.scroll .logo img{
     }
 }
 @media screen and (max-width: 479px){
-    .title-big > strong {
+    .title-big strong {
         font: 400 14px/1.3 "OpenSans";
         padding: 15px 15px 0;
     }

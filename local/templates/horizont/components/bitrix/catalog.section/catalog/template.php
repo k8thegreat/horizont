@@ -554,7 +554,7 @@ $containerName = 'container-'.$navParams['NavNum'];
         </div>
     </section>
 
-    <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+    <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
     <script type="text/javascript">
         ymaps.ready(function () {
             var map = new ymaps.Map("loc-life-complex", {
@@ -564,6 +564,7 @@ $containerName = 'container-'.$navParams['NavNum'];
             map.behaviors.enable('scrollZoom');
             map.controls.add('mapTools', { top: 6, right: 41});
             map.controls.add('zoomControl', { top: 40, right: 7 });
+            map.controls.add('fullscreenControl',{ top: 6, left: 7 }););
             var mapPlacemark = new ymaps.Placemark([<?=$arResult["UF_LOCATION"]["lat"]?>, <?=$arResult["UF_LOCATION"]["long"]?>],
                 {
                     hintContent: '<?=$arResult["NAME"]?>'
