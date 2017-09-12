@@ -550,13 +550,12 @@ $containerName = 'container-'.$navParams['NavNum'];
         function init(){
             locMap = new ymaps.Map ("loc-life-complex", {
                 center: [<?=$arResult["UF_LOCATION"]["lat"]?>, <?=$arResult["UF_LOCATION"]["long"]?>],
-                zoom: 12
+                zoom: 12,
+                controls:[]
             });
-            //map.behaviors.enable('scrollZoom');
-            locMap.controls.add('mapTools', { top: 6, right: 41});
-            locMap.controls.add('zoomControl', { top: 40, right: 7 });
-            locMap.controls.add('fullscreenControl',{ top: 6, left: 7 });
-            locPlacemark = new ymaps.Placemark(map.getCenter(), {
+            locMap.controls.add("fullscreenControl", {float:'none', position:{top:6,right:6}});
+            locMap.controls.add("zoomControl", {float:'none', position:{top:46,right:6}});
+            locPlacemark = new ymaps.Placemark(locMap.getCenter(), {
                 hintContent: '<?=$arResult["NAME"]?>'
             },{
                 iconLayout: 'default#image',

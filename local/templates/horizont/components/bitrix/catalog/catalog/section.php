@@ -312,10 +312,8 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
     <section id="menu-mortgage">
         <div class="container">
             <h2 class="title-big">Ипотека</h2>
-
             <?
             global $arBanksFilter;
-
             foreach ($GLOBALS["BANKS"] as $BANK) {
                 $arBanksFilter[] = array("ID" => $BANK);
             }
@@ -389,10 +387,9 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                 ),
                 false
             );?>
-
             <?
             $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_RATE");//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
-            $arFilter = Array("IBLOCK_ID"=>BANKS_CATALOG_ID, "ACTIVE"=>"Y");
+            $arFilter = Array("IBLOCK_ID"=>BANKS_IBLOCK_ID, "ACTIVE"=>"Y");
             $res = CIBlockElement::GetList(Array("PROPERTY_RATE"=> "ASC"), $arBanksFilter, false, Array(), $arSelect);
             if($ob = $res->GetNextElement()){
                 $arFields = $ob->GetFields();
@@ -466,7 +463,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                                     type: "post",
                                     dataType: "json",
                                     success: function(data){
-                                        $("#calc-form .btn").attr("disabled", "").removeClass("disabled");
+                                        $("#calc-form .btn").prop("disabled",false).removeClass("disabled");
                                         if(data.errorstr){
                                             $("#calc-form .errors").html(data.errorstr);
                                         }else{
@@ -496,7 +493,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                                             return false;
                                         }
                                         $("#calc-form .errors").html("");
-                                        $("#calc-form .btn").attr("disabled", "disabled").addClass("disabled");
+                                        $("#calc-form .btn").prop("disabled", "disabled").addClass("disabled");
                                     }
                                 }
 

@@ -2,9 +2,10 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 ?>
     <h2>Загрузка каталога объектов</h2>
-<form name="go" action="" method="post">
+<form action="" method="post">
 
-    <input type="submit" name="go" value="Запустить выгрузку"/> 
+    <input type="submit" name="go" value="Запустить выгрузку"/>
+    <?/*<input type="submit" name="delete" value="Удалить неактуальные записи"/>*/?>
 </form>
 
 <?
@@ -17,6 +18,8 @@ if($_POST["go"]) {
 
     $timestamp_start = time();
 
+    file_put_contents("log.txt", $timestamp_start);
+
     if (CModule::IncludeModule("iblock")) {
 
         $arSelect = Array("ID", "NAME", "XML_ID");
@@ -26,7 +29,7 @@ if($_POST["go"]) {
             $arFields = $ob->GetFields();
             $arDevelopers[$arFields["XML_ID"]] = $arFields;
         }
-        $arSelect = Array("ID", "NAME", "XML_ID");
+        $arSelect = Array("ID", "NAME");
         $arFilter = Array("IBLOCK_ID" => BANKS_IBLOCK_ID, "ACTIVE" => "Y");
         $res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize" => 500), $arSelect);
         while ($ob = $res->GetNextElement()) {
@@ -67,7 +70,7 @@ if($_POST["go"]) {
             $propSectionPaymentArr[$enum_fields["XML_ID"]] = $enum_fields;
         }
 
-        $reader = new fileXMLReader('topnlab.ru.xml');
+        $reader = new fileXMLReader('topnlab.ru_test.xml');
 //$reader = new fileXMLReader('test.xml');
 
         $reader->onEvent('afterParseElement', function ($name, $context) {
@@ -93,119 +96,113 @@ if($_POST["go"]) {
 
 
         $reader->onEvent('parseoffer', function ($context) {
-
             global $arDevelopers, $arBanks, $arBuildings, $USER, $propRoomsArr, $propMetroArr, $propPaymentArr, $propReadyArr, $propStateArr, $propSectionPaymentArr;
-
             $item = xml2array($context->getResult());
 
             if ($item["id"] && is_array($item["properties"])) {
-
                 //if($arBuildings[$item["properties"]["zhk-id"]])
                 $arSelect = Array("ID", "NAME", "XML_ID", "PROPERTY_crc");
                 $arFilter = Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "XML_ID" => $item["id"], "ACTIVE" => "Y");
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
                 if ($ob = $res->GetNextElement()){
                     $arFields = $ob->GetFields();
-                    $arProps = $ob->GetProperties();
-                    print_r($arProps);
-                    die();
-                    $el = new CIBlockElement;
-
+                    $propCRC = $arFields["PROPERTY_CRC_VALUE"];
                     $crc = md5(json_encode($item["properties"]));
-                    $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
+                    $el = new CIBlockElement;
+                    //if($propCRC == $crc){
+                    if($item["properties"]["banks"]){
+                        if ($item["properties"]["banks"]["bank"]) {
+                            $arSectionBanks = array();
+                            foreach ($item["properties"]["banks"]["bank"] as $bank) {
+                                if ($arBanks[$bank]) {
+                                    $arSectionBanks[] = $arBanks[$bank]["ID"];
+                                }
+                            }
+                            $arSectionFields["UF_BANKS"] = $arSectionBanks;
+                            $sectionID = $arBuildings[$item["properties"]["zhk-id"]]["ID"];
+                            if($arSectionFields) {
+                                $bs = new CIBlockSection;
+                                $bs->Update($sectionID, $arSectionFields);
 
-                    $arItemPropsArray = array(
-                        "region" => $item["properties"]["location"]["region"],
-                        "locality_name" => $item["properties"]["location"]["locality-name"],
-                        "district" => $item["properties"]["location"]["district"],
-                        "sub_locality_name" => $item["properties"]["location"]["sub-locality-name"],
-                        "metro_id" => $propMetroArr[$item["properties"]["metro-id"]]["ID"],
-                        "flat_number" => $item["properties"]["flat-number"],
-                        "corpus_name" => $item["properties"]["corpus-name"],
-                        "corpus_id" => $item["properties"]["corpus-id"],
-                        "levels" => $item["properties"]["levels"],
-                        "price_base" => $item["properties"]["price-base"]["value"],
-                        "area" => $item["properties"]["area"]["value"],
-                        "living_space" => $item["properties"]["living-space"]["value"],
-                        "kitchen_space" => $item["properties"]["kitchen-space"]["value"],
-                        "bathroom_unit" => $item["properties"]["bathroom-unit"],
-                        "floor" => $item["properties"]["floor"],
-                        "floors_total" => $item["properties"]["floors-total"],
-                        "rooms" => $propRoomsArr[$rooms]["ID"],
-                        "building_section" => $item["properties"]["building-section"],
-                        "renovation" => $item["properties"]["renovation"],
-                        "ceiling_height" => $item["properties"]["ceiling-height"],
-                        "balcony_space" => $item["properties"]["balcony-space"]["value"],
-                        "price_discount" => $item["properties"]["price-discount"]["value"],
-                        "developer" => $item["properties"]["developer-name"],
-                        "zhk" => $item["properties"]["zhk-name"],
-                        "ready" => floatval($item["properties"]["built-year"].".".$item["properties"]["ready-quarter"]),
-                        "building_state" => $propStateArr[$item["properties"]["building-state"]],
-                        "crc" => $crc
-                    );
-                    if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
-                    elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
-                    elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
+                            }
+                        }
 
-                    $arLoadItemArray = Array(
-                        "NAME" => "Квартира " . $item["properties"]["flat-number"],
-                        "PROPERTY_VALUES"=> $arItemPropsArray
-                    );
-                    if ($item["properties"]["image"][0])
-                        $arLoadItemArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($item["properties"]["image"][0]);
-                    $res = $el->Update($arFields["ID"], $arLoadItemArray);
-
-
-                    //$arFields = $ob->GetFields();
-                    /*CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
-                        "ceiling_height" => $item["properties"]["ceiling-height"]
-                    ));*/
-                    //$el = new CIBlockElement;
-                    //$arLoadProductArray = Array(
-                      //  "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
-
-                    //);
-                    //$res = $el->Update($arFields["ID"], $arLoadProductArray);
-                    /*CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, array(
-                            "sub_locality_name" => $item["properties"]["location"]["sub-locality-name"],
-                            "locality_name" => $item["properties"]["location"]["locality-name"],
+                        //$res = $el->Update($arFields["ID"], array());
+                    }else {
+                        $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
+                        $arItemPropsArray = array(
                             "region" => $item["properties"]["location"]["region"],
-                    ));
-                    /*$sectionID = $arBuildings[$item["properties"]["zhk-id"]]["ID"];
-                    if($item["properties"]["location"]["metro"]["time-on-foot"]){
-                        echo $item["properties"]["zhk-name"];
-                        $arFields = Array(
-                            "UF_TIME_ON_FOOT" => $item["properties"]["location"]["metro"]["time-on-foot"]
+                            "locality_name" => $item["properties"]["location"]["locality-name"],
+                            "district" => $item["properties"]["location"]["district"],
+                            "sub_locality_name" => $item["properties"]["location"]["sub-locality-name"],
+                            "metro_id" => $propMetroArr[$item["properties"]["metro-id"]]["ID"],
+                            "flat_number" => $item["properties"]["flat-number"],
+                            "corpus_name" => $item["properties"]["corpus-name"],
+                            "corpus_id" => $item["properties"]["corpus-id"],
+                            "levels" => $item["properties"]["levels"],
+                            "price_base" => $item["properties"]["price-base"]["value"],
+                            "area" => $item["properties"]["area"]["value"],
+                            "living_space" => $item["properties"]["living-space"]["value"],
+                            "kitchen_space" => $item["properties"]["kitchen-space"]["value"],
+                            "bathroom_unit" => $item["properties"]["bathroom-unit"],
+                            "floor" => $item["properties"]["floor"],
+                            "floors_total" => $item["properties"]["floors-total"],
+                            "rooms" => $propRoomsArr[$rooms]["ID"],
+                            "building_section" => $item["properties"]["building-section"],
+                            "renovation" => $item["properties"]["renovation"],
+                            "ceiling_height" => $item["properties"]["ceiling-height"],
+                            "balcony_space" => $item["properties"]["balcony-space"]["value"],
+                            "price_discount" => $item["properties"]["price-discount"]["value"],
+                            "developer" => $item["properties"]["developer-name"],
+                            "zhk" => $item["properties"]["zhk-name"],
+                            "ready" => floatval($item["properties"]["built-year"] . "." . $item["properties"]["ready-quarter"]),
+                            "building_state" => $propStateArr[$item["properties"]["building-state"]],
+                            "crc" => $crc
                         );
-                    }
-                    if($item["properties"]["location"]["metro"]["time-on-transport"]){
-                        echo $item["properties"]["zhk-name"];
-                        $arFields = Array(
-                            "UF_TIME_ON_TRANSPORT" => $item["properties"]["location"]["metro"]["time-on-transport"]
+                        if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
+                        elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
+                        elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
+
+                        $arLoadItemArray = Array(
+                            "NAME" => "Квартира " . $item["properties"]["flat-number"],
+                            "PROPERTY_VALUES" => $arItemPropsArray
                         );
+                        if ($item["properties"]["image"][0])
+                            $arLoadItemArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($item["properties"]["image"][0]);
+                        $res = $el->Update($arFields["ID"], $arLoadItemArray);
 
+
+
+                        /*
+                        if($item["properties"]["location"]["metro"]["time-on-transport"]){
+                            echo $item["properties"]["zhk-name"];
+                            $arFields = Array(
+                                "UF_TIME_ON_TRANSPORT" => $item["properties"]["location"]["metro"]["time-on-transport"]
+                            );
+
+                        }
+                        $sectionID = $arBuildings[$item["properties"]["zhk-id"]]["ID"];
+                        if($item["properties"]["building-type"]){
+
+                            $arFields = Array(
+                                "UF_BUILDING_TYPE" => $item["properties"]["building-type"]
+                            );
+                        }
+                        if($arFields) {
+                            $bs = new CIBlockSection;
+                            $bs->Update($sectionID, $arFields);
+
+                        }
+                        /*$arFields = $ob->GetFields();
+                        if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
+                        elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
+                        elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
+                        else $payment_type = "";
+                        if($arItemPropsArray) {
+                            echo $arFields["ID"];
+                        }*/
                     }
-                    $sectionID = $arBuildings[$item["properties"]["zhk-id"]]["ID"];
-                    if($item["properties"]["building-type"]){
-
-                        $arFields = Array(
-                            "UF_BUILDING_TYPE" => $item["properties"]["building-type"]
-                        );
-                    }
-                    if($arFields) {
-                        $bs = new CIBlockSection;
-                        $bs->Update($sectionID, $arFields);
-
-                    }
-                    /*$arFields = $ob->GetFields();
-                    if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
-                    elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
-                    elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
-                    else $payment_type = "";
-                    if($arItemPropsArray) {
-                        echo $arFields["ID"];
-                    }*/
-
+                    unset($el);
                 } else {
 
                     $el = new CIBlockElement;
@@ -299,7 +296,7 @@ if($_POST["go"]) {
                                     $arLoadBankArray = Array(
                                         "MODIFIED_BY" => $USER->GetID(),
                                         "IBLOCK_SECTION_ID" => false,
-                                        "IBLOCK_ID" => BANKS_CATALOG_ID,
+                                        "IBLOCK_ID" => BANKS_IBLOCK_ID,
                                         "NAME" => $bank,
                                         "ACTIVE" => "Y"
                                     );
@@ -386,13 +383,30 @@ if($_POST["go"]) {
                     } else
                         echo "Error: " . $el->LAST_ERROR;
 
+                    unset($el);
                 }
             }
         });
 
         $reader->parse();
-        echo $reader->counter_offer;
-        echo $reader->deleted;
+
     }
+}
+if($_POST["delete"]) {
+     if(file_get_contents("log.txt", $timestamp_start)){
+         if (CModule::IncludeModule("iblock")) {
+             $element = new CIBlockElement;
+             $rsElements = CIBlockElement::GetList(array(), array(
+                 "IBLOCK_ID" => CATALOG_IBLOCK_ID,
+                 "ACTIVE" => "Y",
+                 "<TIMESTAMP_X" => $timestamp_start
+             ), false, false, array("ID"));
+             while ($arElement = $rsElements->Fetch()) {
+                 $element->Delete($arElement["ID"]);
+                 $deleted++;
+             }
+             echo $deleted;
+         }
+     }
 }
 ?>

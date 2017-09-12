@@ -77,7 +77,7 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                 </div>
                 <div class="thumb">
                     <?if($arResult["PREVIEW_PICTURE"]["ID"]){
-                        $file = CFile::ResizeImageGet($arResult["PREVIEW_PICTURE"]["ID"], array('width'=>370, 'height'=>450), BX_RESIZE_IMAGE_PROPORTIONAL, true);
+                        $file = CFile::ResizeImageGet($arResult["PREVIEW_PICTURE"]["ID"], array('width'=>370, 'height'=>360), BX_RESIZE_IMAGE_PROPORTIONAL, true);
                         $img = '<img src="'.$file['src'].'" width="'.$file['width'].'" height="'.$file['height'].'" />';
                         ?><a href="<?=CFile::GetPath($arResult["PREVIEW_PICTURE"]["ID"])?>" data-fancybox="image"><?=$img?></a><?
 					}?>
@@ -189,7 +189,7 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                     </table>
                     <?if($arResult["BANK"]){?>
                     <div class="btn-wrap">
-                        <button class="btn btn-border">Калькулятор ипотеки</button>
+                        <button class="btn btn-border show-calc">Калькулятор ипотеки</button>
                     </div>
                     <div class="gray-card">
                         <div class="close-card"></div>
@@ -221,7 +221,7 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                                 }else{
                                     ?>
 
-                            <form id="calc-form" action="<?=$arResult["DETAIL_PAGE_URL"]?>" method="post" enctype="multipart/form-data" >
+                            <form id="apart-calc-form" action="<?=$arResult["DETAIL_PAGE_URL"]?>" method="post" enctype="multipart/form-data" >
 
                                 <input type="hidden" name="RATE" value="<?=$arResult["BANK"]["PROPERTY_RATE_VALUE"]?>"/>
                                     <div class="values">
@@ -248,28 +248,28 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                                     </form>
                                     <script type="text/javascript">
                                         $(document).ready(function(){
-                                            $("body").on("change", "#calc-form .required", function(){
+                                            $("body").on("change", "#apart-calc-form .required", function(){
                                                 if($(this).val()) $(this).removeClass("error");
                                                 else $(this).addClass("error");
                                             });
-                                            var calc_form_options = {
+                                            var apart_calc_form_options = {
                                                 type: "post",
                                                 dataType: "json",
                                                 success: function(data){
-                                                    $("#calc-form .btn").attr("disabled", "").removeClass("disabled");
+                                                    $("#apart-calc-form .btn").prop("disabled", false).removeClass("disabled");
                                                     if(data.errorstr){
                                                         $("#calc-form .errors").html(data.errorstr);
                                                     }else{
                                                         if(data.success){
-                                                            $("#calc-form .errors").html("");
-                                                            $("#calc-form .price-month").html(data.success);
+                                                            $("#apart-calc-form .errors").html("");
+                                                            $("#apart-calc-form .price-month").html(data.success);
                                                         }
                                                     }
                                                 },
                                                 beforeSubmit: function(){
                                                     var error = false;
-                                                    $("#calc-form .errors").text();
-                                                    $("#calc-form .required").each(function(){
+                                                    $("#apart-calc-form .errors").text();
+                                                    $("#apart-calc-form .required").each(function(){
                                                         if($(this).is("textarea")) var type="textarea"; else if($(this).is("input")) var type = $(this).attr("type");
                                                         switch (type) {
                                                             case 'text':
@@ -285,12 +285,12 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                                                     if(error == true) {
                                                         return false;
                                                     }
-                                                    $("#calc-form .errors").html("");
-                                                    $("#calc-form .btn").attr("disabled", "disabled").addClass("disabled");
+                                                    $("#apart-calc-form .errors").html("");
+                                                    $("#apart-calc-form .btn").prop("disabled", "disabled").addClass("disabled");
                                                 }
                                             }
 
-                                            $('#calc-form').ajaxForm(calc_form_options);
+                                            $('#apart-calc-form').ajaxForm(apart_calc_form_options);
                                         });
 
                                     </script>

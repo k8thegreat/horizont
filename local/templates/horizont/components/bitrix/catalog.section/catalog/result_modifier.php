@@ -55,9 +55,6 @@ if ($arSection2 = $rsSections->GetNext())
     if($arSection2["UF_LOCATION"]){
         $arResult["UF_LOCATION"] = unserialize($arSection2["~UF_LOCATION"]);
     }
-    if($arSection2["UF_BANKS"]){
-        $arResult["UF_BANKS"] = unserialize($arSection2["~UF_BANKS"]);
-    }
     if($arSection2["UF_APARTMENTS"]){
         $arResult["UF_APARTMENTS"] = unserialize($arSection2["UF_APARTMENTS"]);
     }

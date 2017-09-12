@@ -23,14 +23,14 @@ if ($arSection = $rsSections->GetNext())
     $arResult["UF_METRO"] = $arSection["UF_METRO"];
     $arResult["UF_ADDRESS"] = $arSection["UF_ADDRESS"];
     if($arSection["UF_BANKS"]){
-        $arResult["UF_BANKS"] = unserialize($arSection["UF_BANKS"]);
+        $arResult["UF_BANKS"] = $arSection["UF_BANKS"];
         foreach ($arResult["UF_BANKS"] as $bank){
             $arBanks[] = array("ID" => $bank);
         }
         $arBanks["LOGIC"] = "OR";
-        $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_RATE");//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
-        $arFilter = Array("IBLOCK_ID"=>BANKS_CATALOG_ID, "ACTIVE"=>"Y");
-        $res = CIBlockElement::GetList(Array("PROPERTY_RATE"=> "ASC"), $arFilter, false, Array(), $arSelect);
+        $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_RATE");
+        $arFilter = Array("IBLOCK_ID"=>BANKS_IBLOCK_ID, "ACTIVE"=>"Y");
+        $res = CIBlockElement::GetList(Array("PROPERTY_RATE"=> "ASC"), array_merge($arFilter,array($arBanks)), false, Array(), $arSelect);
         if($ob = $res->GetNextElement()){
             $arFields = $ob->GetFields();
             $arProps = $ob->GetProperties();

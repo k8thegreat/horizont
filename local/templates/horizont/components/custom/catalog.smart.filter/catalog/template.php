@@ -93,18 +93,21 @@ $this->setFrameMode(true);
                             <div class="drop-content">
                                 <div class="drop-content">
                                     <ul class="drop-list">
-                                        <li>
-                                            <label class="checkbox" for="<?=$arResult["ITEMS"][60]["VALUES"][102]["CONTROL_ID"]?>">
-                                                <input class="deadline-ready" type="radio" name="<?=$arResult["ITEMS"][60]["VALUES"][102]["CONTROL_NAME"]?>" value="Y" id="<?=$arResult["ITEMS"][60]["VALUES"][102]["CONTROL_ID"]?>" onclick="smartFilter.click(this)"/>
-                                                <span data-name="arrFilter_63"><?=$arResult["ITEMS"][60]["VALUES"][102]["VALUE"]?></span>
-                                            </label>
-                                        </li>
                                         <?
                                         $currQuarter = ceil(date("n")/3);
                                         $currYear = intval(date("Y"));
+                                        ?>
+                                        <li>
+                                            <label class="checkbox" for="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>">
+                                                <input class="deadline-ready" type="radio" name="arrFilter_63_MAX" value="<?=$currYear.".".$currQuarter?>" id="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>" onclick="smartFilter.click(this)"/>
+                                                <span data-name="arrFilter_63">Сдан</span>
+                                            </label>
+                                        </li>
+                                        <?
+
                                         for ($year=$currYear; $year<($currYear+5); $year++){
                                             for($quarter=1; $quarter<5;$quarter++){
-                                                if($year==$currYear && $quarter<$currQuarter) continue;
+                                                if($year==$currYear && $quarter<=$currQuarter) continue;
                                                 $value = $year.".".$quarter;
                                                 ?>
                                                 <li>

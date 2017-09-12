@@ -30,26 +30,14 @@ $this->setFrameMode(true);
                 ?><img src="<?=$file["src"]?>" alt="<?=$arItem["NAME"]?>"/><?}?></div>
             <div><?=$arItem["NAME"]?></div>
             <div><?=$arItem["PROPERTIES"]["PROGRAMS_COUNT"]["VALUE"]?></div>
-            <div><?=$arItem["PROPERTIES"]["RATE"]["VALUE"]?></div>
-
+            <div><?=($arItem["PROPERTIES"]["RATE"]["VALUE"] ? $arItem["PROPERTIES"]["RATE"]["VALUE"]."%" : "")?></div>
             <div>
-                <button class="btn-drop-table">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="btn-drop-table-ico"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 49.656 49.656" xml:space="preserve">
-                                <g>
-                                    <polygon
-                                            points="1.414,14.535 4.242,11.707 24.828,32.292 45.414,11.707 48.242,14.535 24.828,37.95"/>
-                                    <path d="M24.828,39.364L0,14.536l4.242-4.242l20.586,20.585l20.586-20.586l4.242,4.242L24.828,39.364zM2.828,14.536l22,22l22-22.001l-1.414-1.414L24.828,33.707L4.242,13.122L2.828,14.536z"/>
-                                </g>
-                            </svg>
-                </button>
+                <button class="btn-drop-table"><?=ARROW_DOWN?></button>
             </div>
         </div>
         <div class="list-partner-group-description">
             <p><?=$arItem["PREVIEW_TEXT"]?></p>
             <div class="wrap-table">
-
                 <?=$arItem["PROPERTIES"]["PROGRAMS"]["~VALUE"]["TEXT"]?>
             </div>
         </div>

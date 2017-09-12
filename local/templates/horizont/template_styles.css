@@ -135,6 +135,9 @@ a:active{
     text-decoration: none;
     display: inline-block;
 }
+.btn.disabled{
+    opacity: ;
+}
 .btn-border{
     color: #666;
     background-color: transparent;

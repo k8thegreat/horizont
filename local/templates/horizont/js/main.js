@@ -57,47 +57,42 @@ $(document).ready(function(){
                     '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
                 );
             }
-            if($checker.hasClass("deadline-ready") && $checker.prop("checked")){
-                $("input[class='deadline-date']").prop("checked",false);
-            }
-            if($checker.hasClass("deadline-date") && $checker.prop("checked"))
-                $("input[class='deadline-ready']").prop("checked",false);
         }else{
             if(selectFiltersSpan.length > 1){
                 selectFilters.find('[data-filter-name="'+ filterName +'"]').remove();
             }else{
                 selectFilters.children().remove();
             }
-
         }
-        $('.filter-name[data-filter-name]').on('click', function (){
-            var control = $(this).data('filter-name');
-            var $this = $(this);
-            if(control === 'deadline'){
-                selectFilters.children().remove();
-            }else{
-                $('[data-name="'+ filterName +'"]').trigger('click');
-            }
-        });
-        $('.additional-filter-nav .reset-filter, .filters .reset-filter').on('click', function (){
-            $(this).closest('.filter-bar-bottom').find('.filters .filter-name').trigger('click');
+    });
+    $('.filter-name[data-filter-name]').on('click', function (){
+        var selectFilters = $this.closest('.filter-bar').find('.filters');
+        var control = $(this).data('filter-name');
+        var $this = $(this);
+        if(control === 'deadline'){
             selectFilters.children().remove();
+        }else{
+            $('[data-name="'+ filterName +'"]').trigger('click');
+        }
+    });
+    $('.additional-filter-nav .reset-filter, .filters .reset-filter').on('click', function (){
+        var selectFilters = $this.closest('.filter-bar').find('.filters');
+        $(this).closest('.filter-bar-bottom').find('.filters .filter-name').trigger('click');
+        selectFilters.children().remove();
 
-        });
-        $('.drop-body .reset-filter').on('click', function (){
-            var control = $(this).data('filter-name');
-            if(control === 'deadline'){
-                $(this).closest('.filter-bar').find('.drop-list [data-name="'+ filterName +'"]').trigger('click');
-            }else{
-                $(this).closest('.drop-body').find('.drop-list > li').each(function (){
-                    var checker = $(this).find('input');
-                    if(checker.prop("checked")){
-                        $(this).find('[data-name]').trigger('click');
-                    }
-                });
-            }
-        });
-
+    });
+    $('.drop-body .reset-filter').on('click', function (){
+        var control = $(this).data('filter-name');
+        if(control === 'deadline'){
+            $(this).closest('.filter-bar').find('.drop-list [data-name="'+ filterName +'"]').trigger('click');
+        }else{
+            $(this).closest('.drop-body').find('.drop-list > li').each(function (){
+                var checker = $(this).find('input');
+                if(checker.prop("checked")){
+                    $(this).find('[data-name]').trigger('click');
+                }
+            });
+        }
     });
 
     $('.result-sort').on('change', function () {
@@ -139,30 +134,33 @@ $(document).ready(function(){
         if($(this).val()) $(this).removeClass("error");
         else $(this).addClass("error");
     });
+    $("body").on("change", "#apart-calc-form .required", function(){
+        if($(this).val()) $(this).removeClass("error");
+        else $(this).addClass("error");
+    });
     //Открытие модалки
     $('.apart-modal').on('click', function (e){
         e.preventDefault();
         var href = $(this).attr('href');
         $('#modal-apartment .modal-body-innner').load(href+' #apartment-detail', function () {
-
-            var calc_form_options = {
+            var apart_calc_form_options = {
                 type: "post",
                 dataType: "json",
                 success: function(data){
-                    //$("#calc-form button").attr("disabled", "").removeClass("disabled");
+                    $("#apart-calc-form .btn").prop("disabled", false).removeClass("disabled");
                     if(data.errorstr){
-                        $("#calc-form .errors").html(data.errorstr);
+                        $("#apart-calc-form .errors").html(data.errorstr);
                     }else{
                         if(data.success){
-                            $("#calc-form .errors").html("");
-                            $("#calc-form .price-month").html(data.success);
+                            $("#apart-calc-form .errors").html("");
+                            $("#apart-calc-form .price-month").html(data.success);
                         }
                     }
                 },
                 beforeSubmit: function(){
                     var error = false;
-                    $("#calc-form .errors").text();
-                    $("#calc-form .required").each(function(){
+                    $("#apart-calc-form .errors").text();
+                    $("#apart-calc-form .required").each(function(){
                         if($(this).is("textarea")) var type="textarea"; else if($(this).is("input")) var type = $(this).attr("type");
                         switch (type) {
                             case 'text':
@@ -178,14 +176,11 @@ $(document).ready(function(){
                     if(error == true) {
                         return false;
                     }
-                    $("#calc-form .errors").html("");
-                   // $("#calc-form button").attr("disabled", "disabled").addClass("disabled");
+                    $("#apart-calc-form .errors").html("");
+                    $("#apart-calc-form button").prop("disabled", "disabled").addClass("disabled");
                 }
             }
-
-            $('#calc-form').ajaxForm(calc_form_options);
-
-
+            $('#apart-calc-form').ajaxForm(apart_calc_form_options);
             $('#modal-apartment').addClass('open');
             $('.wrapper,footer.footer').css({"filter":"blur(5px)"});
             $('body').addClass('overflow');
@@ -264,7 +259,7 @@ $(".tabs").tabs({});
             $('.drop-wrapper').removeClass('open');
             return false;
         }
-        if(target.is('.detailed-information .btn')){
+        if(target.is('.detailed-information .show-calc')){
             $('.detailed-information').children().hide();
             $('.detailed-information').find('.gray-card').show();
             return false;
@@ -288,7 +283,7 @@ $(".tabs").tabs({});
         $(this).parent().parent().toggleClass('open');
     });
 
-    $('.apartment-group-title, .list-partner-group-title').on('click', function (){
+    $('body').on('click', '.apartment-group-title, .list-partner-group-title', function (){
         $(this).closest('.apartment-group').toggleClass('open');
         $(this).closest('.list-partner-group').toggleClass('open');
     });
@@ -351,7 +346,7 @@ $(".tabs").tabs({});
     }
     if($('.mortgage').length > 0){
         $('.mortgage').owlCarousel({
-            loop:true,
+            loop:false,
             margin:20,
             dots:false,
             responsiveClass:true,
@@ -384,6 +379,43 @@ $(".tabs").tabs({});
             autoplayHoverPause:true
         });
     }
+
+    $(".smartfilter .checkbox").each(function(index){
+        var $this = $(this);
+        var $checker = $this.find('input');
+        var $checkbox = $checker.attr('type');
+        var filterName = $this.find('[data-name]').data('name');
+        var filterText = $this.find('[data-name]').text();
+        var selectFilters = $this.closest('.filter-bar').find('.filters');
+        var selectFiltersSpan = $this.closest('.filter-bar').find('.filters span');
+
+
+        if($checker.prop("checked") && $checkbox === 'checkbox'){
+            if(selectFiltersSpan.length < 1){
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
+                    '<button class="reset-filter">Сбросить</button>'
+                );
+            }else{
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
+                );
+            }
+        }else if($checker.prop("checked") && $checkbox === 'radio'){
+            selectFilters.find('[data-filter-name="'+ filterName +'"]').remove();
+            if(selectFiltersSpan.length < 1){
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
+                    '<button class="reset-filter">Сбросить</button>'
+                );
+            }else{
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
+                );
+            }
+        }
+
+    });
 
 
 

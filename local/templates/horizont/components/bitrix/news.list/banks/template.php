@@ -21,15 +21,15 @@ $this->setFrameMode(true);
 	?>
 
 	<div class="item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-		<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="thumb">
+		<div class="thumb">
 		<?
 		if($arItem["PREVIEW_PICTURE"]){
 		$file = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>160, 'height'=>200), BX_RESIZE_IMAGE_PROPORTIONAL, true);
-		$img = '<img src="'.$file['src'].'" width="'.$file['width'].'" height="'.$file['height'].'" />';
+		$img = '<img src="'.$file['src'].'" width="'.$file['width'].'" height="'.$file['height'].'" alt="'.$arItem["NAME"].'" />';
 		?>
 		<?=$img?>
 			<?}?>
-		</a>
+		</div>
 		<div class="carousel-content">
             <p><?=($arItem["PROPERTIES"]["FIRST_PAYMENT"]["VALUE"] ? "Первый взнос от ".$arItem["PROPERTIES"]["FIRST_PAYMENT"]["VALUE"]."%" : "")?></p>
             <p><?=($arItem["PROPERTIES"]["RATE"]["VALUE"] ? "Годовых ".$arItem["PROPERTIES"]["RATE"]["VALUE"]."%" : "")?></p>
