@@ -109,25 +109,9 @@ if($_POST["go"]) {
                     $propCRC = $arFields["PROPERTY_CRC_VALUE"];
                     $crc = md5(json_encode($item["properties"]));
                     $el = new CIBlockElement;
-                    //if($propCRC == $crc){
-                    if($item["properties"]["banks"]){
-                        if ($item["properties"]["banks"]["bank"]) {
-                            $arSectionBanks = array();
-                            foreach ($item["properties"]["banks"]["bank"] as $bank) {
-                                if ($arBanks[$bank]) {
-                                    $arSectionBanks[] = $arBanks[$bank]["ID"];
-                                }
-                            }
-                            $arSectionFields["UF_BANKS"] = $arSectionBanks;
-                            $sectionID = $arBuildings[$item["properties"]["zhk-id"]]["ID"];
-                            if($arSectionFields) {
-                                $bs = new CIBlockSection;
-                                $bs->Update($sectionID, $arSectionFields);
+                    if($propCRC == $crc){
 
-                            }
-                        }
-
-                        //$res = $el->Update($arFields["ID"], array());
+                        $res = $el->Update($arFields["ID"], array());
                     }else {
                         $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
                         $arItemPropsArray = array(

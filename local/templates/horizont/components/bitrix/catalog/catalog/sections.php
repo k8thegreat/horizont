@@ -34,10 +34,16 @@ switch ($sort){
         $sortField = "NAME";
         break;
     case "date":
-        $sortField = "created";
+        $sortField = "UF_READY_MIN";
         break;
     case "price":
         $sortField = "UF_MIN_PRICE";
+        break;
+    case "location":
+        $sortField = "UF_DISTRICT";
+        break;
+    case "metro":
+        $sortField = "UF_METRO";
         break;
     default:
         $sortField = "UF_MIN_PRICE";

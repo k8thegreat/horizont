@@ -31,9 +31,11 @@ $roomsTitleArr = array(
             <a href="" class="go-filter">Фильтр<?=FILTER_ICON?></a>
             <select name="sort" class="result-sort">
                 <option value="">Сортировать</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=name", array("sort")); ?>"<?=($_GET["sort"]=="name" ? " selected" : "")?>>По имени</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=date", array("sort")); ?>"<?=($_GET["sort"]=="date" ? " selected" : "")?>>По дате</option>
                 <option value="<?= $APPLICATION->GetCurPageParam("sort=price", array("sort")); ?>"<?=($_GET["sort"]=="price" ? " selected" : "")?>>По цене</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=date", array("sort")); ?>"<?=($_GET["sort"]=="date" ? " selected" : "")?>>По сроку сдачи</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=location", array("sort")); ?>"<?=($_GET["sort"]=="location" ? " selected" : "")?>>По району</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=metro", array("sort")); ?>"<?=($_GET["sort"]=="metro" ? " selected" : "")?>>По метро</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=name", array("sort")); ?>"<?=($_GET["sort"]=="name" ? " selected" : "")?>>По имени</option>
             </select>
             <a href="<?= $APPLICATION->GetCurPageParam("view=list", array("view")); ?>" class="list list-line active"><?=LIST_VIEW_ICON?></a>
             <a href="<?= $APPLICATION->GetCurPageParam("view=block", array("view")); ?>" class="list list-squares"><?=BLOCK_VIEW_ICON?></a>

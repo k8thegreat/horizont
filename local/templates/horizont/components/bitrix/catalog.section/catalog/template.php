@@ -554,7 +554,9 @@ $containerName = 'container-'.$navParams['NavNum'];
                 controls:[]
             });
             locMap.controls.add("fullscreenControl", {float:'none', position:{top:6,right:6}});
-            locMap.controls.add("zoomControl", {float:'none', position:{top:46,right:6}});
+            locMap.controls.add("zoomControl", {float:'none', position:{top:74,right:6}});
+            locMap.controls.add("rulerControl", {float:'none', position:{top:40,right:6}});
+            locMap.behaviors.disable('scrollZoom');
             locPlacemark = new ymaps.Placemark(locMap.getCenter(), {
                 hintContent: '<?=$arResult["NAME"]?>'
             },{

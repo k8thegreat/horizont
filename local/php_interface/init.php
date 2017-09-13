@@ -133,20 +133,51 @@ function updatePrice(&$arFields){
     }
 }
 
-function setMinPrice($sectionID){
+function setMinReadyDate($sectionID){
     if (CModule::IncludeModule("iblock")) {
-        $arSelect = Array("ID", "NAME", "PROPERTY_price_discount");
+        $arSelect = Array("ID", "NAME", "PROPERTY_ready");
         $arFilter = Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "IBLOCK_SECTION_ID" => $sectionID);
-        $res = CIBlockElement::GetList(Array("PROPERTY_price_discount" => "ASC"), $arFilter, array("PROPERTY_price_discount"), Array(), $arSelect);
+        $res = CIBlockElement::GetList(Array("PROPERTY_ready" => "ASC"), $arFilter, array("PROPERTY_ready"), Array(), $arSelect);
         if ($ob = $res->GetNextElement()) {
             $arFields = $ob->GetFields();
-            $price = $arFields["PROPERTY_PRICE_DISCOUNT_VALUE"];
-            if($price>0){
+            $ready = $arFields["PROPERTY_READY_VALUE"];
+            if($ready>0){
                 $bs = new CIBlockSection;
-                $bs->Update($sectionID, array("UF_MIN_PRICE" => $price));
+                $bs->Update($sectionID, array("UF_READY_MIN" => $ready));
             }
         }
 
+    }
+}
+function setMinReadyDateAll(){
+    if (CModule::IncludeModule("iblock")) {
+        $res = CIBlockSection::GetList(Array(), Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y"), false, array());
+        while($arSection = $res->GetNext()) {
+            $sectionID = $arSection["ID"];
+            setMinReadyDate($sectionID);
+        }
+    }
+}
+
+function setMinPrice($sectionID){
+    if (CModule::IncludeModule("iblock")) {
+        $arSelect = Array("ID", "NAME", "PROPERTY_price_discount");
+        $arFilter = Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "IBLOCK_SECTION_ID" => $sectionID, ">PROPERTY_price_discount" => 0);
+        $res = CIBlockElement::GetList(Array("PROPERTY_price_discount" => "ASC"), $arFilter, array("PROPERTY_price_discount"), Array(), $arSelect);
+        if ($ob = $res->GetNextElement()) {
+            $arFields = $ob->GetFields();
+            $minDiscountPrice = $arFields["PROPERTY_PRICE_DISCOUNT_VALUE"];
+        }
+        $arSelect = Array("ID", "NAME", "PROPERTY_price");
+        $arFilter = Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "IBLOCK_SECTION_ID" => $sectionID, ">PROPERTY_price" => 0);
+        $res = CIBlockElement::GetList(Array("PROPERTY_price" => "ASC"), $arFilter, array("PROPERTY_price"), Array(), $arSelect);
+        if ($ob = $res->GetNextElement()) {
+            $arFields = $ob->GetFields();
+            $minPrice = $arFields["PROPERTY_PRICE_VALUE"];
+        }
+        echo $price = ($minDiscountPrice > $minPrice ? $minPrice : $minDiscountPrice);
+        $bs = new CIBlockSection;
+        $bs->Update($sectionID, array("UF_MIN_PRICE" => $price));
     }
 }
 
