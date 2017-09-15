@@ -53,12 +53,8 @@ switch ($sort){
 <?$this->SetViewTarget('banner');?>
 banner
 <?$this->EndViewTarget();?>
-    <section class="bg-gray">
-        <div class="container">
-            <h2 class="title-big cursive-title-top-center"><span class="dop-title">Все новостройки</span>популярные
-                объекты</h2>
             <?
-                $arItems = $APPLICATION->IncludeComponent(
+                $arResult = $APPLICATION->IncludeComponent(
                 "custom:catalog.section",
                 "",
                 array(
@@ -188,15 +184,31 @@ banner
                 $component
             );
                 global $arFilter;
-
-                if($arItems["ITEMS"]){
-                    foreach ($arItems["ITEMS"] as $arItem){
+                if($arResult["ITEMS"]){
+                    foreach ($arResult["ITEMS"] as $arItem){
                         $arFilter["ID"][] = $arItem["IBLOCK_SECTION_ID"];
                     }
                 }
-                if($arItems["TOTAL_COUNT"]){?>
+                ?>
+
+<section class="bg-gray">
+    <div class="container">
+        <?
+        if($arResult["TOTAL_COUNT"]){
+            ?>
+            <h2 class="title-big cursive-title-top-center"><span class="dop-title">Все новостройки</span>
+                Найдено <?=$arResult["SECTIONS_COUNT"]." ".formatObjectString($arResult["SECTIONS_COUNT"])?>, <?=$arResult["TOTAL_COUNT"]." ".formatApartment($arResult["TOTAL_COUNT"])?>
+            </h2>
+            <?
+        }else{
+            ?><h2>Нет результатов для ваших условий</h2><?
+        }
+        ?>
+
+<?
+                if($arResult["TOTAL_COUNT"]){?>
 <script type="text/javascript">
-   document.getElementById("modef_num").innerText = "<?=$arItems["TOTAL_COUNT"]?>";
+   document.getElementById("modef_num").innerText = "<?=$arResult["TOTAL_COUNT"]?>";
 </script><?
 if($view=="map") $count = 1000; else $count = 10;
 ?><?

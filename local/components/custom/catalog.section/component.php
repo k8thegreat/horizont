@@ -616,6 +616,7 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
         $rsElements->SetSectionContext($arResult);
     }
     $totalCount = 0;
+    $sectionsCount = 0;
     $arResult["ITEMS"] = array();
     $arElementLink = array();
     $intKey = 0;
@@ -624,9 +625,10 @@ if($this->StartResultCache(false, array($arrFilter, ($arParams["CACHE_GROUPS"]==
         $arItem = $rsItem->GetFields();
         $arResult["ITEMS"][$arItem["IBLOCK_SECTION_ID"]] = $arItem;
         $totalCount = $totalCount + $arItem["CNT"];
-
+        $sectionsCount++;
     }
     $arResult["TOTAL_COUNT"] = $totalCount;
+    $arResult["SECTIONS_COUNT"] = $sectionsCount;
     if (isset($arItem))
         unset($arItem);
 

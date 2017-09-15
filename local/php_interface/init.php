@@ -21,6 +21,36 @@ define("EMAIL_ICON", '<svg xmlns="http://www.w3.org/2000/svg" class="e-mail" xml
 define("SCHEDULE_ICON", '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 60 60" xml:space="preserve"><g><path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30   S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/><path d="M30,6c-0.552,0-1,0.447-1,1v23H14c-0.552,0-1,0.447-1,1s0.448,1,1,1h16c0.552,0,1-0.447,1-1V7C31,6.447,30.552,6,30,6z"/></g></svg>');
 define("DOWNLOAD_ICON", '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 471.2 471.2" xml:space="preserve"><g><g><path d="M457.7,230.15c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5c-33.4,0-60.5-27.2-60.5-60.5v-124.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v124.8c0,48.3,39.3,87.5,87.5,87.5h296.2c48.3,0,87.5-39.3,87.5-87.5v-122.8    C471.2,236.25,465.2,230.15,457.7,230.15z"/><path d="M226.1,346.75c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1c-5.3-5.3-13.8-5.3-19.1,0l-62.7,62.8    V30.75c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0c-5.3,5.3-5.3,13.8,0,19.1    L226.1,346.75z"/></g></g></svg>');
 
+function formatObjectString($num){
+    if($num>10 && $num<15){
+        $str = "объектов";
+    }else {
+        $s = ($num % 10);
+        if($s==0 || ($s>4 && $s<10))
+            $str = "объектов";
+        elseif ($s==1)
+            $str = "объект";
+        elseif($s>1 && $s < 5)
+            $str = "объекта";
+    }
+    return $str;
+}
+
+function formatApartment($num){
+    if($num>10 && $num<15){
+        $str = "квартир";
+    }else {
+        $s = ($num % 10);
+        if($s==0 || ($s>4 && $s<10))
+            $str = "квартир";
+        elseif ($s==1)
+            $str = "квартира";
+        elseif($s>1 && $s < 5)
+            $str = "квартиры";
+    }
+    return $str;
+}
+
 global $linesArr;
 
 $linesArr = array(

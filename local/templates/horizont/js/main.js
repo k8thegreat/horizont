@@ -102,29 +102,33 @@ $(document).ready(function(){
             }
         }
     });
-    $('body').on('click', '.filter-name[data-filter-name]', function (){
-
-        var selectFilters = $('.filter-bar .filters');
+    $('body').on('click', '.filter-name[data-filter-name]', function (e){
+        e.preventDefault();
         var control = $(this).data('filter-name');
         var $this = $(this);
-        if(control === 'deadline'){
-            selectFilters.children().remove();
+        var selectFilters = $this.closest('.filter-bar').find('.filters');
+        var selectFiltersSpan = $this.closest('.filter-bar').find('.filters span');
+        if(control === 'arrFilter_63'){
+            $('[name="'+ control +'_MAX"]').attr('checked', false);
+            $(this).remove();
         }else{
             $('[name="'+ control +'"]').trigger('click');
         }
-        return false;
+        if(selectFiltersSpan.length == 1){
+            selectFilters.find(".reset-filter").remove();
+        }
+
     });
     $('body').on('click', '.additional-filter-nav .reset-filter, .filters .reset-filter', function (e){
         e.preventDefault();
-        var selectFilters = $this.closest('.filter-bar').find('.filters');
+        var selectFilters = $(this).closest('.filter-bar').find('.filters');
         $(this).closest('.filter-bar-bottom').find('.filters .filter-name').trigger('click');
         selectFilters.children().remove();
-        return false;
     });
     $('.drop-body .reset-filter').on('click', function (){
         var control = $(this).data('filter-name');
-        if(control === 'deadline'){
-            $(this).closest('.filter-bar').find('.drop-list [data-name="'+ filterName +'"]').trigger('click');
+        if(control === 'arrFilter_63'){
+            $(this).closest('.filter-bar').find('.drop-list [data-name="'+ filterName +'_MAX"]').trigger('click');
         }else{
             $(this).closest('.drop-body').find('.drop-list > li').each(function (){
                 var checker = $(this).find('input');

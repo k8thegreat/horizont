@@ -120,7 +120,7 @@ $this->setFrameMode(true);
                                         ?>
                                         <li>
                                             <label class="checkbox" for="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>">
-                                                <input class="deadline-ready" type="radio" name="arrFilter_63_MAX" value="<?=$currYear.".".$currQuarter?>" id="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>" onclick="smartFilter.click(this)"/>
+                                                <input class="deadline-ready" type="radio" name="arrFilter_63_MAX" value="<?=$currYear.".".$currQuarter?>" id="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>" onchange="smartFilter.click(this)"/>
                                                 <span data-name="arrFilter_63">Сдан</span>
                                             </label>
                                         </li>
@@ -133,7 +133,7 @@ $this->setFrameMode(true);
                                                 ?>
                                                 <li>
                                                 <label class="checkbox" for="arrFilter_63_<?=$year?>_<?=$quarter?>">
-                                                    <input class="deadline-date" type="radio" name="arrFilter_63_MAX" class="checkbox" onclick="smartFilter.click(this)"
+                                                    <input class="deadline-date" type="radio" name="arrFilter_63_MAX" class="checkbox" onchange="smartFilter.click(this)"
                                                            value="<?=$value?>"
                                                            id="arrFilter_63_<?=$year?>_<?=$quarter?>"<?=(($_REQUEST["arrFilter_63_MAX"]==$value) ? " checked" : "")?> />
                                                     <span data-name="arrFilter_63">до <?= $quarter." кв. ".$year ?></span>
@@ -144,7 +144,12 @@ $this->setFrameMode(true);
                                     </ul>
                                 </div>
                             </div>
+                            <div class="wrap-btn">
+                                <button class="reset-filter">Сбросить</button>
+                                <button class="btn btn-full">OK</button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div>

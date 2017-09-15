@@ -1,9 +1,8 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-set_include_path(get_include_path() . PATH_SEPARATOR . "/local/php_interface/include/dompdf");
 
-require_once "dompdf_config.inc.php";
-
+require_once $_SERVER["DOCUMENT_ROOT"].'/local/php_interface/include/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
 $dompdf = new DOMPDF();
 
 $html = <<<'ENDHTML'
