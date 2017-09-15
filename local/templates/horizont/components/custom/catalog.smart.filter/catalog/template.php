@@ -42,41 +42,62 @@ $this->setFrameMode(true);
                                     <li><a href="#tab-metro">Метро</a></li>
                                     <li><a href="#tab-location">Локации</a></li>
                                 </ul>
-                                <label class="input-default">
-                                    <input type="text" placeholder="Введите название" id="location-filter-input" value="">
-                                </label>
+
                             </div>
-                            <div class="drop-content location-items">
-                                <ul class="drop-list" id="tab-district">
-                                    <?foreach ($arResult["ITEMS"][2]["VALUES"] as $item){?>
-                                        <li>
-                                        <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
-                                            <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
-                                            <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
-                                        </label>
-                                        </li><?
-                                    }?>
-                                </ul>
-                                <ul class="drop-list" id="tab-metro">
-                                    <?foreach ($arResult["ITEMS"][3]["VALUES"] as $item){?>
-                                        <li>
-                                        <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
-                                            <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
-                                            <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
-                                        </label>
-                                        </li><?
-                                    }?>
-                                </ul>
-                                <ul class="drop-list" id="tab-location">
-                                    <?foreach (array_merge($arResult["ITEMS"][61]["VALUES"], $arResult["ITEMS"][1]["VALUES"]) as $item){?>
-                                        <li>
-                                        <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
-                                            <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
-                                            <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
-                                        </label>
-                                        </li><?
-                                    }?>
-                                </ul>
+                            <div class="drop-content">
+                                <div id="tab-district" class="location-items">
+                                    <label class="input-default">
+                                        <input type="text" placeholder="Введите название" class="location-filter-input" value="">
+                                    </label>
+                                    <ul class="drop-list">
+                                        <?foreach ($arResult["ITEMS"][61]["VALUES"] as $item){?>
+                                            <li>
+                                            <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
+                                                <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
+                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?> р-н ЛО</span>
+                                            </label>
+                                            </li><?
+                                        }?>
+                                        <?foreach ($arResult["ITEMS"][2]["VALUES"] as $item){?>
+                                            <li>
+                                            <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
+                                                <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
+                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
+                                            </label>
+                                            </li><?
+                                        }?>
+                                    </ul>
+                                </div>
+                                <div id="tab-metro" class="location-items">
+                                    <label class="input-default">
+                                        <input type="text" placeholder="Введите название" class="location-filter-input" value="">
+                                    </label>
+                                    <ul class="drop-list" >
+                                        <?foreach ($arResult["ITEMS"][3]["VALUES"] as $item){?>
+                                            <li>
+                                            <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
+                                                <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
+                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
+                                            </label>
+                                            </li><?
+                                        }?>
+                                    </ul>
+                                </div>
+                                <div id="tab-location" class="location-items">
+                                    <label class="input-default">
+                                        <input type="text" placeholder="Введите название" class="location-filter-input" value="">
+                                    </label>
+                                    <ul class="drop-list">
+                                        <?foreach ($arResult["ITEMS"][1]["VALUES"] as $item){?>
+                                            <li>
+                                            <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
+                                                <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
+                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
+                                            </label>
+                                            </li><?
+                                        }?>
+                                    </ul>
+                                </div>
                             </div>
                             </div>
                             <div class="wrap-btn">
@@ -238,6 +259,9 @@ $this->setFrameMode(true);
                             }
                             foreach ($arResult["ITEMS"][33]["VALUES"] as $i => $item) {
                                 echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "ЖК", control: "'.$item["CONTROL_NAME"].'"},';
+                            }
+                            foreach ($arResult["ITEMS"][62]["VALUES"] as $i => $item) {
+                                echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).' р-н ЛО", category: "Районы ЛО", control: "'.$item["CONTROL_NAME"].'"},';
                             }
                             foreach ($arResult["ITEMS"][2]["VALUES"] as $i => $item) {
                                 echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "Районы", control: "'.$item["CONTROL_NAME"].'"},';
@@ -407,7 +431,9 @@ $this->setFrameMode(true);
                         </div>
                     </div>
                 </div>
+
                 <div class="additional-filter-nav">
+                    <?/*
                     <button class="reset-filter"
                             type="submit"
                             id="del_filter"
@@ -420,6 +446,7 @@ $this->setFrameMode(true);
                             name="set_filter"
                             value="Y"
                     >ОК</button>
+*/?>
                 </div>
             </div>
             <div class="filters">

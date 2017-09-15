@@ -21,11 +21,10 @@ for($index = 0; $index < $itemSize; $index++)
 	$title = htmlspecialcharsex($arResult[$index]["TITLE"]);
 
 
-	if($arResult[$index]["LINK"] <> "" && $index != $itemSize-1)
+	if($arResult[$index]["LINK"] <> "")
 	{
 		$strReturn .= '
 			<li id="bx_breadcrumb_'.$index.'">
-				'.$arrow.'
 				<a href="'.$arResult[$index]["LINK"].'" title="'.$title.'">'.$title.'</a>
 			</li>';
 	}

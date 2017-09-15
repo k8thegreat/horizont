@@ -1662,13 +1662,13 @@ header.scroll .logo img{
     left: 51px;
     display: flex;
     top: 20px;
+    z-index: 5;
 }
 .breadcrumbs > li{
     border-right: 1px solid rgba(255,255,255,.75);
 }
 .breadcrumbs > li:last-child{
     border-right: 0;
-    padding: 2px 5px;
 }
 .breadcrumbs > li,
 .breadcrumbs > li > a{
@@ -3439,7 +3439,7 @@ article img{
     color: #f5f5f5;
     font:400 16px/1.5 "OpenSans";
     padding: 35px 40px;
-    z-index: ;
+    z-index: 10;
 }
 #contact-map{
     height: 560px;
@@ -4866,4 +4866,22 @@ article img{
 }
 .share:hover .share-block{
     display: block;
+}
+.location-items label.input-default{
+    padding:0px 10px;
+}
+.location-items label.input-default input{
+    padding: 0px 5px;
+}
+.phone{
+    position: relative;
+
+}
+input.phone:after{
+    position: absolute;
+    display: block;
+    top:0px;
+    left: 0px;
+    content: "+7";
+    color: #fff;
 }

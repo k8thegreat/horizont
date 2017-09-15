@@ -34,12 +34,6 @@ $roomsTitleArr = array(
     <div class="result-list-nav">
         <div>
             <a href="" class="go-filter">Фильтр<?=FILTER_ICON?></a>
-            <select name="sort" class="result-sort">
-                <option value="">Сортировать</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=name", array("sort")); ?>"<?=($_GET["sort"]=="name" ? " selected" : "")?>>По имени</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=date", array("sort")); ?>"<?=($_GET["sort"]=="date" ? " selected" : "")?>>По дате</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=price", array("sort")); ?>"<?=($_GET["sort"]=="price" ? " selected" : "")?>>По цене</option>
-            </select>
             <a href="<?= $APPLICATION->GetCurPageParam("view=list", array("view")); ?>" class="list list-line"><?=LIST_VIEW_ICON?></a>
             <a href="<?= $APPLICATION->GetCurPageParam("view=block", array("view")); ?>" class="list list-squares"><?=BLOCK_VIEW_ICON?></a>
             <a href="<?= $APPLICATION->GetCurPageParam("view=map", array("view")); ?>" class="list list-map active"><?=MAP_VIEW_ICON?></a>
@@ -51,31 +45,54 @@ $roomsTitleArr = array(
 <?
 if (0 < $arResult["SECTIONS_COUNT"])
 {
-    ?>
-    <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+?>
     <script type="text/javascript">
-        ymaps.ready(function () {
-            var map = new ymaps.Map("map", {
-                center: [<?=$arResult["SECTIONS"][0]["UF_LOCATION"]["lat"]?>, <?=$arResult["SECTIONS"][0]["UF_LOCATION"]["long"]?>],
-                zoom: 12}
-            );
-            map.behaviors.enable('scrollZoom');
-            map.controls.add('mapTools', { top: 6, right: 41});
-            map.controls.add('zoomControl', { top: 40, right: 7 });
-            <?$i=1;
-            foreach($arResult["SECTIONS"] as $arSection):?>
-            var mapPlacemark<?=$arSection["ID"]?> = new ymaps.Placemark([<?=$arSection["UF_LOCATION"]["lat"]?>, <?=$arSection["UF_LOCATION"]["long"]?>],
-                {
-                    hintContent: '<?=$arSection["NAME"]?>',
-                    description: ['<div class="one-result">',
-                        '<div class="result-content-top">',
-                        '<div>',
-                        '<h2 class="name-rc"><?=$arSection["NAME"]?></h2>',
-                        '<h4 class="name-loc"><?=(implode(", ",array($arSection["UF_SUBLOCALITY"], $arSection["UF_ADDRESS"])))?></h4>',
-                        '</div>',
-                        '<div>',
-                        '<div class="loc-metro">',
-                        '<?foreach($arSection["METRO"] as $val){?><?=getColoredIcon($val)?><?}?>',
+        ymaps.ready(init);
+        var objMap;
+        function init(){
+            objMap = new ymaps.Map ("map", {
+                center: [59.932460, 30.301976],
+                zoom: 9,
+                controls:[]
+            });
+            objMap.controls.add("fullscreenControl", {float:'none', position:{top:6,right:6}});
+            objMap.controls.add("zoomControl", {float:'none', position:{top:74,right:6}});
+            objMap.controls.add("rulerControl", {float:'none', position:{top:40,right:6}});
+            objMap.behaviors.disable('scrollZoom');
+            objectManager = new ymaps.ObjectManager({
+                clusterize: true,
+                gridSize: 32,
+                clusterDisableClickZoom: true
+            });
+            objMap.geoObjects.add(objectManager);
+            <?
+            foreach($arResult["SECTIONS"] as $arSection){
+                if(is_array($arSection["UF_LOCATION"])){
+                ?>
+            objectManager.add({
+                    type: 'Feature',
+                    id: <?=$arSection["ID"]?>,
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [<?=$arSection["UF_LOCATION"]["lat"]?>, <?=$arSection["UF_LOCATION"]["long"]?>]
+                    },
+                options:{
+                    iconLayout: 'default#image',
+                    iconImageHref: '/images/map-icon.png',
+                    iconImageSize: [35, 44],
+                    iconImageOffset: [-17, -44]
+                },
+                    properties: {
+                        hintContent: '<?=$arSection["NAME"]?>',
+                        description: ['<div class="one-result">',
+                            '<div class="result-content-top">',
+                            '<div>',
+                            '<h2 class="name-rc"><?=$arSection["NAME"]?></h2>',
+                            '<h4 class="name-loc"><?=(implode(", ",array($arSection["UF_SUBLOCALITY"], $arSection["UF_ADDRESS"])))?></h4>',
+                            '</div>',
+                            '<div>',
+                            '<div class="loc-metro">',
+                            '<?foreach($arSection["METRO"] as $val){?><?=getColoredIcon($val)?><?}?>',
                         <?=($arSection["UF_METRO"] ? "'".$arSection["UF_METRO"]."'," : "")?>
                         '</div>',
                         '<div class="loc-data">',
@@ -103,23 +120,24 @@ if (0 < $arResult["SECTIONS_COUNT"])
                         '</div>',
                         '</div>',
                         '</div>'].join('')
-                },{
-                    iconLayout: 'default#image',
-                    iconImageHref: '/images/map-icon.png',
-                    iconImageSize: [35, 44],
-                    iconImageOffset: [-17, -44]
+                    }
                 });
-            map.geoObjects.add(mapPlacemark<?=$arSection["ID"]?>);
-            mapPlacemark<?=$arSection["ID"]?>.events.add('click', function (e) {
-                document.getElementById("map-result").innerHTML = e.get('target')['properties'].get('description');
 
 
-            });
-            <?endforeach;?>
-            <?if($arResult["SECTIONS_COUNT"]>1){?>
-            map.setBounds(map.geoObjects.getBounds());
+            //placemark<?=$arSection["ID"]?>.events.add('click', function (e) {
+            //    document.getElementById("map-result").innerHTML = e.get('target')['properties'].get('description');
+            //});
+            <?
+                }
+            }
+            ?>
+
+            <?
+            if($arResult["SECTIONS_COUNT"]>1){?>
+            objMap.setBounds(objectManager.getBounds() );
+            //objMap.setBounds(objMap.geoObjects.getBounds(), {checkZoomRange:true}).then(function(){ if(objMap.getZoom() > 10) objMap.setZoom(10);});
             <?}?>
-        });
+        }
     </script>
     <?}?>
 </div>

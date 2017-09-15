@@ -23,6 +23,43 @@ $(document).ready(function(){
         fixedFilter();
     });
 
+
+    $(".smartfilter .checkbox").each(function(index){
+        var $this = $(this);
+        var $checker = $this.find('input');
+        var $checkbox = $checker.attr('type');
+        var filterName = $this.find('[data-name]').data('name');
+        var filterText = $this.find('[data-name]').text();
+        var selectFilters = $this.closest('.filter-bar').find('.filters');
+        var selectFiltersSpan = $this.closest('.filter-bar').find('.filters span');
+
+
+        if($checker.prop("checked") && $checkbox === 'checkbox'){
+            if(selectFiltersSpan.length < 1){
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
+                    '<button class="reset-filter">Сбросить все</button>'
+                );
+            }else{
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
+                );
+            }
+        }else if($checker.prop("checked") && $checkbox === 'radio'){
+            selectFilters.find('[data-filter-name="'+ filterName +'"]').remove();
+            if(selectFiltersSpan.length < 1){
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
+                    '<button class="reset-filter">Сбросить все</button>'
+                );
+            }else{
+                selectFilters.prepend(
+                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
+                );
+            }
+        }
+
+    });
     //Sidebar filter
     $('.checkbox').on('change', function (){
         var $this = $(this);
@@ -38,7 +75,7 @@ $(document).ready(function(){
             if(selectFiltersSpan.length < 1){
                 selectFilters.prepend(
                     '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
-                    '<button class="reset-filter">Сбросить</button>'
+                    '<button class="reset-filter">Сбросить все</button>'
                 );
             }else{
                 selectFilters.prepend(
@@ -50,7 +87,7 @@ $(document).ready(function(){
             if(selectFiltersSpan.length < 1){
                 selectFilters.prepend(
                     '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
-                    '<button class="reset-filter">Сбросить</button>'
+                    '<button class="reset-filter">Сбросить все</button>'
                 );
             }else{
                 selectFilters.prepend(
@@ -65,21 +102,24 @@ $(document).ready(function(){
             }
         }
     });
-    $('.filter-name[data-filter-name]').on('click', function (){
-        var selectFilters = $this.closest('.filter-bar').find('.filters');
+    $('body').on('click', '.filter-name[data-filter-name]', function (){
+
+        var selectFilters = $('.filter-bar .filters');
         var control = $(this).data('filter-name');
         var $this = $(this);
         if(control === 'deadline'){
             selectFilters.children().remove();
         }else{
-            $('[data-name="'+ filterName +'"]').trigger('click');
+            $('[name="'+ control +'"]').trigger('click');
         }
+        return false;
     });
-    $('.additional-filter-nav .reset-filter, .filters .reset-filter').on('click', function (){
+    $('body').on('click', '.additional-filter-nav .reset-filter, .filters .reset-filter', function (e){
+        e.preventDefault();
         var selectFilters = $this.closest('.filter-bar').find('.filters');
         $(this).closest('.filter-bar-bottom').find('.filters .filter-name').trigger('click');
         selectFilters.children().remove();
-
+        return false;
     });
     $('.drop-body .reset-filter').on('click', function (){
         var control = $(this).data('filter-name');
@@ -103,25 +143,21 @@ $(document).ready(function(){
         return false;
     });
 
-    $('.phone').mask('+7 (000) 000-00-00');
-
-
-
-
-    $('#location-filter-input').keyup(function(){
-        var val = $(this).val();
-        $('.location-items li').removeClass('hidden');
-        if(val !== "") {
-           // $('.location-items li').
-            $('.location-items li span:not(:containsText("' + val + '"))').parents('li').addClass('hidden');
-              //  .filter(function (index) {
-                //    alert($("span:not(:contains('" + val + "'))", this));
-                  //  return $("span:not(:contains('" + val + "'))", this);
-                //})
-
+    $('.phone').mask('+7 (000) 000-00-00', {
+        onKeyPress: function(cep, event, currentField, options){
+            if(cep.length<3) currentField.val("+7 ");
         }
     });
 
+    $('.location-filter-input').keyup(function(){
+        var val = $(this).val();
+        var container = $(this).parents(".location-items").find(".drop-list");
+        $("li ",container).removeClass('hidden');
+        if(val !== "") {
+            $('li span:not(:containsText("' + val + '"))', container).parents('li').addClass('hidden');
+
+        }
+    });
     //Открытие модалки
     $('body').on('click', '[data-modal]', function (e){
         e.preventDefault();
@@ -379,46 +415,6 @@ $(".tabs").tabs({});
             autoplayHoverPause:true
         });
     }
-
-    $(".smartfilter .checkbox").each(function(index){
-        var $this = $(this);
-        var $checker = $this.find('input');
-        var $checkbox = $checker.attr('type');
-        var filterName = $this.find('[data-name]').data('name');
-        var filterText = $this.find('[data-name]').text();
-        var selectFilters = $this.closest('.filter-bar').find('.filters');
-        var selectFiltersSpan = $this.closest('.filter-bar').find('.filters span');
-
-
-        if($checker.prop("checked") && $checkbox === 'checkbox'){
-            if(selectFiltersSpan.length < 1){
-                selectFilters.prepend(
-                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
-                    '<button class="reset-filter">Сбросить</button>'
-                );
-            }else{
-                selectFilters.prepend(
-                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
-                );
-            }
-        }else if($checker.prop("checked") && $checkbox === 'radio'){
-            selectFilters.find('[data-filter-name="'+ filterName +'"]').remove();
-            if(selectFiltersSpan.length < 1){
-                selectFilters.prepend(
-                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'+
-                    '<button class="reset-filter">Сбросить</button>'
-                );
-            }else{
-                selectFilters.prepend(
-                    '<span class="filter-name" data-filter-name="'+ filterName +'">' + filterText + '</span>'
-                );
-            }
-        }
-
-    });
-
-
-
 });
 function CallPrint(strid) {
     var prtContent = document.getElementById(strid);

@@ -140,8 +140,8 @@ $containerName = 'container-'.$navParams['NavNum'];
     ?>
             <div class="filter-life-complex">
                 <ul>
-                    <li><?=formatReadyDate($key)?></li>
-                    <li>Корпуса: <?=implode(", ",$arSection1["CORPUS"])?></li>
+                    <li><b><?=formatReadyDate($key)?></b>,</li>
+                    <li>корпус: <?=implode(", ",$arSection1["CORPUS"])?></li>
                 </ul>
                 <?if($i==0){?>
                 <ul>

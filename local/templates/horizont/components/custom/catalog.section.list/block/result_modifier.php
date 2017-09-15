@@ -32,7 +32,6 @@ foreach ($arResult['SECTIONS'] as &$arSection){
         if($ob = $res->GetNextElement())
         {
             $arProps = $ob->GetProperties();
-
             $arSection["ITEMS_PRICE"][$key] = $arProps["price_discount"]["VALUE"];
 
         }

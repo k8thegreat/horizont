@@ -2,22 +2,23 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 $this->setFrameMode(true);
 ?>
-<script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU" type="text/javascript"></script>
 <script type="text/javascript">
-    var map;
     ymaps.ready(init);
-    function init () {
-        window.map = new ymaps.Map("contact-map", {
+    var map, locPlacemark;
+    function init(){
+        map = new ymaps.Map ("contact-map", {
             center: [<?=$arResult["POSITION"]["yandex_lat"]?>, <?=$arResult["POSITION"]["yandex_lon"]?>],
-            zoom: <?=$arResult["POSITION"]["yandex_scale"]?>
+            zoom: <?=$arResult["POSITION"]["yandex_scale"]?>,
+            controls:[]
         });
-        map.behaviors.enable('scrollZoom');
-        map.controls.add('mapTools', { top: 6, right: 41});
-        map.controls.add('zoomControl', { top: 40, right: 7 });
+        map.controls.add("fullscreenControl", {float:'none', position:{top:6,right:6}});
+        map.controls.add("zoomControl", {float:'none', position:{top:74,right:6}});
+        map.controls.add("rulerControl", {float:'none', position:{top:40,right:6}});
+        map.behaviors.disable('scrollZoom');
         <?
         foreach ($arResult["POSITION"]["PLACEMARKS"] as $i => $placemark){
         ?>
-        mapPlacemark<?=$i?> = new ymaps.Placemark([<?=$placemark["LAT"]?>, <?=$placemark["LON"]?>],{
+        locPlacemark<?=$i?> = new ymaps.Placemark([<?=$placemark["LAT"]?>, <?=$placemark["LON"]?>], {
             hintContent: '<?=$placemark["TEXT"]?>'
         },{
             iconLayout: 'default#image',
@@ -25,7 +26,7 @@ $this->setFrameMode(true);
             iconImageSize: [35, 44],
             iconImageOffset: [-17, -44]
         });
-        map.geoObjects.add(mapPlacemark<?=$i?>);
+        map.geoObjects.add(locPlacemark<?=$i?>);
         <?}?>
         <?if(count($arResult["PLACEMARKS"])>1){?>
         map.setBounds(map.geoObjects.getBounds());

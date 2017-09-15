@@ -84,7 +84,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                         switch (type) {
                             case 'text':
                             case 'textarea':
-                                if(!$(this).val()){
+                                if(!$(this).val() || ($(this).hasClass("phone") && $(this).val()=="+7 ")){
                                     error = true;
                                     $(this).addClass("error");
                                 }
