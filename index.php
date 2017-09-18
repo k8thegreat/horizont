@@ -64,6 +64,26 @@ $APPLICATION->SetTitle("Поможем найти лучшую квартиру"
 	),
 	false
 );?>
+        <?
+        /*$arSection = $APPLICATION->IncludeComponent(
+            "custom:catalog.section",
+            "",
+            array(
+                "IBLOCK_ID" => "1",
+                "IBLOCK_TYPE" => "catalog",
+                "INCLUDE_SUBSECTIONS" => "Y",
+                "SHOW_ALL_WO_SECTION" => "Y",
+                "GROUP_BY" => "IBLOCK_SECTION_ID",
+                "SECTION_ID" => "",
+                "SECTION_CODE" => "",
+            ),
+            false
+        );*/
+if($arSection["TOTAL_COUNT"]){?>
+    <script type="text/javascript">
+        document.getElementById("modef_num").innerText = "<?=$arSection["TOTAL_COUNT"]?>";
+    </script>
+<?}?>
     </section>
     <section class="advantages bg-dot">
         <div class="container family-block">

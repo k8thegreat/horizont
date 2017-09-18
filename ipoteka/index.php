@@ -110,11 +110,9 @@ $APPLICATION->SetTitle("Ипотека");
                             }else{
                                 $S = IntVal($_REQUEST["PRICE"]);
                             }
-                            $rate = (1/12) * floatval($_REQUEST["RATE"])/100;
-                            $p = 1/12*floatval($_REQUEST["RATE"])/100;
-                            $m = $_REQUEST["PERIOD"]*12;
-                            $sum = $S*$rate*(1 + 1/((1+$rate)^$m -1));
-                            //$sum =  ($S*$p) / (1-(1+$p)^(1-$m));
+                            $rate = floatval($_REQUEST["RATE"])/100/12;
+                            $m = IntVal($_REQUEST["PERIOD"])*12;
+                            $sum = $S*($rate/(1-pow(1+$rate, -$m)));
                         }
                         if ($sum){
                             $success_str = "<p>Ежемесячный платеж: <b>".number_format($sum,0,".", " ")." руб/мес.</b></p>";

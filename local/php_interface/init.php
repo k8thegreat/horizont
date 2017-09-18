@@ -83,7 +83,9 @@ function formatReadyDate($str){
     $result = $numbers[$quarter]." кв. ".$year;
     return $result;
 }
-
+function formatPrice($price){
+    return number_format($price, 0, ".", " ")." руб.";
+}
 function cmp($a, $b)
 {
     $aArr = explode(" ", $a);

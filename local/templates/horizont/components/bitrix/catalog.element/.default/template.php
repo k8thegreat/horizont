@@ -89,7 +89,7 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                     <span><?=number_format($price, 0, ".", " ")?></span> руб.
                     <ul>
                         <li>
-                            <a href="">
+                            <a href="/get_pdf.php?ID=<?=$arResult["ID"]?>">
                                 <?=PDF_ICON?>
                             </a>
                         </li>
@@ -206,11 +206,9 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
                                     }else{
                                         $S = IntVal($_REQUEST["PRICE"]);
                                     }
-                                    $rate = (1/12) * floatval($_REQUEST["RATE"])/100;
-                                    $p = 1/12*floatval($_REQUEST["RATE"])/100;
-                                    $m = $_REQUEST["PERIOD"]*12;
-                                    $sum = $S*$rate*(1 + 1/((1+$rate)^$m -1));
-                                //$sum =  ($S*$p) / (1-(1+$p)^(1-$m));
+                                    $rate = floatval($_REQUEST["RATE"])/100/12;
+                                    $m = IntVal($_REQUEST["PERIOD"])*12;
+                                    $sum = $S*($rate/(1-pow(1+$rate, -$m)));
                                 }
 
                                 if ($sum){

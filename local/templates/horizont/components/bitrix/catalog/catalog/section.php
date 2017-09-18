@@ -388,8 +388,8 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                 false
             );?>
             <?
-            $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_RATE");//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields выше
-            $arFilter = Array("IBLOCK_ID"=>BANKS_IBLOCK_ID, "ACTIVE"=>"Y");
+            $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_RATE");
+            $arFilter = Array("IBLOCK_ID"=>BANKS_IBLOCK_ID, "ACTIVE"=>"Y", "!PROPERTY_RATE" => false);
             $res = CIBlockElement::GetList(Array("PROPERTY_RATE"=> "ASC"), $arBanksFilter, false, Array(), $arSelect);
             if($ob = $res->GetNextElement()){
                 $arFields = $ob->GetFields();
@@ -413,11 +413,9 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                             }else{
                                 $S = IntVal($_REQUEST["PRICE"]);
                             }
-                            $rate = (1/12) * floatval($_REQUEST["RATE"])/100;
-                            $p = 1/12*floatval($_REQUEST["RATE"])/100;
-                            $m = $_REQUEST["PERIOD"]*12;
-                            $sum = $S*$rate*(1 + 1/((1+$rate)^$m -1));
-                            //$sum =  ($S*$p) / (1-(1+$p)^(1-$m));
+                            $rate = floatval($_REQUEST["RATE"])/100/12;
+                            $m = IntVal($_REQUEST["PERIOD"])*12;
+                            $sum = $S*($rate/(1-pow(1+$rate, -$m)));
                         }
 
                         if ($sum){
@@ -430,8 +428,11 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 
                         <form id="calc-form" action="" method="post" enctype="multipart/form-data" >
 
-                            <input type="hidden" name="RATE" value="<?=$arResult["BANK"]["PROPERTY_RATE_VALUE"]?>"/>
                             <div class="values">
+                                <label>
+                                    <span>Процентная ставка, %</span>
+                                    <input type="text" class="required" name="RATE" value="11"/>
+                                </label>
                                 <label>
                                     <span>Стоимость квартиры, руб.</span>
                                     <input type="text" class="required" name="PRICE" value="<?=$arResult["PROPERTIES"]["price_discount"]["VALUE"]?>"/>

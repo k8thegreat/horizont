@@ -205,8 +205,7 @@ banner
         }
         ?>
 
-<?
-                if($arResult["TOTAL_COUNT"]){?>
+<?if($arResult["TOTAL_COUNT"]){?>
 <script type="text/javascript">
    document.getElementById("modef_num").innerText = "<?=$arResult["TOTAL_COUNT"]?>";
 </script><?
