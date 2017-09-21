@@ -423,15 +423,16 @@ $(".tabs").tabs({});
 function CallPrint(strid) {
     var prtContent = document.getElementById(strid);
     var prtCSS = '';
-    var WinPrint = window.open('','','left=50,top=50,width=800,height =640,toolbar=0,scrollbars=1,status=0');
-
+    var WinPrint = window.open('','','left=50,top=50,width=900,height =640,toolbar=0,scrollbars=1,status=0');
+    WinPrint.document.write('<html><head><title>Печать</title>' +
+        '<link rel="stylesheet" type="text/css" href="/local/templates/horizont/template_styles.css">' +
+        '<link rel="stylesheet" type="text/css" href="/local/templates/horizont/fonts/fonts.css">' +
+        '</head><body><div id="print">');
     var print = document.createElement("div");
-    print.className = "contentpane";
     print.setAttribute("id", "print");
     print.appendChild(prtContent.cloneNode(true));
-
     WinPrint.document.body.appendChild(print);
-
+    WinPrint.document.write('</div></body></html>');
     WinPrint.focus();
     WinPrint.print();
     WinPrint.close();
@@ -440,14 +441,13 @@ function scrollTop(){
     if ($(window).scrollTop() > 400) {
         $('.scroll-top')
             .css({"opacity":"1", "visibility":"visible"})
-            .on('click', function (){
+            .on('click', function(){
                 $('body,html').stop().animate({scrollTop: 0}, 1000);
                 return false;
             });
     } else {
         $('.scroll-top').css({"opacity":"0", "visibility":"hidden"});
     }
-
 }
 function scrollMenu() {
     var top = $('html,body').scrollTop();

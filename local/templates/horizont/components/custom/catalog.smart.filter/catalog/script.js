@@ -41,6 +41,30 @@ JCSmartFilter.prototype.click = function(checkbox)
 	}, this), 500);
 };
 
+JCSmartFilter.prototype.set = function(form){
+    if (form)
+    {
+        var values = [];
+        values[0] = {name: 'ajax', value: 'y'};
+        this.gatherInputsValues(values, BX.findChildren(form, {'tag': new RegExp('^(input|select)$', 'i')}, true));
+
+        for (var i = 0; i < values.length; i++)
+            this.cacheKey += values[i].name + ':' + values[i].value + '|';
+
+		if (this.sef)
+		{
+			var set_filter = BX('set_filter');
+			set_filter.disabled = true;
+		}
+		BX.ajax.loadJSON(
+			this.ajaxURL,
+			this.values2post(values),
+			BX.delegate(this.postHandler, this)
+		);
+
+    }
+}
+
 JCSmartFilter.prototype.reload = function(input)
 {
 	if (this.cacheKey !== '')

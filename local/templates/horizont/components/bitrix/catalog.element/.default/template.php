@@ -221,8 +221,11 @@ $alt = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_DETAIL_PICTURE_FILE_ALT'])
 
                             <form id="apart-calc-form" action="<?=$arResult["DETAIL_PAGE_URL"]?>" method="post" enctype="multipart/form-data" >
 
-                                <input type="hidden" name="RATE" value="<?=$arResult["BANK"]["PROPERTY_RATE_VALUE"]?>"/>
                                     <div class="values">
+                                        <label>
+                                            <span>Процентная ставка, %</span>
+                                            <input type="text" class="required" name="RATE" value="<?=$arResult["BANK"]["PROPERTY_RATE_VALUE"]?>"/>
+                                        </label>
                                         <label>
                                             <span>Стоимость квартиры, руб.</span>
                                             <input type="text" class="required" name="PRICE" value="<?=$arResult["PROPERTIES"]["price_discount"]["VALUE"]?>"/>

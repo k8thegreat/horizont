@@ -24,7 +24,7 @@ $this->setFrameMode(true);
     <button class="reset-filter">Сбросить все</button>
 </div>
 <div class="filter-bar">
-    <form name="<?echo $arResult["FILTER_NAME"]."_form"?>" action="<?echo $arResult["FORM_ACTION"]?>" method="get" class="smartfilter">
+    <form name="<?echo $arResult["FILTER_NAME"]."_form"?>" action="<?echo $arResult["FORM_ACTION"]?>" method="get" class="smartfilter" id="smartfilter">
         <?foreach($arResult["HIDDEN"] as $arItem):?>
             <input type="hidden" name="<?echo $arItem["CONTROL_NAME"]?>" id="<?echo $arItem["CONTROL_ID"]?>" value="<?echo $arItem["HTML_VALUE"]?>" />
         <?endforeach;?>
@@ -62,7 +62,7 @@ $this->setFrameMode(true);
                                             <li>
                                             <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
                                                 <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
-                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
+                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?> р-н</span>
                                             </label>
                                             </li><?
                                         }?>
@@ -77,7 +77,7 @@ $this->setFrameMode(true);
                                             <li>
                                             <label class="checkbox" for="<?=$item["CONTROL_ID"]?>">
                                                 <input type="checkbox" onclick="smartFilter.click(this)" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/>
-                                                <span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span>
+                                                <span data-name="<?=$item["CONTROL_NAME"]?>">м. <?=$item["VALUE"]?></span>
                                             </label>
                                             </li><?
                                         }?>
@@ -117,10 +117,18 @@ $this->setFrameMode(true);
                                         <?
                                         $currQuarter = ceil(date("n")/3);
                                         $currYear = intval(date("Y"));
+                                        $minYear = $currYear;
+                                        if($currQuarter > 1)  {
+                                            $minQuarter = $currQuarter-1;
+                                        }else{
+                                           $minQuarter = 4;
+                                           $minYear = $currYear - 1;
+                                        }
+
                                         ?>
                                         <li>
-                                            <label class="checkbox" for="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>">
-                                                <input class="deadline-ready" type="radio" name="arrFilter_63_MAX" value="<?=$currYear.".".$currQuarter?>" id="arrFilter_63_<?=$currYear?>_<?=$currQuarter?>" onchange="smartFilter.click(this)"/>
+                                            <label class="checkbox" for="arrFilter_63_<?=$minYear?>_<?=$minQuarter?>">
+                                                <input class="deadline-ready" type="radio" name="arrFilter_63_MAX" <?=(($_REQUEST["arrFilter_63_MAX"]==$minYear.".".$minQuarter) ? " checked" : "")?>  value="<?=$minYear.".".$minQuarter?>" id="arrFilter_63_<?=$minYear?>_<?=$minQuarter?>" onchange="smartFilter.click(this)"/>
                                                 <span data-name="arrFilter_63">Сдан</span>
                                             </label>
                                         </li>
@@ -128,7 +136,7 @@ $this->setFrameMode(true);
 
                                         for ($year=$currYear; $year<($currYear+5); $year++){
                                             for($quarter=1; $quarter<5;$quarter++){
-                                                if($year==$currYear && $quarter<=$currQuarter) continue;
+                                                if($year==$currYear && $quarter<=$minQuarter) continue;
                                                 $value = $year.".".$quarter;
                                                 ?>
                                                 <li>
@@ -265,14 +273,14 @@ $this->setFrameMode(true);
                             foreach ($arResult["ITEMS"][33]["VALUES"] as $i => $item) {
                                 echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "ЖК", control: "'.$item["CONTROL_NAME"].'"},';
                             }
-                            foreach ($arResult["ITEMS"][62]["VALUES"] as $i => $item) {
+                            foreach ($arResult["ITEMS"][61]["VALUES"] as $i => $item) {
                                 echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).' р-н ЛО", category: "Районы ЛО", control: "'.$item["CONTROL_NAME"].'"},';
                             }
                             foreach ($arResult["ITEMS"][2]["VALUES"] as $i => $item) {
-                                echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "Районы", control: "'.$item["CONTROL_NAME"].'"},';
+                                echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).' р-н", category: "Районы", control: "'.$item["CONTROL_NAME"].'"},';
                             }
                             foreach ($arResult["ITEMS"][3]["VALUES"] as $i => $item) {
-                                echo '{ label: "м.'.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "Станции метро", control: "'.$item["CONTROL_NAME"].'"},';
+                                echo '{ label: "м. '.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "Станции метро", control: "'.$item["CONTROL_NAME"].'"},';
                             }
                             foreach ($arResult["ITEMS"][1]["VALUES"] as $i => $item) {
                                 echo '{ label: "'.addslashes(htmlspecialchars_decode($item["VALUE"])).'", category: "Локации", control: "'.$item["CONTROL_NAME"].'"},';
@@ -284,7 +292,14 @@ $this->setFrameMode(true);
                         $("#autocomplete").catcomplete({
                             delay: 0,
                             source: data,
-                            appendTo: ".ui-front"
+                            appendTo: ".ui-front",
+                            response: function( event, ui ) {
+                                if(!ui.content.length){
+                                    console.log('empty');
+                                    console.log($("#autocomplete").catcomplete("instance"));
+
+                                }
+                            }
                         });
                         $("body").on("click", ".ui-menu-item-wrapper", function(){
                             var control_name = $(this).attr("data-control");
@@ -463,4 +478,5 @@ $this->setFrameMode(true);
 
 <script type="text/javascript">
     var smartFilter = new JCSmartFilter('<?echo CUtil::JSEscape($arResult["FORM_ACTION"])?>', '', <?=CUtil::PhpToJSObject($arResult["JS_FILTER_PARAMS"])?>);
+    smartFilter.set(BX("smartfilter"));
 </script>

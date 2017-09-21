@@ -440,7 +440,7 @@ $APPLICATION->SetTitle("О компании");
 		"USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",	// Сообщение об успешном добавлении
 		"USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",	// Сообщение об успешном сохранении
 		"USE_CAPTCHA" => "N",	// Использовать CAPTCHA
-		"EVENT_NAME" => "SEND_MSG",
+		"EVENT_NAME" => "RESUME_SENG",
 		"COMPOSITE_FRAME_MODE" => "A",	// Голосование шаблона компонента по умолчанию
 		"COMPOSITE_FRAME_TYPE" => "AUTO",	// Содержимое компонента
 	),
@@ -576,7 +576,7 @@ $APPLICATION->SetTitle("О компании");
                         "USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",
                         "USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",
                         "USE_CAPTCHA" => "N",
-                        "EVENT_NAME" => "SEND_MSG"
+                        "EVENT_NAME" => "CALLBACK_MSG"
                     ),
                         false,
                         array(

@@ -1,5 +1,5 @@
 </main>
-<a href="" class="scroll-top">
+<a href="#" class="scroll-top">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
          viewBox="0 0 31.479 31.479" xml:space="preserve">
         <path d="M26.477,10.274c0.444,0.444,0.444,1.143,0,1.587c-0.429,0.429-1.143,0.429-1.571,0l-8.047-8.047  v26.555c0,0.619-0.492,1.111-1.111,1.111c-0.619,0-1.127-0.492-1.127-1.111V3.813l-8.031,8.047c-0.444,0.429-1.159,0.429-1.587,0  c-0.444-0.444-0.444-1.143,0-1.587l9.952-9.952c0.429-0.429,1.143-0.429,1.571,0L26.477,10.274z"/>
@@ -46,7 +46,6 @@
 	),
 	false
 );?>
-
                 </div>
             </div>
             <div class="box-footer-nav">
@@ -213,10 +212,18 @@
                     </div>
                 </div>
                 <div class="subscription">
-                    <p class="subscription-des">Подпишитесь на самые главные новости о новостройках
-                        (1-2 письма в месяц)</p>
-
-
+                    <div class="subscription-des">
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:main.include",
+                            "",
+                            Array(
+                                "AREA_FILE_SHOW" => "file",
+                                "AREA_FILE_SUFFIX" => "inc",
+                                "EDIT_TEMPLATE" => "",
+                                "PATH" => "/includes/subscribe_pretext.php"
+                            )
+                        );?>
+                    </div>
                     <?$APPLICATION->IncludeComponent("bitrix:subscribe.form", "subscribe", Array(
 	"CACHE_TIME" => "3600",	// Время кеширования (сек.)
 		"CACHE_TYPE" => "A",	// Тип кеширования
@@ -227,7 +234,6 @@
 	),
 	false
 );?>
-
                 </div>
             </div>
         </div>
@@ -245,12 +251,11 @@
         );?>
     </div>
 </footer><!-- .footer -->
-
 <div class="modal" id="modal-callback">
     <div class="transparent"></div>
     <div class="modal-body">
         <div class="close"></div>
-        <h3 class="title-big">обратный звонок</h3>
+        <h3 class="title-big">Обратный звонок</h3>
         <p>Перезвоним в рабочие дни
             с 8:00 до 20:00</p>
         <?$APPLICATION->IncludeComponent(
@@ -282,7 +287,6 @@
                 "MAX_USER_ENTRIES" => "100000",
                 "PREVIEW_TEXT_USE_HTML_EDITOR" => "N",
                 "PROPERTY_CODES" => array(
-
                     1 => "NAME",
                 ),
                 "PROPERTY_CODES_REQUIRED" => array(
@@ -295,7 +299,7 @@
                 "USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",
                 "USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",
                 "USE_CAPTCHA" => "N",
-                "EVENT_NAME" => "SEND_MSG"
+                "EVENT_NAME" => "CALLBACK_MSG"
             ),
             false
         );?>

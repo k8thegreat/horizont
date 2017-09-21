@@ -17,7 +17,7 @@ $this->setFrameMode(true);
 
 
 $view = $APPLICATION->get_cookie('view') ? $APPLICATION->get_cookie("view")  : "list";
-$sort = $APPLICATION->get_cookie('sort') ? $APPLICATION->get_cookie("sort")  : "name";
+$sort = $APPLICATION->get_cookie('sort') ? $APPLICATION->get_cookie("sort")  : "price";
 
 
 if(isset($_REQUEST["view"]) ) {
@@ -48,7 +48,6 @@ switch ($sort){
     default:
         $sortField = "UF_MIN_PRICE";
 }
-
 ?>
 <?$this->SetViewTarget('banner');?>
 banner
@@ -205,12 +204,8 @@ banner
         }
         ?>
 
-<?if($arResult["TOTAL_COUNT"]){?>
-<script type="text/javascript">
-   document.getElementById("modef_num").innerText = "<?=$arResult["TOTAL_COUNT"]?>";
-</script><?
-if($view=="map") $count = 1000; else $count = 10;
-?><?
+<?if($arResult["TOTAL_COUNT"]){
+    if($view=="map") $count = 1000; else $count = 10;
 $APPLICATION->IncludeComponent(
 	"custom:catalog.section.list",
 	$view,
@@ -260,8 +255,6 @@ $APPLICATION->IncludeComponent(
 if($_COOKIE['ITEM_VIEW']){
     global $arViewedItemsFilter;
     $arViewedItemsFilter = array("ID" => unserialize($_COOKIE['ITEM_VIEW']));
-
-
     ?>
     <section>
         <div class="container">

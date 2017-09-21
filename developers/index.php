@@ -17,6 +17,28 @@ $APPLICATION->SetTitle("Застройщики Санкт-Петербурга �
         </div>
     </section>
     <section class="filter-bar-wrapper bg-gray">
+        <?$APPLICATION->IncludeComponent(
+            "bitrix:catalog.filter",
+            "",
+            Array(
+                "CACHE_GROUPS" => "Y",
+                "CACHE_TIME" => "36000000",
+                "CACHE_TYPE" => "A",
+                "COMPOSITE_FRAME_MODE" => "A",
+                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                "FIELD_CODE" => array("NAME", ""),
+                "FILTER_NAME" => "arrFilter",
+                "IBLOCK_ID" => "2",
+                "IBLOCK_TYPE" => "catalog",
+                "LIST_HEIGHT" => "5",
+                "NUMBER_WIDTH" => "5",
+                "PAGER_PARAMS_NAME" => "arrPager",
+                "PRICE_CODE" => array(),
+                "PROPERTY_CODE" => array("", ""),
+                "SAVE_IN_SESSION" => "N",
+                "TEXT_WIDTH" => "20"
+            )
+        );?>
         <?$APPLICATION->IncludeComponent("custom:catalog.smart.filter", "filter_short", Array(
 	"CACHE_GROUPS" => "Y",	// Учитывать права доступа
 		"CACHE_TIME" => "36000000",	// Время кеширования (сек.)

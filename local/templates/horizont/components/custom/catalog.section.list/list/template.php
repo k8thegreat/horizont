@@ -97,7 +97,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
                                 <ul class="left-con">
                                     <?if($arSection["UF_READY"]){?>
                                         <li><span>Сроки сдачи:</span>
-                                        <?=(count($arSection["UF_READY"])>1 ? "<b>".formatReadyDate($arSection["UF_READY"][0])." - ".formatReadyDate($arSection["UF_READY"][count($arSection["UF_READY"])-1])."</b>" : "<b>".formatReadyDate($arSection["UF_READY"][0])."</b>")?>
+                                        <?=(count($arSection["UF_READY"])>1 ? "<b>".formatReadyDate($arSection["UF_READY"][0])." - ".formatReadyDate($arSection["UF_READY"][count($arSection["UF_READY"])-1])."</b>" : "<b>".formatReadyDate($arSection["UF_READY"][0], true)."</b>")?>
                                     </li>
                                     <?}?>
                                     <?if($arSection["UF_PAYMENT"]){?>

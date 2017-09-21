@@ -193,7 +193,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 		"USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",
 		"USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",
 		"USE_CAPTCHA" => "N",
-		"EVENT_NAME" => "SEND_MSG"
+		"EVENT_NAME" => "CALLBACK_MSG"
 	),
 	false,
 	array(
@@ -544,7 +544,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 		"USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",	// Сообщение об успешном добавлении
 		"USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",	// Сообщение об успешном сохранении
 		"USE_CAPTCHA" => "N",	// Использовать CAPTCHA
-		"EVENT_NAME" => "SEND_MSG"
+		"EVENT_NAME" => "CALLBACK_MSG"
 	),
 	false,
 	array(
@@ -743,7 +743,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 		"USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",
 		"USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",
 		"USE_CAPTCHA" => "N",
-		"EVENT_NAME" => "SEND_MSG"
+		"EVENT_NAME" => "CALLBACK_MSG"
 	),
 	false,
 	array(

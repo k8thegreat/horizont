@@ -396,7 +396,7 @@ if($arSection["TOTAL_COUNT"]){?>
 		"USER_MESSAGE_ADD" => "Ваше сообщение успешно отправлено",
 		"USER_MESSAGE_EDIT" => "Ваше сообщение успешно отправлено",
 		"USE_CAPTCHA" => "N",
-		"EVENT_NAME" => "SEND_MSG",
+		"EVENT_NAME" => "PRESENTATION",
 		"COMPOSITE_FRAME_MODE" => "A",
 		"COMPOSITE_FRAME_TYPE" => "AUTO"
 	),

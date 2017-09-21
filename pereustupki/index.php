@@ -78,7 +78,7 @@ $APPLICATION->SetTitle("Переуступки");
                 </li>
             </ul>
             <div class="btn-center">
-                <a href="" class="btn btn-border">Получите бесплатную консультацию</a>
+                <a href="" class="btn btn-border btn-callback" data-modal="modal-callback">Получите бесплатную консультацию</a>
             </div>
         </div>
     </section>
@@ -119,7 +119,11 @@ $APPLICATION->SetTitle("Переуступки");
     </section>
     <section class="bg-gray">
         <div class="container">
-            <h2 class="title-big cursive-title-right">Квартиры по переуступке<span class="title-top"><span class="dop-title">Выберите свою</span></span></h2>
+            <h2 class="title-big cursiv-title-right">Квартиры по переуступке<span class="title-top"><span class="dop-title">Выберите свою</span></span></h2>
+            <?
+            $sort = (strVal($_REQUEST["sort"]) ?  strVal($_REQUEST["sort"]) : 'price');
+            $by = (strVal($_REQUEST["by"]) ?  strVal($_REQUEST["by"]) : 'asc');
+            ?>
             <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog.section",
 	"trade",
@@ -147,9 +151,9 @@ $APPLICATION->SetTitle("Переуступки");
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_COMPARE" => "N",
 		"DISPLAY_TOP_PAGER" => "N",
-		"ELEMENT_SORT_FIELD" => "sort",
-		"ELEMENT_SORT_FIELD2" => "id",
-		"ELEMENT_SORT_ORDER" => "asc",
+		"ELEMENT_SORT_FIELD" => "PROPERTY_".$sort,
+		"ELEMENT_SORT_FIELD2" => "SORT",
+		"ELEMENT_SORT_ORDER" => $by,
 		"ELEMENT_SORT_ORDER2" => "desc",
 		"FILTER_NAME" => "arrFilter",
 		"IBLOCK_ID" => "18",

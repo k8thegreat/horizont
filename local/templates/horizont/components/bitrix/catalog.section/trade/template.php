@@ -86,18 +86,54 @@ $containerName = 'container-'.$navParams['NavNum'];
         <th>ID</th>
     </tr>
     <tr class="row-blue">
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="rayon" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rayon&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="rayon" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rayon&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="metro" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=metro&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="metro" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=metro&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="gk" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=gk&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="gk" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=gk&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="builder" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=builder&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="builder" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=builder&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="deadline" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=deadline&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="deadline" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=deadline&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="corpus" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=corpus&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="corpus" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=corpus&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="rooms" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rooms&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="rooms" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rooms&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="sGeneral" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=sGeneral&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="sGeneral" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=sGeneral&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="price" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=price&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="price" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=price&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="otdelka" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=otdelka&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="otdelka" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=otdelka&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="floor" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=floor&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="floor" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=floor&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
+        <th>
+            <a class="<?=($_REQUEST["sort"]=="id" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=id&by=asc", array("sort", "by")); ?>">˄</a>
+            <a class="<?=($_REQUEST["sort"]=="id" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=id&by=desc", array("sort", "by")); ?>">˅</a>
+        </th>
 
     </tr>
     </thead>

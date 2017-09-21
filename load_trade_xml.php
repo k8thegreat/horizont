@@ -35,8 +35,38 @@ if($_POST["go"]) {
                 $arSelect = Array("ID", "NAME", "XML_ID");
                 $arFilter = Array("IBLOCK_ID" => TRADE_IBLOCK_ID, "XML_ID" => $item["id"], "ACTIVE" => "Y");
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
-                if ($ob = $res->GetNextElement()) {
+                if ($ob = $res->GetNextElement()){
+                    $arFields = $ob->GetFields();
+                    $el = new CIBlockElement;
+                    $arItemPropsArray = array(
+                        "rayon" => $item["properties"]["data-rayon"],
+                        "gk" => $item["properties"]["gk"],
+                        "builder" => $item["properties"]["builder"],
+                        "corpus" => $item["properties"]["corpus"],
+                        "deadline" => $item["properties"]["deadline"],
+                        "rooms" => $propRoomsArr[trim($item["properties"]["rooms"])]["ID"],
+                        "sGeneral" => $item["properties"]["sGeneral"],
+                        "floor" => $item["properties"]["floor"],
+                        "price" => IntVal(str_replace(" ", "", $item["properties"]["price"])),
+                        "otdelka" => $item["properties"]["otdelka"],
+                        "metro" => $item["properties"]["metro"],
+                        "id" => $item["id"]
+                    );
 
+                    $arLoadItemArray = Array(
+                        "MODIFIED_BY" => $USER->GetID(),
+                        "IBLOCK_SECTION_ID" => false,
+                        "IBLOCK_ID" => TRADE_IBLOCK_ID,
+                        "PROPERTY_VALUES" => $arItemPropsArray,
+                        "NAME" => $item["id"],
+                        "ACTIVE" => "Y",
+                        "XML_ID" => $item["id"]
+                    );
+
+
+                    if ($item["properties"]["photoplan"])
+                        $arLoadItemArray["PREVIEW_PICTURE"] = CFile::MakeFileArray($item["properties"]["photoplan"]);
+                    $res = $el->Update($arFields["ID"], $arLoadItemArray);
 
                 } else {
                     $el = new CIBlockElement;
@@ -51,7 +81,8 @@ if($_POST["go"]) {
                         "floor" => $item["properties"]["floor"],
                         "price" => IntVal(str_replace(" ", "", $item["properties"]["price"])),
                         "otdelka" => $item["properties"]["otdelka"],
-                        "metro" => $item["properties"]["metro"]
+                        "metro" => $item["properties"]["metro"],
+                        "id" => $item["id"]
                     );
 
                     $arLoadItemArray = Array(

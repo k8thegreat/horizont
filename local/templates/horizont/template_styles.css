@@ -362,7 +362,7 @@ input[type="file"]{
 #modal-callback .input-default{
     margin-bottom: 25px;
 }
-#modal-apartment .title-big{
+#modal-apartment .title-big, #print .title-big{
     font-size: 25px;
     padding-bottom: 10px;
     text-align: left;
@@ -576,14 +576,29 @@ input[type="file"]{
     background: #079aba;
     color: #fff;
 }
-.row-blue th::after{
-    content: '';
-    display: inline-block;
-    line-height: 1;
-    width: 7px;
-    height: 11px;
-    background: url(img/table-arrow.png) no-repeat center;
-    margin: 0 0 0 5px;
+.row-blue th a{
+    display: block;
+    width: 11px;
+    height: 8px;
+    color:#fff;
+    text-indent: -1000px;
+    overflow: hidden;
+    padding: 2px;
+    opacity: 0.7;
+}
+.row-blue th a:first-child{
+    background: url(img/arrow-up.png) center center no-repeat;
+}
+.row-blue th a:last-child{
+    background: url(img/arrow-down.png) center center no-repeat;
+}
+.row-blue th a:first-child.active, .row-blue th a:first-child:hover{
+    background: url(img/arrow-up-active.png) center center no-repeat;
+    opacity: 1;
+}
+.row-blue th a:last-child.active, .row-blue th a:last-child:hover{
+    background: url(img/arrow-down-active.png) center center no-repeat;
+    opacity: 1;
 }
 .table-border .row-blue th{
     height: 32px;
@@ -1338,6 +1353,7 @@ header.scroll .logo img{
     text-decoration: none;
     color: #666;
     margin: 0 25px 0 0;
+    min-width: 20px;
 }
 .callback-mob{
     display: none;
@@ -1571,6 +1587,8 @@ header.scroll .logo img{
     font: 400 14px/1.1 "Lato";
     color: #fff;
     margin-bottom: 8px;
+    min-width: 20px;
+    min-height: 20px;
 }
 .news-subscription{
     display: block;
@@ -4876,12 +4894,20 @@ article img{
 .phone{
     position: relative;
 
-}
-input.phone:after{
-    position: absolute;
-    display: block;
-    top:0px;
-    left: 0px;
-    content: "+7";
-    color: #fff;
+} 
+@media print {
+    #print{
+        padding:20px;
+    }
+    #print .btn-wrap {
+        display: none;
+    }
+
+    #print .gray-card {
+        display: none;
+    }
+
+    #print .modal-footer {
+        display: none;
+    }
 }

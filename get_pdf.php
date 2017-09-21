@@ -10,6 +10,7 @@ if($_REQUEST["ID"]) {
         $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
         if ($ob = $res->GetNextElement()) {
             $arFields = $ob->GetFields();
+            $ID = $arFields["ID"];
             $arProps = $ob->GetProperties();
             if($arFields["IBLOCK_SECTION_ID"]) {
                 $arFilter = array('IBLOCK_ID' => CATALOG_IBLOCK_ID, "ID" => $arFields["IBLOCK_SECTION_ID"]);
@@ -103,6 +104,6 @@ span{font-weingt:bold;}
         $dompdf = new DOMPDF();
         $dompdf->load_html($html);
         $dompdf->render();
-        $dompdf->stream("hello.pdf");
+        $dompdf->stream($ID.".pdf");
     }
 }
