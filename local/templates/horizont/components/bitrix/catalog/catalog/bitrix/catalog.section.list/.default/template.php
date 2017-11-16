@@ -55,7 +55,6 @@ $roomsTitleArr = array(
 
 if (0 < $arResult["SECTIONS_COUNT"])
 {
-
 			foreach ($arResult['SECTIONS'] as &$arSection)
 			{
 				$this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);

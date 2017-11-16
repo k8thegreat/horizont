@@ -50,7 +50,20 @@ $elementDeleteParams = array('CONFIRM' => GetMessage('CT_BCS_TPL_ELEMENT_DELETE_
 $obName = 'ob'.preg_replace('/[^a-zA-Z0-9_]/', 'x', $this->GetEditAreaId($navParams['NavNum']));
 $containerName = 'container-'.$navParams['NavNum'];
 
-
+$arrTableFields = array(
+    "rayon" => $arResult["ITEMS"][0]["PROPERTIES"]["rayon"]["NAME"],
+    "metro" => $arResult["ITEMS"][0]["PROPERTIES"]["metro"]["NAME"],
+    "gk" => $arResult["ITEMS"][0]["PROPERTIES"]["gk"]["NAME"],
+    "builder" => $arResult["ITEMS"][0]["PROPERTIES"]["builder"]["NAME"],
+    "deadline" => $arResult["ITEMS"][0]["PROPERTIES"]["deadline"]["NAME"],
+    "corpus" => $arResult["ITEMS"][0]["PROPERTIES"]["corpus"]["NAME"],
+    "rooms" => $arResult["ITEMS"][0]["PROPERTIES"]["rooms"]["NAME"],
+    "sGeneral" => $arResult["ITEMS"][0]["PROPERTIES"]["sGeneral"]["NAME"],
+    "price" => $arResult["ITEMS"][0]["PROPERTIES"]["price"]["NAME"],
+    "otdelka" => $arResult["ITEMS"][0]["PROPERTIES"]["otdelka"]["NAME"],
+    "floor" => $arResult["ITEMS"][0]["PROPERTIES"]["floor"]["NAME"],
+    "id" => "ID"
+);
 ?>
 
 <div class="catalog-section bx-<?=$arParams['TEMPLATE_THEME']?>" data-entity="<?=$containerName?>">
@@ -70,80 +83,34 @@ $containerName = 'container-'.$navParams['NavNum'];
 		<div class="table-wrapper">
 <table class="table table-trade table-border">
     <thead>
-    <tr>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["rayon"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["metro"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["gk"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["builder"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["deadline"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["corpus"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["rooms"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["sGeneral"]["NAME"]?></th>
-        <?/*<th>S кухни, м²</th>*/?>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["price"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["otdelka"]["NAME"]?></th>
-        <th><?=$arResult["ITEMS"][0]["PROPERTIES"]["floor"]["NAME"]?></th>
-        <th>ID</th>
-    </tr>
     <tr class="row-blue">
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="rayon" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rayon&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="rayon" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rayon&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="metro" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=metro&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="metro" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=metro&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="gk" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=gk&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="gk" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=gk&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="builder" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=builder&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="builder" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=builder&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="deadline" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=deadline&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="deadline" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=deadline&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="corpus" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=corpus&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="corpus" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=corpus&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="rooms" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rooms&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="rooms" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=rooms&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="sGeneral" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=sGeneral&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="sGeneral" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=sGeneral&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="price" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=price&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="price" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=price&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="otdelka" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=otdelka&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="otdelka" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=otdelka&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="floor" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=floor&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="floor" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=floor&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
-        <th>
-            <a class="<?=($_REQUEST["sort"]=="id" && $_REQUEST["by"]=="asc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=id&by=asc", array("sort", "by")); ?>">˄</a>
-            <a class="<?=($_REQUEST["sort"]=="id" && $_REQUEST["by"]=="desc" ? "active" : "")?>" href="<?= $APPLICATION->GetCurPageParam("sort=id&by=desc", array("sort", "by")); ?>">˅</a>
-        </th>
+        <?foreach ($arrTableFields as $field => $name){
+            if($_REQUEST["sort"] == $field || $arParams["ELEMENT_SORT_FIELD"] == "PROPERTY_".$field) {
+                $curr_by = ($_REQUEST["by"] ? $_REQUEST["by"] : $arParams["ELEMENT_SORT_ORDER"]);
+                $by = ($curr_by=="desc" ? "asc" : "desc");
+                $active = true;
+            }else{
+                $by = "asc";
+                $active = false;
+            }
 
+            ?>
+            <th>
+                <a class="<?=($active ? "active" : "")?> <?=$curr_by?>" href="<?= $APPLICATION->GetCurPageParam("sort=".$field."&by=".$by, array("sort", "by")); ?>">
+                <?=$name?>
+                </a>
+            </th>
+            <?
+        }?>
     </tr>
     </thead>
     <tbody>
 		<?
 		foreach ($arResult['ITEMS'] as $arItem)
 		{?>
-            <tr id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+            <tr id="<?=$this->GetEditAreaId($arItem['ID']);?>" title="Посмотреть планировку" class="apart-modal" data-href="<?=$arItem["DETAIL_PAGE_URL"]?>">
                 <td><?=$arItem["PROPERTIES"]["rayon"]["VALUE"]?></td>
-                <td><?=$arItem["PROPERTIES"]["metro"]["VALUE"]?></td>
+                <td><?foreach ($arItem["PROPERTIES"]["metro"]["VALUE"] as $val){?><?=printMetroValue($val)?><?}?></td>
                 <td><?=$arItem["PROPERTIES"]["gk"]["VALUE"]?></td>
                 <td><?=$arItem["PROPERTIES"]["builder"]["VALUE"]?></td>
                 <td><?=$arItem["PROPERTIES"]["deadline"]["VALUE"]?></td>
@@ -154,7 +121,7 @@ $containerName = 'container-'.$navParams['NavNum'];
                 <td><?=number_format($arItem["PROPERTIES"]["price"]["VALUE"],0,".", " ")?></td>
                 <td><?=$arItem["PROPERTIES"]["otdelka"]["VALUE"]?></td>
                 <td><?=$arItem["PROPERTIES"]["floor"]["VALUE"]?></td>
-                <td><a class="apart-modal" href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?=$arItem["NAME"]?></a></td>
+                <td><?=$arItem["NAME"]?></td>
             </tr>
 	    <?}?>
     </tbody>

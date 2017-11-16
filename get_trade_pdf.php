@@ -1,6 +1,6 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-require_once $_SERVER["DOCUMENT_ROOT"].'/local/php_interface/include/dompdf/autoload.inc.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/local/php_interface/include/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 if($_REQUEST["ID"]) {
@@ -26,7 +26,7 @@ if($_REQUEST["ID"]) {
         $price = $arProps["price"]["VALUE"];
         if($arFields["PREVIEW_PICTURE"]) {
             $url = CFile::GetPath($arFields["PREVIEW_PICTURE"]);
-            $preview_picture = '<img src="'.substr_replace($url, "",0,1).'" width="300"/>';
+            $preview_picture = '<img src="../'.substr_replace($url, "",0,1).'" width="300"/>';
         }
         $html = '
 <html>

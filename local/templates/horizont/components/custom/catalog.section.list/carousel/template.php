@@ -37,10 +37,9 @@ if (0 < $arResult["SECTIONS_COUNT"]) {
         </a>
         <div class="carousel-content">
             <h4><?=$arSection['NAME']; ?></h4>
-            <?if($arSection["UF_METRO"]){?>
+            <?if($arSection["UF_METRO_ID"]){?>
                 <div class="loc-metro">
-                    <?foreach($arSection["METRO"] as $val){?><?=getColoredIcon($val)?><?}?>
-                    <?=$arSection["UF_METRO"]?>
+                    <?foreach($arSection["UF_METRO_ID"] as $val){?><?=printMetroValue($val, true)?><?}?>
                 </div>
             <?}?>
             <?if($arSection["MIN_PRICE"]){?><p>от <?=number_format($arSection["MIN_PRICE"], "0", ".", " ")?> руб.</p><?}?>

@@ -31,24 +31,21 @@ $roomsTitleArr = array(
             <a href="" class="go-filter">Фильтр<?=FILTER_ICON?></a>
             <select name="sort" class="result-sort">
                 <option value="">Сортировать</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=price", array("sort")); ?>"<?=($_GET["sort"]=="price" ? " selected" : "")?>>По цене</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=date", array("sort")); ?>"<?=($_GET["sort"]=="date" ? " selected" : "")?>>По сроку сдачи</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=location", array("sort")); ?>"<?=($_GET["sort"]=="location" ? " selected" : "")?>>По району</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=metro", array("sort")); ?>"<?=($_GET["sort"]=="metro" ? " selected" : "")?>>По метро</option>
-                <option value="<?= $APPLICATION->GetCurPageParam("sort=name", array("sort")); ?>"<?=($_GET["sort"]=="name" ? " selected" : "")?>>По имени</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=price", array("sort", "PAGEN_2")); ?>"<?=($_GET["sort"]=="price" ? " selected" : "")?>>По цене</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=date", array("sort", "PAGEN_2")); ?>"<?=($_GET["sort"]=="date" ? " selected" : "")?>>По сроку сдачи</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=location", array("sort", "PAGEN_2")); ?>"<?=($_GET["sort"]=="location" ? " selected" : "")?>>По району</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=metro", array("sort", "PAGEN_2")); ?>"<?=($_GET["sort"]=="metro" ? " selected" : "")?>>По метро</option>
+                <option value="<?= $APPLICATION->GetCurPageParam("sort=name", array("sort", "PAGEN_2")); ?>"<?=($_GET["sort"]=="name" ? " selected" : "")?>>По имени</option>
             </select>
             <a href="<?= $APPLICATION->GetCurPageParam("view=list", array("view")); ?>" class="list list-line active"><?=LIST_VIEW_ICON?></a>
             <a href="<?= $APPLICATION->GetCurPageParam("view=block", array("view")); ?>" class="list list-squares"><?=BLOCK_VIEW_ICON?></a>
             <a href="<?= $APPLICATION->GetCurPageParam("view=map", array("view")); ?>" class="list list-map"><?=MAP_VIEW_ICON?></a>
         </div>
     </div>
-
-
 <?
 if (0 < $arResult["SECTIONS_COUNT"])
 {
     $i=0;
-
 			foreach ($arResult['SECTIONS'] as &$arSection) {
                 $this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
                 $this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);
@@ -60,24 +57,22 @@ if (0 < $arResult["SECTIONS_COUNT"])
                                 <?
                                 $file = CFile::ResizeImageGet($arSection["PICTURE"], array('width' => 365, 'height' => 230), BX_RESIZE_IMAGE_EXACT, true);
                                 $img = '<img src="' . $file['src'] . '" width="' . $file['width'] . '" height="' . $file['height'] . '" />';
-
                                 ?>
                                 <?= $img ?>
+                                <?if($arSection["UF_GOOD_PRICE"]){?>
                                 <h2 class="result-advantage">Выгодная цена</h2>
+                                <?}?>
                             </a>
                         <?}?>
                         <div class="result-content">
                             <h2 class="name-rc"><?= $arSection["NAME"] ?></h2>
                             <div class="result-dop-con">
                                 <ul class="left-con">
-                                    <li><h4 class="name-loc"><?= $arSection["UF_SUBLOCALITY"] ?><?=($arSection["UF_ADDRESS"] ? ", ".$arSection["UF_ADDRESS"] : "")?></h4></li>
-                                    <?if($arSection["UF_METRO"]){?>
-                                    <li>
+                                    <li><h4 class="name-loc"><?= $arSection["UF_LOCALITY_NAME"] ?><?=($arSection["UF_ADDRESS"] ? ", ".$arSection["UF_ADDRESS"] : "")?></h4></li>
+                                    <?if($arSection["UF_METRO_ID"]){?>
                                         <div class="loc-metro">
-                                            <?foreach($arSection["METRO"] as $val){?><?=getColoredIcon($val)?><?}?>
-                                            <?= $arSection["UF_METRO"] ?>
+                                            <?foreach($arSection["UF_METRO_ID"] as $val){?><?=printMetroValue($val, true)?><?}?>
                                         </div>
-                                    </li>
                                     <?}?>
                                     <?if($arSection["UF_TIME_ON_FOOT"]){?>
                                     <li>

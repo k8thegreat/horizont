@@ -11,6 +11,7 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+if($arResult["ITEMS"]){
 ?>
 <div class="mortgage owl-carousel owl-theme">
 
@@ -39,3 +40,4 @@ $this->setFrameMode(true);
     </div>
 <?endforeach;?>
 </div>
+<?}?>

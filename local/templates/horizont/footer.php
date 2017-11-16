@@ -52,30 +52,193 @@
                 <div>
                     <h4 class="footer-title">Квартиры на севере</h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_894006417=Y">м. Коменданский проспект</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_1886922373=Y">м. Парнас</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_725582281=Y">м. Лесная</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_2545945474=Y">м. Пионерская</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_3937927111=Y">м. Девяткино</a>
-                    </div>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect1",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
+                       </div>
                 </div>
                 <div>
                     <h4 class="footer-title">Квартиры на ЮГЕ</h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_1159954462=Y">м. Звездная</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_3832313845=Y">м. Проспект Ветеранов</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_3539032470=Y">м. Купчино</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_2871910706=Y">м. Дыбенко</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_3_1532327238=Y">м. Московская</a>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect2",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div>
                     <h4 class="footer-title">Квартиры </h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=Y&arrFilter_22_2212294583=Y">Студии</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_22_450215437=Y">1-комнатные</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_22_1842515611=Y">2-комнатные</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_22_4088798008=Y">3-комнатные</a>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect3",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div>
@@ -151,27 +314,193 @@
                 <div>
                     <h4 class="footer-title">Варианты оплаты</h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=y&arrFilter_35_2274021061=Y">Военная ипотека</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_35_1770303465=Y">Материнский капитал</a>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect4",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div>
                     <h4 class="footer-title">Год сдачи</h4>
                     <div class="footer-list">
-                        <a href="">2015 год.</a>
-                        <a href="">2016 год.</a>
-                        <a href="">2017 год.</a>
-                        <a href="">2018 год.</a>
-
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect5",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div>
                     <h4 class="footer-title">Стоимость</h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=y&arrFilter_27_MAX=1000000">Кв-ра за 1 млн</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_27_MAX=2000000">Кв-ра за 2 млн</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_27_MAX=3000000">Кв-ра за 3 млн</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_27_MAX=4000000">Кв-ра за 4 млн</a>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect6",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div class="contacts">
@@ -194,21 +523,129 @@
                 <div>
                     <h4 class="footer-title">новостройки в ленобласти</h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_3495862007=Y">г. Гатчина</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_3631440898=Y">г. Колпино</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_762577961=Y">Мурино</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_2273900021=Y">Шушары</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_166262827=Y">Всеволожск</a>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect7",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div>
                     <h4 class="footer-title">новостройки в ленобласти</h4>
                     <div class="footer-list">
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_1307564635=Y">Янино</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_2906900607=Y">г. Ломоносов</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_1348989193=Y">Парголово</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_2484444824=Y">Новое Девяткино</a>
-                        <a href="/novostroyki/?set_filter=y&arrFilter_1_1111777430=Y">Сертолово</a>
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "footer_links",
+                            Array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "N",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "N",
+                                "COMPOSITE_FRAME_MODE" => "A",
+                                "COMPOSITE_FRAME_TYPE" => "AUTO",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "N",
+                                "DISPLAY_PREVIEW_TEXT" => "N",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array("",""),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "25",
+                                "IBLOCK_TYPE" => "content",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "Y",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "10",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "sect8",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array("URL",""),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "SORT",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "ASC",
+                                "STRICT_SECTION_CHECK" => "N"
+                            )
+                        );?>
                     </div>
                 </div>
                 <div class="subscription">

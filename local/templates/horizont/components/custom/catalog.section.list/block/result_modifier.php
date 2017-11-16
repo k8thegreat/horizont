@@ -22,19 +22,36 @@ while ($enum_fields = $property_enums->GetNext()) {
 }
 foreach ($arResult['SECTIONS'] as &$arSection){
     foreach ($roomsArr as $key => $roomsVal){
+        $priceMinDiscount = $priceMinBase = 0;
         $arFilter = Array(
             "IBLOCK_ID"=>$arParams["IBLOCK_ID"],
             "ACTIVE"=>"Y",
             "IBLOCK_SECTION_ID" => $arSection["ID"],
-            "PROPERTY_rooms" => $roomsVal["ID"]
+            "PROPERTY_rooms" => $roomsVal["ID"],
+            ">PROPERTY_price_base" => 0
         );
-        $res = CIBlockElement::GetList(Array("PROPERTY_price_discount" => "asc"), $arFilter, false, array(),array("IBLOCK_ID", "ID",  "PROPERTY_price_discount"));
+        $res = CIBlockElement::GetList(Array("PROPERTY_price_base" => "asc"), $arFilter, false, array(),array("IBLOCK_ID", "ID",  "PROPERTY_price_discount", "PROPERTY_price_base"));
+        if($ob = $res->GetNextElement())
+        {
+
+            $arProps = $ob->GetProperties();
+            $priceMinBase = IntVal($arProps["price_base"]["VALUE"])."<br/>";
+        }
+        $arFilter = Array(
+            "IBLOCK_ID"=>$arParams["IBLOCK_ID"],
+            "ACTIVE"=>"Y",
+            "IBLOCK_SECTION_ID" => $arSection["ID"],
+            "PROPERTY_rooms" => $roomsVal["ID"],
+            ">PROPERTY_price_discount" => 0
+        );
+        $res = CIBlockElement::GetList(Array("PROPERTY_price_discount" => "asc"), $arFilter, false, array(),array("IBLOCK_ID", "ID",  "PROPERTY_price_discount", "PROPERTY_price_base"));
         if($ob = $res->GetNextElement())
         {
             $arProps = $ob->GetProperties();
-            $arSection["ITEMS_PRICE"][$key] = $arProps["price_discount"]["VALUE"];
-
+            $priceMinDiscount = IntVal($arProps["price_discount"]["VALUE"])."<br/>";
         }
+        if($priceMinDiscount || $priceMinBase)
+            $arSection["ITEMS_PRICE"][$key] = (($priceMinDiscount > 0 && $priceMinDiscount < $priceMinBase) ? $priceMinDiscount : $priceMinBase);
     }
     ksort($arSection["ITEMS_PRICE"]);
     $rsSections = CIBlockSection::GetList(array(), array("IBLOCK_ID" => $arParams["IBLOCK_ID"], "ID" => $arSection["ID"]),false, array("IBLOCK_ID","UF_*"),array());
@@ -49,8 +66,9 @@ foreach ($arResult['SECTIONS'] as &$arSection){
         if($arSection2["UF_LOCATION"]){
             $arSection["UF_LOCATION"] = unserialize($arSection2["~UF_LOCATION"]);
         }
-        $arSection["UF_METRO"] = $arSection2["~UF_METRO"];
-        $arSection["UF_SUBLOCALITY"] = $arSection2["UF_SUBLOCALITY"];
+        $arSection["UF_METRO_ID"] = $arSection2["UF_METRO_ID"];
+        $arSection["UF_GOOD_PRICE"] = $arSection2["UF_GOOD_PRICE"];
+        $arSection["UF_LOCALITY_NAME"] = $arSection2["UF_LOCALITY_NAME"];
         $arSection["UF_ADDRESS"] = $arSection2["UF_ADDRESS"];
         $arSection["UF_TIME_ON_FOOT"] = $arSection2["UF_TIME_ON_FOOT"];
         $arSection["UF_TIME_ON_TRANSPORT"] = $arSection2["UF_TIME_ON_TRANSPORT"];
@@ -89,12 +107,6 @@ foreach ($arResult['SECTIONS'] as &$arSection){
         "ACTIVE"=>"Y",
         "IBLOCK_SECTION_ID" => $arSection["ID"]
     );
-    $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), array("IBLOCK_ID", "ID",  "PROPERTY_metro_id"));
-    if($ob = $res->GetNextElement())
-    {
-        $arProps = $ob->GetProperties();
-        $arSection["METRO"] = $arProps["metro_id"]["VALUE_XML_ID"];
-    }
     asort($arSection["UF_READY"]);
 
 

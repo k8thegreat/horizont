@@ -1,6 +1,6 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-require_once $_SERVER["DOCUMENT_ROOT"].'/local/php_interface/include/dompdf/autoload.inc.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/local/php_interface/include/dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 if($_REQUEST["ID"]) {
@@ -24,7 +24,12 @@ if($_REQUEST["ID"]) {
         }
 
         $address = $arSect["UF_ADDRESS"];
-        $metro = $arSect["UF_METRO"];
+        $metro = "";
+        if($arSect["UF_METRO_ID"]){
+            foreach ($arSect["UF_METRO_ID"] as $val){
+                $metro .= printMetroValue($val)." ";
+            }
+        }
         $sub_locality_name = $arProps["sub_locality_name"]["VALUE"];
         $locality_name = $arProps["locality_name"]["VALUE"];
         $building_type = $arProps["sub_locality_name"]["VALUE"];

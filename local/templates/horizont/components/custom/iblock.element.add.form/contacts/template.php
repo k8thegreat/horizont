@@ -46,6 +46,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                     <label class="textarea">
                         <textarea rows="7" placeholder="<?=$arParams["CUSTOM_PREVIEW_TEXT_NAME"]?>" name="PROPERTY[PREVIEW_TEXT][0]"></textarea>
                     </label>
+                    <div class="agreement-link"><?=GetMessage("USER_AGREEMENT_TEXT")?></div>
                     <div class="btn-center">
                         <button type="submit" class="btn btn-border-white btn-callback" name="iblock_submit" value="Y"><?=GetMessage("IBLOCK_FORM_SUBMIT")?></button>
                     </div>
@@ -95,7 +96,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                         switch (type) {
                             case 'text':
                             case 'textarea':
-                                if(!$(this).val() || ($(this).hasClass("phone") && $(this).val()=="+7 ")){
+                                if(!$(this).val() || ($(this).hasClass("phone") && !$(this).hasClass("is-valid"))){
                                     error = true;
                                     $(this).addClass("error");
                                 }

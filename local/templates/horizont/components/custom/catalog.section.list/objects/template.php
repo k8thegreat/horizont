@@ -21,9 +21,7 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 if (0 < $arResult["SECTIONS_COUNT"])
 {
 ?>
-<h2 class="title-big cursive-title-left">строящиеся комплексы<span class="title-top"><span
-                        class="dop-title">От этого застройщика</span></span></h2>
-
+<h2 class="title-big cursive-title-left">строящиеся комплексы<span class="title-top"><span class="dop-title">От этого застройщика</span></span></h2>
 <div class="viewed-buildings owl-carousel owl-theme">
 <?
 			foreach ($arResult['SECTIONS'] as &$arSection)

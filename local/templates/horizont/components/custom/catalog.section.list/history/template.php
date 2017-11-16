@@ -42,7 +42,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
                     </a>
                     <div class="carousel-content">
                         <h4><?=$arSection['NAME']; ?></h4>
-						<?if($arSection["MIN_PRICE"]){?><p>от <?=number_format($arSection["MIN_PRICE"], "0", ".", " ")?> руб.</p><?}?>
+						<?if($arSection["UF_MIN_PRICE"]){?><p>от <?=number_format($arSection["UF_MIN_PRICE"], "0", ".", " ")?> руб.</p><?}?>
                     </div>
                 </div>
 

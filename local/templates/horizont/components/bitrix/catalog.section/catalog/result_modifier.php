@@ -9,10 +9,11 @@
 $component = $this->getComponent();
 $arParams = $component->applyTemplateModifications();
 $minPrice = 0;
-$arResult["COUNT"] = count($arResult["ITEMS"]);
 foreach ($arResult["ITEMS"] as $arItem){
     if($arItem["PROPERTIES"]["price_discount"]["VALUE"] < $minPrice || $minPrice == 0)
         $minPrice = $arItem["PROPERTIES"]["price_discount"]["VALUE"];
+    if($arItem["PROPERTIES"]["price_base"]["VALUE"] < $minPrice || $minPrice == 0)
+        $minPrice = $arItem["PROPERTIES"]["price_base"]["VALUE"];
     $readyVal = $arItem["PROPERTIES"]["ready"]["VALUE"];
 
     $rooms = $arItem["PROPERTIES"]["rooms"]["VALUE_XML_ID"];
@@ -20,6 +21,8 @@ foreach ($arResult["ITEMS"] as $arItem){
         $arResultTmp[$readyVal]["GROUPS"][$rooms]["ITEMS"][] = $arItem;
         if($arItem["PROPERTIES"]["price_discount"]["VALUE"] < $arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"] || !$arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"])
             $arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"] = $arItem["PROPERTIES"]["price_discount"]["VALUE"];
+        if($arItem["PROPERTIES"]["price_base"]["VALUE"] < $arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"] || !$arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"])
+            $arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"] = $arItem["PROPERTIES"]["price_base"]["VALUE"];
     }
     if($arItem["PROPERTIES"]["area"]["VALUE"]){
         if($arItem["PROPERTIES"]["area"]["VALUE"] < $arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_SQUARE"] || !$arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_SQUARE"])
@@ -30,7 +33,6 @@ foreach ($arResult["ITEMS"] as $arItem){
     }
 
 }
-$arResult["METRO"] = $arResult["ITEMS"][0]["PROPERTIES"]["metro_id"];
 $arResult["RENOVATION"] = $arResult["ITEMS"][0]["PROPERTIES"]["renovation"];
 $arResult["FLOORS"] = $arResult["ITEMS"][0]["PROPERTIES"]["floors_total"];
 foreach ($arResultTmp as $key => &$arSection) {
@@ -55,8 +57,9 @@ if ($arSection2 = $rsSections->GetNext())
     if($arSection2["UF_LOCATION"]){
         $arResult["UF_LOCATION"] = unserialize($arSection2["~UF_LOCATION"]);
     }
-    if($arSection2["UF_APARTMENTS"]){
-        $arResult["UF_APARTMENTS"] = unserialize($arSection2["UF_APARTMENTS"]);
-    }
+    $arResult["UF_GOOD_PRICE"] = $arSection2["UF_GOOD_PRICE"];
+    $arResult["UF_METRO_ID"] = $arSection2["UF_METRO_ID"];
+    $arResult["UF_ADVANTAGES"] = $arSection2["UF_ADVANTAGES"];
+
 }
 

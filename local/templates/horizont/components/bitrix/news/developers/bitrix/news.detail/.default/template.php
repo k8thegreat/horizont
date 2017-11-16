@@ -29,7 +29,7 @@ $this->setFrameMode(true);
             </div>
             <div class="card-content">
                 <h3 class="card-title"><?=$arResult["NAME"]?></h3>
-                <p><?=$arResult["PREVIEW_TEXT"];?>
+                <p><?=($arResult["DETAIL_TEXT"] ? $arResult["DETAIL_TEXT"] : $arResult["PREVIEW_TEXT"])?>
                 </p>
             </div>
         </div>

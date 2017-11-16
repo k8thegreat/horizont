@@ -31,7 +31,7 @@ for($index = 0; $index < $itemSize; $index++)
 	else
 	{
 		$strReturn .= '
-			<li>'.$title.'</li>';
+			<li><span>'.$title.'</span></li>';
 	}
 }
 

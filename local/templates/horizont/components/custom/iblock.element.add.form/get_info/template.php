@@ -35,14 +35,16 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
 }else{
     $form_id = rand(1000,9999);
     ?>
-            <form name="iblock_add" id="feedback-form<?=$form_id?>" action="<?=POST_FORM_ACTION_URI?>" method="post" enctype="multipart/form-data">
-                <div  class="result-form-callback"><label>
+            <form name="iblock_add" id="feedback-form<?=$form_id?>" class="get-info-form" action="<?=POST_FORM_ACTION_URI?>" method="post" enctype="multipart/form-data">
+                <div class="result-form-callback">
+                    <label>
                     <input type="text" type="tel" class="phone required" value="+7 " placeholder="<?=$arParams["CUSTOM_TITLE_NAME"]?>" name="PROPERTY[NAME][0]"/>
                 </label>
 
                 <button type="submit" class="btn btn-border-white btn-callback" name="iblock_submit" value="Y"><?=GetMessage("IBLOCK_FORM_SUBMIT")?></button>
                 <?=bitrix_sessid_post()?>
                 </div>
+                <div class="agreement-link"><?=GetMessage("USER_AGREEMENT_TEXT")?></div>
                 <div class="errors">
                     <?if (count($arResult["ERRORS"])):?>
                         <?=ShowError(implode("<br />", $arResult["ERRORS"]))?>
@@ -87,7 +89,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                         switch (type) {
                             case 'text':
                             case 'textarea':
-                                if(!$(this).val() || ($(this).hasClass("phone") && $(this).val()=="+7 ")){
+                                if(!$(this).val() || ($(this).hasClass("phone") && !$(this).hasClass("is-valid"))){
                                     error = true;
                                     $(this).addClass("error");
                                 }

@@ -36,8 +36,9 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
     ?>
             <form name="iblock_add" id="callback-form" action="<?=POST_FORM_ACTION_URI?>" method="post" enctype="multipart/form-data">
             <label class="input-default">
-                <input type="text" type="tel" value="+7 " class="phone required" placeholder="<?=$arParams["CUSTOM_TITLE_NAME"]?>" name="PROPERTY[NAME][0]"/>
+                <input type="text" value="+7 " class="phone required" placeholder="+7 (___) ___-__-__" name="PROPERTY[NAME][0]"/>
             </label>
+                <div class="agreement-link"><?=GetMessage("USER_AGREEMENT_TEXT")?></div>
             <div class="btn-center">
                 <button type="submit" class="btn btn-full" name="iblock_submit" value="Y"><?=GetMessage("IBLOCK_FORM_SUBMIT")?></button>
             </div>
@@ -48,9 +49,6 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                     <?endif?>
                 </div>
         </form>
-
-
-
     <script type="text/javascript">
         $(document).ready(function(){
             $("#callback-form .required").change(function(){
@@ -73,7 +71,6 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
 
                         }
                     }
-
                 },
                 beforeSubmit: function(){
                     var error = false;
@@ -83,14 +80,13 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                         switch (type) {
                             case 'text':
                             case 'textarea':
-                                if(!$(this).val() || ($(this).hasClass("phone") && $(this).val()=="+7 ")){
+                                if(!$(this).val() || ($(this).hasClass("phone") && !$(this).hasClass("is-valid"))){
                                     error = true;
                                     $(this).addClass("error");
                                 }
                                 break;
                         }
                     });
-
                     if(error == true) {
                         return false;
                     }
@@ -98,9 +94,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                     $("#callback-form button").attr("disabled", "disabled").addClass("disabled");
                 }
             }
-
             $('#callback-form').ajaxForm(callback_form_options);
         });
-
     </script>
 <?}?>

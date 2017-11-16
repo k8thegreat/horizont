@@ -21,11 +21,10 @@ $this->setFrameMode(true);
 	<div class="one-result text-mod"  id="<?=$this->GetEditAreaId($arItem['ID']);?>"<?if($arItem["PREVIEW_PICTURE"]){?>
  style="background-image: url(<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>), radial-gradient(at 25% 50%, #92ecff, #0dc7ed);"
 <?}?>>
-                        <h2><?echo $arItem["NAME"]?></h2>
-                        <p><?echo $arItem["PREVIEW_TEXT"];?></p>
-                        <a href="" class="btn btn-border-white btn-callback">Связаться</a>
-                    </div>
-                </div>
-
+        <h2><?echo $arItem["NAME"]?></h2>
+        <p><?echo $arItem["PREVIEW_TEXT"];?></p>
+        <a href="#" class="btn btn-border-white btn-callback" data-modal="modal-callback">Связаться</a>
+    </div>
+</div>
 <?endforeach;?>
 

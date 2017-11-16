@@ -2,6 +2,14 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Переуступки");
 ?>
+    <div class="mobile-prev">
+        <?/*<button class="filter-back">
+                <?=ARROW_LEFT?> Назад к списку
+            </button>*/?>
+        <a href="#" class="go-filter">Фильтр
+            <?=FILTER_ICON?>
+        </a>
+    </div>
     <section class="builder-small-slide shadow slide-trade" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/img/builders/slide-bg.png);">
         <?$APPLICATION->IncludeComponent(
             "bitrix:breadcrumb",
@@ -84,7 +92,7 @@ $APPLICATION->SetTitle("Переуступки");
     </section>
     <section class="filter-bar-wrapper bg-gray">
         <?$APPLICATION->IncludeComponent(
-	"custom:catalog.smart.filter", 
+	"bitrix:catalog.smart.filter",
 	"trade", 
 	array(
 		"CACHE_GROUPS" => "Y",
@@ -119,7 +127,7 @@ $APPLICATION->SetTitle("Переуступки");
     </section>
     <section class="bg-gray">
         <div class="container">
-            <h2 class="title-big cursiv-title-right">Квартиры по переуступке<span class="title-top"><span class="dop-title">Выберите свою</span></span></h2>
+            <h2 class="title-big cursive-title-right">Квартиры по переуступке<span class="title-top"><span class="dop-title">Выберите свою</span></span></h2>
             <?
             $sort = (strVal($_REQUEST["sort"]) ?  strVal($_REQUEST["sort"]) : 'price');
             $by = (strVal($_REQUEST["by"]) ?  strVal($_REQUEST["by"]) : 'asc');
@@ -131,10 +139,10 @@ $APPLICATION->SetTitle("Переуступки");
 		"ACTION_VARIABLE" => "action",
 		"ADD_PROPERTIES_TO_BASKET" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
-		"AJAX_MODE" => "N",
+		"AJAX_MODE" => "Y",
 		"AJAX_OPTION_ADDITIONAL" => "",
-		"AJAX_OPTION_HISTORY" => "N",
-		"AJAX_OPTION_JUMP" => "N",
+		"AJAX_OPTION_HISTORY" => "Y",
+		"AJAX_OPTION_JUMP" => "Y",
 		"AJAX_OPTION_STYLE" => "N",
 		"BACKGROUND_IMAGE" => "-",
 		"BASKET_URL" => "/personal/basket.php",

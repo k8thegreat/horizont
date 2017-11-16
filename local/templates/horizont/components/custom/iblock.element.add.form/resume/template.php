@@ -62,6 +62,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
 	<?endif?>
 	</div>
 </form>
+<div class="agreement-link"><?=GetMessage("USER_AGREEMENT_TEXT")?></div>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#feedback-form<?=$form_id?> .required").change(function(){
@@ -94,7 +95,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["iblock_su
                         switch (type) {
                             case 'text':
                             case 'textarea':
-                                if(!$(this).val() || ($(this).hasClass("phone") && $(this).val()=="+7 ")){
+                                if(!$(this).val() || ($(this).hasClass("phone") && !$(this).hasClass("is-valid"))){
                                     error = true;
                                     $(this).addClass("error");
                                 }

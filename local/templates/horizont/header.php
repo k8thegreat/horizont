@@ -4,18 +4,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title><?=$APPLICATION->ShowTitle()?></title>
-    <link rel="icon" href="favicon.png" type="image/png" sizes="30x30">
+    <title><?=$APPLICATION->ShowTitle('title')?></title>
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="30x30">
     <?
     $APPLICATION->AddHeadScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery-2.2.1.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/owl.carousel.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/fancybox/jquery.fancybox.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery.tablesorter.min.js");
-    $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery.mask.min.js");
+    $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery.inputmask.bundle.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery.form.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/jquery-ui.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/main.js");
+    //$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/scripts.js");
     $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/fonts/fonts.css");
     $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/owl.theme.default.min.css");
     //$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/jquery-ui.css");
@@ -25,7 +26,7 @@
     <?=$APPLICATION->ShowHead();?>
 </head>
 <body>
-<?=$APPLICATION->ShowPanel();?>
+<div id="panel"><?=$APPLICATION->ShowPanel();?></div>
 <div class="wrapper">
     <header class="header">
         <div class="nav-top">
@@ -71,9 +72,9 @@
                     );?>
                 </a>
                 <button class="btn btn-border btn-callback" data-modal="modal-callback">Заказать обратный звонок</button>
-                <div class="callback-mob" data-modal="modal-callback">
+                <a class="callback-mob" href="#" data-modal="modal-callback">
                     <?=PHONE_ICON?>
-                </div>
+                </a>
                 <div class="menu-btn">
                     <?=MENU_ICON?>
                 </div>
@@ -81,11 +82,4 @@
         </div>
     </header>
     <main class="content">
-        <div class="mobile-prev">
-            <button class="filter-back">
-                <?=ARROW_LEFT?> Назад к списку
-            </button>
-            <a href="#" class="go-filter">Фильтр
-                <?=FILTER_ICON?>
-            </a>
-        </div>
+

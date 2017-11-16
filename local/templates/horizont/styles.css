@@ -53,3 +53,22 @@ a:focus,
 a:active{
     color: #1ab9db;
 }
+.title-big{
+    font: 700 25px/1 "OpenSans";
+    padding: 40px 0 30px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #313131;
+    position: relative;
+}
+.btn{
+    background-color: transparent;
+    font:400 14px/1 "OpenSans";
+    text-align: center;
+    transition: all .5s;
+    min-width: 215px;
+    padding: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}

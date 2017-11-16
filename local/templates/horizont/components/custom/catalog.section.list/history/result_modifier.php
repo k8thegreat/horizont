@@ -1,6 +1,6 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-foreach($arResult["SECTIONS"] as &$arSection){
+/*foreach($arResult["SECTIONS"] as &$arSection){
 $arFilter = Array(
             "IBLOCK_ID"=>$arParams["IBLOCK_ID"],
             "ACTIVE"=>"Y",
@@ -14,5 +14,5 @@ $arFilter = Array(
             $arSection["MIN_PRICE"] = $arProps["price_discount"]["VALUE"];
 
         }
-}
+}*/
 ?>

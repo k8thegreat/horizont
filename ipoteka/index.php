@@ -25,7 +25,7 @@ $APPLICATION->SetTitle("Ипотека");
         );?></h1>
     <div class="container">
         <div class="btn-center">
-            <a href="" class="btn btn-border">Получите бесплатную консультацию</a>
+            <a href="#" class="btn btn-border  btn-callback" data-modal="modal-callback">Получите бесплатную консультацию</a>
         </div>
     </div>
 </section>
@@ -98,105 +98,9 @@ $APPLICATION->SetTitle("Ипотека");
 
         <h2 class="title-big no-strong">Мгновенный рассчет ипотечного кредита</h2>
         <div class="gray-card">
-            <h4>Минимальная ставка банков на сегодняшний день <b>11%</b></h4>
+            <?if(defined("RATE_MIN_GLOBAL")){?><h4>Минимальная ставка банков на сегодняшний день <b><?=RATE_MIN_GLOBAL?>%</b></h4><?}?>
             <div class="mortgage-calculation">
-                    <?php
-                    if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["calc_submit"]) {
-                        $APPLICATION->RestartBuffer();
-
-                        if(IntVal($_REQUEST["PRICE"]) && IntVal($_REQUEST["PERIOD"]) && IntVal($_REQUEST["RATE"])){
-                            if(IntVal($_REQUEST["SUM"])){
-                                $S = IntVal($_REQUEST["PRICE"]) - IntVal($_REQUEST["SUM"]);
-                            }else{
-                                $S = IntVal($_REQUEST["PRICE"]);
-                            }
-                            $rate = floatval($_REQUEST["RATE"])/100/12;
-                            $m = IntVal($_REQUEST["PERIOD"])*12;
-                            $sum = $S*($rate/(1-pow(1+$rate, -$m)));
-                        }
-                        if ($sum){
-                            $success_str = "<p>Ежемесячный платеж: <b>".number_format($sum,0,".", " ")." руб/мес.</b></p>";
-                        }
-                        ?>{"errorstr":"<?=$error_str?>","success":"<?=$success_str?>"}<?
-                        die();
-                    }else{
-                        ?>
-                        <form id="calc-form" action="" method="post" enctype="multipart/form-data" >
-                            <div class="values">
-                                <label>
-                                    <span>Процентная ставка, %</span>
-                                    <input type="text" class="required" name="RATE" value="11"/>
-                                </label>
-                                <label>
-                                    <span>Стоимость квартиры, руб.</span>
-                                    <input type="text" class="required" name="PRICE" value="<?=$arResult["PROPERTIES"]["price_discount"]["VALUE"]?>"/>
-                                </label>
-                                <label>
-                                    <span>Первый взнос, руб.</span>
-                                    <input type="text"  name="SUM" value=""/>
-                                </label>
-                                <label>
-                                    <span>Срок ипотеки, лет</span>
-                                    <input type="text"  name="PERIOD" class="required" value=""/>
-                                </label>
-                            </div>
-
-                            <div class="price-month">
-                                <p></p>
-                            </div>
-                            <div class="btn-center">
-                                <button type="submit" class="btn btn-full" value="Y" name="calc_submit">Рассчитать</button>
-                            </div>
-                        </form>
-                        <script type="text/javascript">
-                            $(document).ready(function(){
-                                $("body").on("change", "#calc-form .required", function(){
-                                    if($(this).val()) $(this).removeClass("error");
-                                    else $(this).addClass("error");
-                                });
-                                var calc_form_options = {
-                                    type: "post",
-                                    dataType: "json",
-                                    success: function(data){
-                                        $("#calc-form .btn").prop("disabled",false).removeClass("disabled");
-                                        if(data.errorstr){
-                                            $("#calc-form .errors").html(data.errorstr);
-                                        }else{
-                                            if(data.success){
-                                                $("#calc-form .errors").html("");
-                                                $("#calc-form .price-month").html(data.success);
-                                            }
-                                        }
-                                    },
-                                    beforeSubmit: function(){
-                                        var error = false;
-                                        $("#calc-form .errors").text();
-                                        $("#calc-form .required").each(function(){
-                                            if($(this).is("textarea")) var type="textarea"; else if($(this).is("input")) var type = $(this).attr("type");
-                                            switch (type) {
-                                                case 'text':
-                                                case 'textarea':
-                                                    if(!$(this).val()){
-                                                        error = true;
-                                                        $(this).addClass("error");
-                                                    }
-                                                    break;
-                                            }
-                                        });
-
-                                        if(error == true) {
-                                            return false;
-                                        }
-                                        $("#calc-form .errors").html("");
-                                        $("#calc-form .btn").prop("disabled", "disabled").addClass("disabled");
-                                    }
-                                }
-
-                                $('#calc-form').ajaxForm(calc_form_options);
-                            });
-
-                        </script>
-                    <?}?>
+                <?$APPLICATION->IncludeFile("/includes/mortgage_calculator.php", Array())?>
                     <div class="mortgage-terms">
                         <p>Свяжитесь, чтобы уточнить условия ипотеки:</p>
                         <?$APPLICATION->IncludeComponent("custom:iblock.element.add.form", "mortgage", Array(

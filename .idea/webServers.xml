@@ -18,6 +18,22 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="ddce39c9-ebfe-49ba-a953-dc30bf37afbd" name="new.gorizont-spb.com" url="http://new.gorizont-spb.com">
+        <fileTransfer host="new.gorizont-spb.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="473949bd-a6fa-4efc-b56f-d7bd2d23739f" name="gorizont" url="http://gor.web365.tech">
+        <fileTransfer host="gor.web365.tech" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

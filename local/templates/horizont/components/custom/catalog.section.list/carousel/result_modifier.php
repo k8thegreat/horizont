@@ -5,6 +5,7 @@ foreach($arResult["SECTIONS"] as &$arSection){
         "IBLOCK_ID"=>$arParams["IBLOCK_ID"],
         "ACTIVE"=>"Y",
         "IBLOCK_SECTION_ID" => $arSection["ID"],
+
     );
     $res = CIBlockElement::GetList(Array("PROPERTY_price_discount" => "asc"), $arFilter, false, array(),array("IBLOCK_ID", "ID",  "PROPERTY_price_discount"));
     if($ob = $res->GetNextElement())
@@ -12,17 +13,6 @@ foreach($arResult["SECTIONS"] as &$arSection){
         $arProps = $ob->GetProperties();
         $arSection["MIN_PRICE"] = $arProps["price_discount"]["VALUE"];
 
-    }
-    $arFilter = Array(
-        "IBLOCK_ID"=>$arParams["IBLOCK_ID"],
-        "ACTIVE"=>"Y",
-        "IBLOCK_SECTION_ID" => $arSection["ID"]
-    );
-    $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), array("IBLOCK_ID", "ID",  "PROPERTY_metro_id"));
-    if($ob = $res->GetNextElement())
-    {
-        $arProps = $ob->GetProperties();
-        $arSection["METRO"] = $arProps["metro_id"]["VALUE_XML_ID"];
     }
 }
 ?>

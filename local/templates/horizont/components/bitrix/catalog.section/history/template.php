@@ -19,55 +19,51 @@ $elementEdit = CIBlock::GetArrayByID($arParams['IBLOCK_ID'], 'ELEMENT_EDIT');
 $elementDelete = CIBlock::GetArrayByID($arParams['IBLOCK_ID'], 'ELEMENT_DELETE');
 $elementDeleteParams = array('CONFIRM' => GetMessage('CT_BCS_TPL_ELEMENT_DELETE_CONFIRM'));
 
-
-
-
 if (!empty($arResult['ITEMS'])){?>
 
 <div class="control-builders">
     <div id="tabs">
     <div class="nav-builders">
             <ul>
-                <?foreach ($arResult["CATEGORY"] as $year => $arItem){?>
-                <li><a href="#tabs-<?=$year?>" class="btn btn-border"><?=$year?></a></li>
+                <?foreach ($arResult["ITEMS"] as $arSection){?>
+                <li class="btn btn-border"><a href="#tabs-<?=$arSection["ID"]?>"><?=$arSection["NAME"]?></a></li>
                 <?}?>
             </ul>
         </div>
     <div class="control-builders-content">
         <h2 class="title-big cursive-title-right">ход строительства<span class="title-top"><span class="dop-title">Ретроспектива</span></span></h2>
-        <?foreach ($arResult["CATEGORY"] as $year => $arItems){?>
-        <div id="tabs-<?=$year?>">
+        <?
+        foreach ($arResult["ITEMS"] as $arSection){?>
+        <div id="tabs-<?=$arSection["ID"]?>">
             <div class="dark-control owl-carousel owl-theme">
-                <?foreach ($arItems as $arItem){?>
-                    <div class="item">
-                        <div class="thumb">
-                            <?
-                            if($arItem["PREVIEW_PICTURE"]["SRC"]){
-                                $file = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"]["ID"], array('width'=>283, 'height'=>178), BX_RESIZE_IMAGE_EXACT, true);
-                                $img = '<img src="'.$file['src'].'" width="'.$file['width'].'" height="'.$file['height'].'" />';
+                <?
+                if($arSection["PROPERTIES"]["MORE_PHOTO"]["VALUE"]) {
 
+                    foreach ($arSection["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $k => $val) {
+
+                        ?>
+                        <div class="item">
+                            <a data-fancybox="history-images" data-caption="<?= $arSection["PROPERTIES"]["MORE_PHOTO"]["DESCRIPTION"][$k] ?>" class="thumb"
+                               href="<?= CFile::GetPath($val) ?>">
+                                <?
+                                    $file = CFile::ResizeImageGet($val, array('width' => 283, 'height' => 178), BX_RESIZE_IMAGE_EXACT, true);
+                                    $img = '<img src="' . $file['src'] . '" width="' . $file['width'] . '" height="' . $file['height'] . '" />';
                                 ?>
                                 <?=$img?>
-                            <?}?>
+                            </a>
+                            <div class="carousel-content">
+                                <h4><?=$arSection["PROPERTIES"]["MORE_PHOTO"]["DESCRIPTION"][$k]?></h4>
+                            </div>
                         </div>
-                        <div class="carousel-content">
-                            <h4><?= FormatDate('f Y', MakeTimeStamp($arItem["DATE_ACTIVE_FROM"], CSite::GetDateFormat()), time())?></h4>
-                        </div>
-                    </div>
-                    <?}?>
+                    <?
+                    }
+                }?>
             </div>
         </div>
         <?}?>
-
-
-
     </div>
     </div>
 </div>
 <?}?>
-<script>
-    $( function() {
-        $( "#tabs" ).tabs();
-    } );
-</script>
+
 

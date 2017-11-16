@@ -51,7 +51,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                         "SHOW_404" => $arParams["SHOW_404"],
                         "FILE_404" => $arParams["FILE_404"],
                         "DISPLAY_COMPARE" => $arParams["USE_COMPARE"],
-                        "PAGE_ELEMENT_COUNT" => "2500",
+                        "PAGE_ELEMENT_COUNT" => "4000",
                         "LINE_ELEMENT_COUNT" => $arParams["LINE_ELEMENT_COUNT"],
                         "PRICE_CODE" => $arParams["PRICE_CODE"],
                         "USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
@@ -271,7 +271,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",	// Название переменной, в которой передается количество товара
 		"PRODUCT_ROW_VARIANTS" => "[{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false}]",	// Вариант отображения товаров
 		"PROPERTY_CODE" => array(	// Свойства
-			0 => "",
+			0 => "MORE_PHOTO",
 			1 => "",
 		),
 		"PROPERTY_CODE_MOBILE" => "",	// Свойства товаров, отображаемые на мобильных устройствах
@@ -320,6 +320,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
             $arBanksFilter["LOGIC"] = "OR";
             $arBanksFilter = array($arBanksFilter);
             ?>
+
             <?$APPLICATION->IncludeComponent(
                 "bitrix:news.list",
                 "banks",
@@ -389,120 +390,18 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
             );?>
             <?
             $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_RATE");
-            $arFilter = Array("IBLOCK_ID"=>BANKS_IBLOCK_ID, "ACTIVE"=>"Y", "!PROPERTY_RATE" => false);
-            $res = CIBlockElement::GetList(Array("PROPERTY_RATE"=> "ASC"), $arBanksFilter, false, Array(), $arSelect);
+            $res = CIBlockElement::GetList(Array("PROPERTY_RATE"=> "ASC"), array_merge($arBanksFilter, array(">PROPERTY_RATE" => 0)), false, Array(), $arSelect);
             if($ob = $res->GetNextElement()){
                 $arFields = $ob->GetFields();
-                $arProps = $ob->GetProperties();
                 $arResult["BANK"] = $arFields;
-                $arResult["BANK"]["PROPERTIES"] = $arProps;
+                define("RATE_MIN_LOCAL", $arResult["BANK"]["PROPERTY_RATE_VALUE"]);
             }
             ?>
             <h2 class="title-big no-strong">мгновенный рассчет ипотечного кредита</h2>
             <div class="gray-card">
-                <h4> Минимальная ставка банков на сегодняшний день <b><?=$arResult["BANK"]["PROPERTY_RATE_VALUE"]?>%</b></h4>
+                <h4>Минимальная ставка банков на сегодняшний день <b><?=(defined("RATE_MIN_LOCAL") ? RATE_MIN_LOCAL : RATE_MIN_GLOBAL)?>%</b></h4>
                 <div class="mortgage-calculation">
-
-                    <?php
-                    if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $_REQUEST["calc_submit"]) {
-                        $APPLICATION->RestartBuffer();
-
-                        if(IntVal($_REQUEST["PRICE"]) && IntVal($_REQUEST["PERIOD"]) && IntVal($_REQUEST["RATE"])){
-                            if(IntVal($_REQUEST["SUM"])){
-                                $S = IntVal($_REQUEST["PRICE"]) - IntVal($_REQUEST["SUM"]);
-                            }else{
-                                $S = IntVal($_REQUEST["PRICE"]);
-                            }
-                            $rate = floatval($_REQUEST["RATE"])/100/12;
-                            $m = IntVal($_REQUEST["PERIOD"])*12;
-                            $sum = $S*($rate/(1-pow(1+$rate, -$m)));
-                        }
-
-                        if ($sum){
-                            $success_str = "<p>Ежемесячный платеж: <b>".number_format($sum,0,".", " ")." руб/мес.</b></p>";
-                        }
-                        ?>{"errorstr":"<?=$error_str?>","success":"<?=$success_str?>"}<?
-                        die();
-                    }else{
-                        ?>
-
-                        <form id="calc-form" action="" method="post" enctype="multipart/form-data" >
-
-                            <div class="values">
-                                <label>
-                                    <span>Процентная ставка, %</span>
-                                    <input type="text" class="required" name="RATE" value="11"/>
-                                </label>
-                                <label>
-                                    <span>Стоимость квартиры, руб.</span>
-                                    <input type="text" class="required" name="PRICE" value="<?=$arResult["PROPERTIES"]["price_discount"]["VALUE"]?>"/>
-                                </label>
-                                <label>
-                                    <span>Первый взнос, руб.</span>
-                                    <input type="text"  name="SUM" value=""/>
-                                </label>
-                                <label>
-                                    <span>Срок ипотеки, лет</span>
-                                    <input type="text"  name="PERIOD" class="required" value=""/>
-                                </label>
-                            </div>
-
-                            <div class="price-month">
-                                <p></p>
-                            </div>
-                            <div class="btn-center">
-                                <button type="submit" class="btn btn-full" value="Y" name="calc_submit">Рассчитать</button>
-                            </div>
-                        </form>
-                        <script type="text/javascript">
-                            $(document).ready(function(){
-                                $("body").on("change", "#calc-form .required", function(){
-                                    if($(this).val()) $(this).removeClass("error");
-                                    else $(this).addClass("error");
-                                });
-                                var calc_form_options = {
-                                    type: "post",
-                                    dataType: "json",
-                                    success: function(data){
-                                        $("#calc-form .btn").prop("disabled",false).removeClass("disabled");
-                                        if(data.errorstr){
-                                            $("#calc-form .errors").html(data.errorstr);
-                                        }else{
-                                            if(data.success){
-                                                $("#calc-form .errors").html("");
-                                                $("#calc-form .price-month").html(data.success);
-                                            }
-                                        }
-                                    },
-                                    beforeSubmit: function(){
-                                        var error = false;
-                                        $("#calc-form .errors").text();
-                                        $("#calc-form .required").each(function(){
-                                            if($(this).is("textarea")) var type="textarea"; else if($(this).is("input")) var type = $(this).attr("type");
-                                            switch (type) {
-                                                case 'text':
-                                                case 'textarea':
-                                                    if(!$(this).val()){
-                                                        error = true;
-                                                        $(this).addClass("error");
-                                                    }
-                                                    break;
-                                            }
-                                        });
-
-                                        if(error == true) {
-                                            return false;
-                                        }
-                                        $("#calc-form .errors").html("");
-                                        $("#calc-form .btn").prop("disabled", "disabled").addClass("disabled");
-                                    }
-                                }
-
-                                $('#calc-form').ajaxForm(calc_form_options);
-                            });
-
-                        </script>
-                    <?}?>
+                    <?$APPLICATION->IncludeFile("/includes/mortgage_calculator.php", Array())?>
                     <div class="mortgage-terms">
                         <p>Свяжитесь, чтобы уточнить условия ипотеки:</p>
                         <?$APPLICATION->IncludeComponent("custom:iblock.element.add.form", "mortgage", Array(
@@ -552,7 +451,6 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 	)
 );?>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -564,9 +462,9 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
             <div class="tabs">
                 <div class="nav-builders">
                     <ul>
-                        <li><a href="#tab-near" class="btn btn-border">Рядом</a></li>
-                        <li><a href="#tab-price" class="btn btn-border">С похожей ценой</a></li>
-                        <li><a href="#tab-builder" class="btn btn-border">Тот же застройщик</a></li>
+                        <li class="btn btn-border"><a href="#tab-near">Рядом</a></li>
+                        <li class="btn btn-border"><a href="#tab-price" >С похожей ценой</a></li>
+                        <li class="btn btn-border"><a href="#tab-builder">Тот же застройщик</a></li>
                     </ul>
                 </div>
                 <div class="control-builders-content">
@@ -575,7 +473,7 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                             <?
                             if($GLOBALS["METRO"]) {
                                 global $arDistrictFilter;
-                                $arDistrictFilter = array("!ID" => $intSectionID, "UF_METRO" => $GLOBALS["METRO"]); ?>
+                                $arDistrictFilter = array("!ID" => $intSectionID, "UF_METRO_ID" => $GLOBALS["METRO"]); ?>
                                 <? $APPLICATION->IncludeComponent("custom:catalog.section.list", "carousel", Array(
                                     "ADD_SECTIONS_CHAIN" => "N",    // Включать раздел в цепочку навигации
                                     "CACHE_GROUPS" => "Y",    // Учитывать права доступа
@@ -586,14 +484,15 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                                     "IBLOCK_TYPE" => "catalog",    // Тип инфоблока
                                     "SECTION_CODE" => "",    // Код раздела
                                     "SECTION_FIELDS" => array(    // Поля разделов
-                                        0 => "",
-                                        1 => "",
+                                        0 => "UF_METRO_ID",
+                                        1 => "UF_MIN_PRICE",
+                                        2 => "PICTURE"
                                     ),
                                     "SECTION_ID" => "",    // ID раздела
                                     "SECTION_URL" => "",    // URL, ведущий на страницу с содержимым раздела
                                     "SECTION_USER_FIELDS" => array(    // Свойства разделов
                                         0 => "UF_DEVELOPER",
-                                        1 => "UF_METRO",
+                                        1 => "UF_METRO_ID",
                                     ),
                                     "SHOW_PARENT_NAME" => "N",    // Показывать название раздела
                                     "TOP_DEPTH" => "",    // Максимальная отображаемая глубина разделов
@@ -610,7 +509,6 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                             <?
                             global $arPriceFilter;
                             $arPriceFilter = array("!ID" => $intSectionID,"<UF_MIN_PRICE" => $GLOBALS["MIN_PRICE"]+200000, ">UF_MIN_PRICE" => $GLOBALS["MIN_PRICE"]-200000);
-
                             ?>
                             <?$APPLICATION->IncludeComponent("custom:catalog.section.list", "carousel", Array(
                                 "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
@@ -622,14 +520,15 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                                 "IBLOCK_TYPE" => "catalog",	// Тип инфоблока
                                 "SECTION_CODE" => "",	// Код раздела
                                 "SECTION_FIELDS" => array(	// Поля разделов
-                                    0 => "",
-                                    1 => "",
+                                    0 => "UF_METRO_ID",
+                                    1 => "UF_MIN_PRICE",
+                                    2 => "PICTURE"
                                 ),
                                 "SECTION_ID" => "",	// ID раздела
                                 "SECTION_URL" => "",	// URL, ведущий на страницу с содержимым раздела
                                 "SECTION_USER_FIELDS" => array(	// Свойства разделов
                                     0 => "UF_DEVELOPER",
-                                    1 => "UF_METRO",
+                                    1 => "UF_METRO_ID",
                                 ),
                                 "SHOW_PARENT_NAME" => "N",	// Показывать название раздела
                                 "TOP_DEPTH" => "",	// Максимальная отображаемая глубина разделов
@@ -656,14 +555,15 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 		"IBLOCK_TYPE" => "catalog",	// Тип инфоблока
 		"SECTION_CODE" => "",	// Код раздела
 		"SECTION_FIELDS" => array(	// Поля разделов
-			0 => "",
-			1 => "",
+            0 => "UF_METRO_ID",
+            1 => "UF_MIN_PRICE",
+            2 => "PICTURE"
 		),
 		"SECTION_ID" => "",	// ID раздела
 		"SECTION_URL" => "",	// URL, ведущий на страницу с содержимым раздела
 		"SECTION_USER_FIELDS" => array(	// Свойства разделов
 			0 => "UF_DEVELOPER",
-			1 => "UF_METRO",
+			1 => "UF_METRO_ID",
 		),
 		"SHOW_PARENT_NAME" => "N",	// Показывать название раздела
 		"TOP_DEPTH" => "",	// Максимальная отображаемая глубина разделов
@@ -679,21 +579,6 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
                 </div>
             </div>
         </div>
-
-        <script>
-            $( function() {
-                $( ".tabs" ).tabs();
-            } );
-        </script>
-
-
-
-
-
-
-
-
-
     </div>
 </section>
 <section class="full-phone">
@@ -773,8 +658,9 @@ $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILT
 		"IBLOCK_TYPE" => "catalog",	// Тип инфоблока
 		"SECTION_CODE" => "",	// Код раздела
 		"SECTION_FIELDS" => array(	// Поля разделов
-			0 => "",
-			1 => "",
+			0 => "UF_MIN_PRICE",
+			1 => "PICTURE",
+            2 => "UF_METRO_ID"
 		),
 		"SECTION_ID" => "",	// ID раздела
 		"SECTION_URL" => "",	// URL, ведущий на страницу с содержимым раздела

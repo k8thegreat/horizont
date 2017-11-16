@@ -1,7 +1,17 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Новостройки");
+
+
 ?>
+    <div class="mobile-prev">
+        <?/*<button class="filter-back">
+                <?=ARROW_LEFT?> Назад к списку
+            </button>*/?>
+        <a href="#" class="go-filter">Фильтр
+            <?=FILTER_ICON?>
+        </a>
+    </div>
     <section class="builder-small-slide shadow" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/img/builders/slide-bg.png);">
         <?$APPLICATION->IncludeComponent(
             "bitrix:breadcrumb",
@@ -13,7 +23,7 @@ $APPLICATION->SetTitle("Новостройки");
             )
         );?>
         <div class="container">
-            <h1 class="title-big">
+            <div class="title-big">
                 <?$APPLICATION->IncludeComponent(
                     "bitrix:main.include",
                     "",
@@ -26,14 +36,12 @@ $APPLICATION->SetTitle("Новостройки");
                         "PATH" => "/includes/novostroyki_title.php"
                     )
                 );?>
-            </h1>
+            </div>
         </div>
     </section>
     <section class="filter-bar-wrapper bg-gray" id="go-filter">
-
-
-            <?$APPLICATION->IncludeComponent(
-	"custom:catalog.smart.filter",
+        <?$APPLICATION->IncludeComponent(
+	"bitrix:catalog.smart.filter",
 	"catalog",
 	array(
 		"CACHE_GROUPS" => "Y",
@@ -111,17 +119,17 @@ $APPLICATION->SetTitle("Новостройки");
 		"DETAIL_PROPERTY_CODE" => array(
 			0 => "ceiling_height",
 			1 => "living_space",
-			2 => "rooms",
-			3 => "building_section",
-			4 => "flat_number",
-			5 => "renovation",
-			6 => "area",
-			7 => "kitchen_space",
-			8 => "bathroom_unit",
-			9 => "ready",
-			10 => "order_status",
-			11 => "floor",
-			12 => "developer",
+			2 => "building_section",
+			3 => "flat_number",
+			4 => "renovation",
+			5 => "area",
+			6 => "kitchen_space",
+			7 => "bathroom_unit",
+			8 => "ready",
+			9 => "rooms",
+			10 => "floor",
+			11 => "developer",
+			12 => "order_status",
 			13 => "price",
 			14 => "",
 		),
@@ -161,11 +169,11 @@ $APPLICATION->SetTitle("Новостройки");
 		"LIST_PRODUCT_ROW_VARIANTS" => "[{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false}]",
 		"LIST_PROPERTY_CODE" => array(
 			0 => "living_space",
-			1 => "rooms",
-			2 => "area",
-			3 => "kitchen_space",
-			4 => "bathroom_unit",
-			5 => "ready",
+			1 => "area",
+			2 => "kitchen_space",
+			3 => "bathroom_unit",
+			4 => "ready",
+			5 => "rooms",
 			6 => "floor",
 			7 => "price",
 			8 => "",
@@ -262,14 +270,19 @@ $APPLICATION->SetTitle("Новостройки");
 			0 => "",
 			1 => "",
 		),
-		"FILTER_PRICE_CODE" => array(
-		),
+		"FILTER_PRICE_CODE" => "",
 		"SECTIONS_HIDE_SECTION_NAME" => "N",
-		"FILE_404" => "",
+		"FILE_404" => "/404.php",
+		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_TYPE" => "AUTO",
+		"USER_CONSENT" => "N",
+		"USER_CONSENT_ID" => "0",
+		"USER_CONSENT_IS_CHECKED" => "Y",
+		"USER_CONSENT_IS_LOADED" => "N",
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
-			"section" => "#SECTION_ID#/",
-			"element" => "#SECTION_ID#/#ELEMENT_ID#/",
+			"section" => "#SECTION_CODE#/",
+			"element" => "#SECTION_CODE#/#ELEMENT_ID#/",
 			"compare" => "compare.php?action=#ACTION_CODE#",
 			"smart_filter" => "#SECTION_ID#/filter/#SMART_FILTER_PATH#/apply/",
 		),

@@ -189,7 +189,6 @@ if($this->StartResultCache(false, ($arParams["CACHE_GROUPS"]==="N"? false: $USER
         $arParams["SORT_BY2"]=>$arParams["SORT_ORDER2"],
     );
 	//EXECUTE
-
 	$rsSections = CIBlockSection::GetList($arSort, array_merge($arFilter, $arrFilter), $arParams["COUNT_ELEMENTS"], $arSelect, $arNavParams);
 	$rsSections->SetUrlTemplates("", $arParams["SECTION_URL"]);
 	while($arSection = $rsSections->GetNext())

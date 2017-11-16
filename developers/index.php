@@ -2,6 +2,14 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Застройщики Санкт-Петербурга и Ленобласти");
 ?>
+    <div class="mobile-prev">
+        <?/*<button class="filter-back">
+                <?=ARROW_LEFT?> Назад к списку
+            </button>*/?>
+        <a href="#" class="go-filter">Фильтр
+            <?=FILTER_ICON?>
+        </a>
+    </div>
     <section class="builder-small-slide shadow" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/img/builders/slide-bg.png);">
         <?$APPLICATION->IncludeComponent(
             "bitrix:breadcrumb",
@@ -16,59 +24,34 @@ $APPLICATION->SetTitle("Застройщики Санкт-Петербурга �
             <h1 class="title-big"><?=$APPLICATION->ShowTitle(true);?></h1>
         </div>
     </section>
-    <section class="filter-bar-wrapper bg-gray">
-        <?$APPLICATION->IncludeComponent(
-            "bitrix:catalog.filter",
-            "",
-            Array(
-                "CACHE_GROUPS" => "Y",
-                "CACHE_TIME" => "36000000",
-                "CACHE_TYPE" => "A",
-                "COMPOSITE_FRAME_MODE" => "A",
-                "COMPOSITE_FRAME_TYPE" => "AUTO",
-                "FIELD_CODE" => array("NAME", ""),
-                "FILTER_NAME" => "arrFilter",
-                "IBLOCK_ID" => "2",
-                "IBLOCK_TYPE" => "catalog",
-                "LIST_HEIGHT" => "5",
-                "NUMBER_WIDTH" => "5",
-                "PAGER_PARAMS_NAME" => "arrPager",
-                "PRICE_CODE" => array(),
-                "PROPERTY_CODE" => array("", ""),
-                "SAVE_IN_SESSION" => "N",
-                "TEXT_WIDTH" => "20"
-            )
-        );?>
-        <?$APPLICATION->IncludeComponent("custom:catalog.smart.filter", "filter_short", Array(
+    <section class="filter-bar-wrapper bg-gray developers-filter-wrapper">
+        <?$APPLICATION->IncludeComponent("bitrix:catalog.filter", "developers", Array(
 	"CACHE_GROUPS" => "Y",	// Учитывать права доступа
 		"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
 		"CACHE_TYPE" => "A",	// Тип кеширования
-		"DISPLAY_ELEMENT_COUNT" => "N",	// Показывать количество
-		"FILTER_NAME" => "arrFilter",	// Имя выходящего массива для фильтрации
-		"FILTER_VIEW_MODE" => "horizontal",	// Вид отображения
-		"IBLOCK_ID" => "1",	// Инфоблок
-		"IBLOCK_TYPE" => "catalog",	// Тип инфоблока
-		"PAGER_PARAMS_NAME" => "arrPager",	// Имя массива с переменными для построения ссылок в постраничной навигации
-		"POPUP_POSITION" => "left",
-		"SAVE_IN_SESSION" => "N",	// Сохранять установки фильтра в сессии пользователя
-		"SECTION_CODE" => "",	// Код раздела
-		"SECTION_CODE_PATH" => "",
-		"SECTION_DESCRIPTION" => "-",	// Описание
-		"SECTION_ID" => "",	// ID раздела инфоблока
-		"SECTION_TITLE" => "-",	// Заголовок
-		"SEF_MODE" => "N",	// Включить поддержку ЧПУ
-		"SEF_RULE" => "",	// Правило для обработки
-		"SMART_FILTER_PATH" => "",
-		"TEMPLATE_THEME" => "blue",	// Цветовая тема
-		"XML_EXPORT" => "N",	// Включить поддержку Яндекс Островов
-		"COMPONENT_TEMPLATE" => "catalog",
-		"INCLUDE_SUBSECTIONS" => "Y",
-		"SHOW_ALL_WO_SECTION" => "Y",
 		"COMPOSITE_FRAME_MODE" => "A",	// Голосование шаблона компонента по умолчанию
 		"COMPOSITE_FRAME_TYPE" => "AUTO",	// Содержимое компонента
+		"FIELD_CODE" => array(	// Поля
+			0 => "NAME",
+			1 => "",
+		),
+		"FILTER_NAME" => "arrFilter",	// Имя выходящего массива для фильтрации
+		"IBLOCK_ID" => "2",	// Инфоблок
+		"IBLOCK_TYPE" => "catalog",	// Тип инфоблока
+		"LIST_HEIGHT" => "5",	// Высота списков множественного выбора
+		"NUMBER_WIDTH" => "5",	// Ширина полей ввода для числовых интервалов
+		"PAGER_PARAMS_NAME" => "arrPager",	// Имя массива с переменными для построения ссылок в постраничной навигации
+		"PRICE_CODE" => "",	// Тип цены
+		"PROPERTY_CODE" => array(	// Свойства
+			0 => "",
+			1 => "",
+		),
+		"SAVE_IN_SESSION" => "N",	// Сохранять установки фильтра в сессии пользователя
+		"TEXT_WIDTH" => "20",	// Ширина однострочных текстовых полей ввода
 	),
 	false
 );?>
+
 
     </section>
 
@@ -147,7 +130,7 @@ $APPLICATION->SetTitle("Застройщики Санкт-Петербурга �
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
 		"USE_CATEGORIES" => "N",
-		"USE_FILTER" => "N",
+		"USE_FILTER" => "Y",
 		"USE_PERMISSIONS" => "N",
 		"USE_RATING" => "N",
 		"USE_REVIEW" => "N",
@@ -155,6 +138,17 @@ $APPLICATION->SetTitle("Застройщики Санкт-Петербурга �
 		"USE_SEARCH" => "N",
 		"USE_SHARE" => "N",
 		"COMPONENT_TEMPLATE" => "developers",
+		"FILTER_NAME" => "arrFilter",
+		"FILTER_FIELD_CODE" => array(
+			0 => "NAME",
+			1 => "",
+		),
+		"FILTER_PROPERTY_CODE" => array(
+			0 => "",
+			1 => "",
+		),
+		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_TYPE" => "AUTO",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
 			"section" => "",
