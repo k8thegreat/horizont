@@ -18,8 +18,8 @@
       <file leaf-file-name="component_epilog.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/component_epilog.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="25" />
+            <state relative-caret-position="447">
+              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -28,8 +28,8 @@
       <file leaf-file-name="sections.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/sections.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="306" column="14" lean-forward="false" selection-start-line="306" selection-start-column="14" selection-end-line="306" selection-end-column="14" />
+            <state relative-caret-position="159">
+              <caret line="197" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -38,105 +38,32 @@
       <file leaf-file-name="urlrewrite.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/urlrewrite.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+            <state relative-caret-position="150">
+              <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/template.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/novostroyki/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2432">
-              <caret line="255" column="476" lean-forward="false" selection-start-line="255" selection-start-column="476" selection-end-line="255" selection-end-column="476" />
+            <state relative-caret-position="-342">
+              <caret line="74" column="4" lean-forward="true" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template_styles.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local/templates/horizont/template_styles.css">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/filter/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-63021">
-              <caret line="145" column="1" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="145" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/news.detail/seo_text/template.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prop_seq.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bitrix/modules/iblock/classes/general/prop_seq.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="384">
+              <caret line="369" column="78" lean-forward="false" selection-start-line="369" selection-start-column="78" selection-end-line="369" selection-end-column="78" />
               <folding>
-                <marker date="1506509521000" expanded="true" signature="3876:4090" ph="..." />
-                <marker date="1506509521000" expanded="true" signature="4283:4490" ph="..." />
-                <marker date="1506509521000" expanded="true" signature="4573:4789" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local/php_interface/init.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="596" column="0" lean-forward="true" selection-start-line="596" selection-start-column="0" selection-end-line="596" selection-end-column="0" />
-              <folding>
-                <marker date="1510778216000" expanded="true" signature="3600:3634" ph="..." />
-                <marker date="1510778216000" expanded="true" signature="4126:4166" ph="..." />
-                <marker date="1510778216000" expanded="true" signature="34672:34735" ph="SELECT FILE_... b_file" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_type_element_by_section.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/local/php_interface/include/user_type_element_by_section.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3711">
-              <caret line="285" column="38" lean-forward="true" selection-start-line="285" selection-start-column="38" selection-end-line="285" selection-end-column="38" />
-              <folding>
-                <marker date="1510780411000" expanded="true" signature="1914:2270" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="1978:1984" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="1978:1985" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="1978:2261" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="2342:2544" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="2406:2535" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="3211:3424" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="3281:3424" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="3353:3424" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="4085:4296" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="4155:4287" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="4573:5060" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="4665:5052" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="5345:5528" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="5411:5520" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="5562:5785" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="5630:5777" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="9445:11173" ph="..." />
-                <marker date="1510780411000" expanded="true" signature="9525:10144" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="9683:10136" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="9891:10125" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="9954:10111" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="10228:10862" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="10392:10854" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="10604:10843" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="10669:10829" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="10914:11157" ph="{...}" />
-                <marker date="1510780411000" expanded="true" signature="11019:11121" ph="{...}" />
+                <element signature="n#fillItemValues#0;n#!!top" expanded="false" />
+                <element signature="e#8958#9858#0#PHP" expanded="false" />
+                <element signature="e#9978#11915#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -146,22 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>callback-mo</find>
-      <find>HISTOR</find>
-      <find>.search-bar &gt; .btn</find>
-      <find>.mobile-nav-filter</find>
-      <find>.open-filter .drop-filter-bar &gt; .btn</find>
-      <find>PREVIEWq</find>
-      <find>PREVIEW</find>
-      <find>Назад</find>
-      <find>menu-btn</find>
-      <find>$elementPropArr</find>
-      <find>.drop-filter</find>
-      <find>.developers-filter-wrapper .filter-bar</find>
-      <find>COUNT</find>
-      <find>balcony</find>
-      <find>sort</find>
-      <find>.open .apartment-group-table</find>
       <find>apartment-group-title</find>
       <find>region</find>
       <find>LOCALITY</find>
@@ -176,6 +87,22 @@
       <find>requi</find>
       <find>$SECTION_ID</find>
       <find>GetSectionList</find>
+      <find>$</find>
+      <find>reload</find>
+      <find>BX</find>
+      <find>print</find>
+      <find>ашдеук</find>
+      <find>addFilter</find>
+      <find>Тип</find>
+      <find>addFil</find>
+      <find>rooms</find>
+      <find>$activeItemID</find>
+      <find>echo</find>
+      <find>fillItemValues</find>
+      <find>set</find>
+      <find>disabled</find>
+      <find>modef</find>
+      <find>SORT</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -198,13 +125,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/trade/template.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/carousel/template.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/news.detail/trade/template.php" />
         <option value="$PROJECT_DIR$/script/load_trade_xml.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/local/php_interface/after_connect.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/result_modifier.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/history/result_modifier.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/news.list/footer_links/template.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/footer.php" />
@@ -219,13 +143,9 @@
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.filter/developers/template.php" />
         <option value="$PROJECT_DIR$/local/templates/.default/header.php" />
         <option value="$PROJECT_DIR$/local/templates/.default/footer.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/result_modifier.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/js/main.js" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/template.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/menu/main/template.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/template.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/section.php" />
-        <option value="$PROJECT_DIR$/script/load_xml1.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.section.list/.default/template.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/list/result_modifier.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/list/template.php" />
@@ -234,21 +154,28 @@
         <option value="$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/map/result_modifier.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/map/template.php" />
         <option value="$PROJECT_DIR$/update.php" />
-        <option value="$PROJECT_DIR$/script/load_xml.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/result_modifier.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/template.php" />
         <option value="$PROJECT_DIR$/novostroyki/location/index.php" />
         <option value="$PROJECT_DIR$/404.php" />
-        <option value="$PROJECT_DIR$/novostroyki/index.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/header.php" />
-        <option value="$PROJECT_DIR$/urlrewrite.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/component_epilog.php" />
-        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/sections.php" />
         <option value="$PROJECT_DIR$/local/templates/horizont/template_styles.css" />
         <option value="$PROJECT_DIR$/local/templates/horizont/styles.css" />
         <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/news.detail/seo_text/template.php" />
-        <option value="$PROJECT_DIR$/local/php_interface/init.php" />
         <option value="$PROJECT_DIR$/local/php_interface/include/user_type_element_by_section.php" />
+        <option value="$PROJECT_DIR$/novostroyki/index.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/template.php" />
+        <option value="$PROJECT_DIR$/script/load_xml1.php" />
+        <option value="$PROJECT_DIR$/script/load_xml.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/result_modifier.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/template.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/result_modifier.php" />
+        <option value="$PROJECT_DIR$/local/php_interface/init.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/script.js" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/result_modifier.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/component_epilog.php" />
+        <option value="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/sections.php" />
+        <option value="$PROJECT_DIR$/urlrewrite.php" />
+        <option value="$PROJECT_DIR$/filter/index.php" />
       </list>
     </option>
   </component>
@@ -262,7 +189,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="807" />
+    <option name="height" value="812" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -294,60 +221,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="horizont" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="horizont" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="horizont" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="horizont" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php_interface" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="horizont" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="horizont" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="local" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php_interface" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="include" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -365,19 +238,19 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/bitrix/modules/iblock/lib/propertyindex" />
-      <recent name="$PROJECT_DIR$/bitrix/modules/iblock/lib/propertyindex/backup" />
-      <recent name="$PROJECT_DIR$/includes" />
-      <recent name="$PROJECT_DIR$/developers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter" />
       <recent name="$PROJECT_DIR$/local/templates/horizont/components/bitrix" />
       <recent name="$PROJECT_DIR$/local/templates/horizont/components/custom" />
       <recent name="$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/bitrix/modules/iblock/lib/propertyindex" />
+      <recent name="$PROJECT_DIR$/bitrix/modules/iblock/lib/propertyindex/backup" />
+      <recent name="$PROJECT_DIR$/includes" />
+      <recent name="$PROJECT_DIR$/developers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -578,21 +451,22 @@
       <workItem from="1510341243031" duration="3792000" />
       <workItem from="1510486107212" duration="13952000" />
       <workItem from="1510651410778" duration="25698000" />
+      <workItem from="1510919614053" duration="34799000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="964444000" />
+    <option name="totallyTimeSpent" value="999243000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="807" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="812" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.105150215" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28540772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13426574" sideWeight="0.4914163" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13333334" sideWeight="0.4914163" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819074" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -604,7 +478,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32867134" sideWeight="0.49713877" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24821173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21316166" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15524475" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32765958" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -648,60 +522,12 @@
           <line>183</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/novostroyki/index.php</url>
-          <line>28</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/history/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/components/custom/catalog.section/templates/.default/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-749">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="1211" column="25" lean-forward="false" selection-start-line="1211" selection-start-column="25" selection-end-line="1211" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/js/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/history/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="79" lean-forward="false" selection-start-line="28" selection-start-column="79" selection-end-line="28" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/filter_short/template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -760,14 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/result_modifier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="1" lean-forward="false" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/menu/main/template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -783,14 +601,6 @@
             <marker date="1510343381000" expanded="true" signature="6893:6899" ph=" " />
             <marker date="1510343381000" expanded="true" signature="6924:6930" ph=" " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/result_modifier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -814,7 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="70" column="70" lean-forward="false" selection-start-line="70" selection-start-column="70" selection-end-line="70" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -839,14 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="949">
-          <caret line="218" column="4" lean-forward="false" selection-start-line="218" selection-start-column="4" selection-end-line="218" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/list/result_modifier.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -854,49 +655,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/result_modifier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="20" column="64" lean-forward="false" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/load_xml1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1046">
-          <caret line="132" column="86" lean-forward="false" selection-start-line="132" selection-start-column="86" selection-end-line="132" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/load_xml.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="550" column="125" lean-forward="false" selection-start-line="550" selection-start-column="125" selection-end-line="550" selection-end-column="125" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="79" column="78" lean-forward="false" selection-start-line="79" selection-start-column="78" selection-end-line="79" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/update.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="56" column="1" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="56" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/location/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,27 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/section.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="53" column="50" lean-forward="false" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/custom/catalog.section.list/block/template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
           <caret line="58" column="84" lean-forward="false" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/novostroyki/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,51 +693,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/urlrewrite.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="31" lean-forward="false" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/component_epilog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/sections.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="306" column="14" lean-forward="false" selection-start-line="306" selection-start-column="14" selection-end-line="306" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2432">
-          <caret line="255" column="476" lean-forward="false" selection-start-line="255" selection-start-column="476" selection-end-line="255" selection-end-column="476" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local/templates/horizont/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="73" column="1" lean-forward="false" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local/templates/horizont/template_styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63021">
-          <caret line="145" column="1" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="145" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,22 +714,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bitrix/modules/iblock/classes/general/prop_seq.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1506509521000" expanded="true" signature="3876:4090" ph="..." />
-            <marker date="1506509521000" expanded="true" signature="4283:4490" ph="..." />
-            <marker date="1506509521000" expanded="true" signature="4573:4789" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bitrix/modules/iblock/classes/general/prop_xmlid.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1243">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/template_styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="145" column="1" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="145" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1038,21 +737,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local/php_interface/init.php">
+    <entry file="file://$PROJECT_DIR$/bitrix/modules/iblock/classes/general/prop_seq.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="596" column="0" lean-forward="true" selection-start-line="596" selection-start-column="0" selection-end-line="596" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1510778216000" expanded="true" signature="3600:3634" ph="..." />
-            <marker date="1510778216000" expanded="true" signature="4126:4166" ph="..." />
-            <marker date="1510778216000" expanded="true" signature="34672:34735" ph="SELECT FILE_... b_file" />
+            <marker date="1506509521000" expanded="true" signature="3876:4090" ph="..." />
+            <marker date="1506509521000" expanded="true" signature="4283:4490" ph="..." />
+            <marker date="1506509521000" expanded="true" signature="4573:4789" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/local/php_interface/include/user_type_element_by_section.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3711">
+        <state relative-caret-position="633">
           <caret line="285" column="38" lean-forward="true" selection-start-line="285" selection-start-column="38" selection-end-line="285" selection-end-column="38" />
           <folding>
             <marker date="1510780411000" expanded="true" signature="1914:2270" ph="..." />
@@ -1083,6 +782,182 @@
             <marker date="1510780411000" expanded="true" signature="10669:10829" ph="{...}" />
             <marker date="1510780411000" expanded="true" signature="10914:11157" ph="{...}" />
             <marker date="1510780411000" expanded="true" signature="11019:11121" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/novostroyki_title.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="17" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="58" column="18" lean-forward="false" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/load_xml1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="122" column="50" lean-forward="true" selection-start-line="119" selection-start-column="16" selection-end-line="122" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/load_xml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="159" column="25" lean-forward="false" selection-start-line="159" selection-start-column="25" selection-end-line="159" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/result_modifier.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="45" column="52" lean-forward="false" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/bitrix/catalog.element/.default/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="166" column="76" lean-forward="false" selection-start-line="166" selection-start-column="35" selection-end-line="166" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter/.section.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="39" column="6" lean-forward="false" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.section/catalog/result_modifier.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/section.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7304">
+          <caret line="53" column="50" lean-forward="false" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/php_interface/init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <marker date="1510998647000" expanded="true" signature="3600:3634" ph="..." />
+            <marker date="1510998647000" expanded="true" signature="4126:4166" ph="..." />
+            <marker date="1510998647000" expanded="true" signature="34682:34745" ph="SELECT FILE_... b_file" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/result_modifier.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="54" column="45" lean-forward="false" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="170" column="26" lean-forward="false" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/novostroyki/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="74" column="4" lean-forward="true" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog.smart.filter/catalog/component_epilog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local/templates/horizont/components/bitrix/catalog/catalog/sections.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="197" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/urlrewrite.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="369" column="78" lean-forward="false" selection-start-line="369" selection-start-column="78" selection-end-line="369" selection-end-column="78" />
+          <folding>
+            <element signature="n#fillItemValues#0;n#!!top" expanded="false" />
+            <element signature="e#8958#9858#0#PHP" expanded="false" />
+            <element signature="e#9978#11915#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

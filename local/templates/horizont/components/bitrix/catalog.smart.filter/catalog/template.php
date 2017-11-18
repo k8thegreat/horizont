@@ -101,7 +101,7 @@ $this->setFrameMode(true);
                         <div class="drop-body">
                             <div class="drop-content">
                                 <ul class="drop-list">
-                                    <?foreach ($arResult["ITEMS"][22]["VALUES"] as $item){?><li><label class="checkbox" for="<?=$item["CONTROL_ID"]?>"><input type="checkbox" onclick="smartFilter.click(this)" data-filter="checkbox" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/><span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span></label></li><?}?>
+                                    <?foreach ($arResult["ITEMS"][74]["VALUES"] as $item){?><li><label class="checkbox" for="<?=$item["CONTROL_ID"]?>"><input type="checkbox" onclick="smartFilter.click(this)" data-filter="checkbox" value="<?=$item["HTML_VALUE"]?>" id="<?=$item["CONTROL_ID"]?>" name="<?=$item["CONTROL_NAME"]?>" <? echo $item["CHECKED"]? 'checked="checked"': '' ?>/><span data-name="<?=$item["CONTROL_NAME"]?>"><?=$item["VALUE"]?></span></label></li><?}?>
                                 </ul>
                             </div>
                             <div class="wrap-btn">
@@ -322,8 +322,10 @@ $this->setFrameMode(true);
     </form>
 </div>
 <script type="text/javascript">
+
     var smartFilter = new JCSmartFilter('<?echo CUtil::JSEscape($arResult["FORM_ACTION"])?>', '', <?=CUtil::PhpToJSObject($arResult["JS_FILTER_PARAMS"])?>);
     smartFilter.set(BX("smartfilter"));
+
     $(document).ready(function() {
         var data = [
             <?

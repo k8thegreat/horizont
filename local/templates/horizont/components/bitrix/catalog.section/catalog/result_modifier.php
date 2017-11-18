@@ -6,17 +6,28 @@
  */
 
 
+$arSelect = Array("ID", "NAME", "XML_ID", "SORT", "CODE");
+$arFilter = Array("IBLOCK_ID" => FILTER_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_CODE" => "flat");
+$res = CIBlockElement::GetList(Array("SORT" => "ASC"), $arFilter, false, Array(), $arSelect);
+$i = 0;
+while($ob = $res->GetNext()){
+    $ob["INDEX"] = $i;
+    $roomsArr[$ob["ID"]] = $ob;
+    $i++;
+}
 $component = $this->getComponent();
 $arParams = $component->applyTemplateModifications();
 $minPrice = 0;
+//group apartments by type and ready value
 foreach ($arResult["ITEMS"] as $arItem){
+
     if($arItem["PROPERTIES"]["price_discount"]["VALUE"] < $minPrice || $minPrice == 0)
         $minPrice = $arItem["PROPERTIES"]["price_discount"]["VALUE"];
     if($arItem["PROPERTIES"]["price_base"]["VALUE"] < $minPrice || $minPrice == 0)
         $minPrice = $arItem["PROPERTIES"]["price_base"]["VALUE"];
     $readyVal = $arItem["PROPERTIES"]["ready"]["VALUE"];
 
-    $rooms = $arItem["PROPERTIES"]["rooms"]["VALUE_XML_ID"];
+    $rooms = $roomsArr[$arItem["PROPERTIES"]["rooms"]["VALUE"]]["INDEX"];
     if($arItem["PROPERTIES"]["ready"]["VALUE"]){
         $arResultTmp[$readyVal]["GROUPS"][$rooms]["ITEMS"][] = $arItem;
         if($arItem["PROPERTIES"]["price_discount"]["VALUE"] < $arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"] || !$arResultTmp[$readyVal]["GROUPS"][$rooms]["MIN_PRICE"])

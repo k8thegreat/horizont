@@ -73,11 +73,6 @@ $APPLICATION->SetTitle("Новостройки");
 );?>
 
     </section>
-
-
-
-
-
 <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
 	"catalog", 

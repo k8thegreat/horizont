@@ -14,14 +14,12 @@
 
 $this->setFrameMode(true);
 
-if(isset($_REQUEST["view"]) ) {
-    //$APPLICATION->set_cookie("view", strVal($_REQUEST["view"]) );
+if(isset($_REQUEST["view"])){
     $view = strVal($_REQUEST["view"]) ;
 }else{
     $view = "list";
 }
-if(isset($_REQUEST["sort"]) ) {
-    //$APPLICATION->set_cookie("sort", strVal($_REQUEST["sort"] ));
+if(isset($_REQUEST["sort"])){
     $sort = strVal($_REQUEST["sort"]) ;
 }
 else{
@@ -47,9 +45,9 @@ switch ($sort){
         $sortField = "UF_MIN_PRICE";
 }
 ?>
-<?$this->SetViewTarget('banner');?>
+<?/*$this->SetViewTarget('banner');?>
 banner
-<?$this->EndViewTarget();?>
+<?$this->EndViewTarget();*/?>
             <?
                 $arResult = $APPLICATION->IncludeComponent(
                 "custom:catalog.section",
@@ -188,25 +186,25 @@ banner
                     }
                 }
                 ?>
-
 <section class="bg-gray">
     <div class="container">
         <?
         if($arResult["TOTAL_COUNT"]){
-            if(!$APPLICATION->GetPageProperty("subtitle"))
-                $APPLICATION->SetPageProperty("subtitle","Найдено ".$arResult["SECTIONS_COUNT"]." ".formatObjectString($arResult["SECTIONS_COUNT"]).", ".$arResult["TOTAL_COUNT"]." ".formatApartment($arResult["TOTAL_COUNT"]));
+            if(!$APPLICATION->GetProperty("subtitle"))
+                $APPLICATION->SetTitle("Найдено ".$arResult["SECTIONS_COUNT"]." ".formatObjectString($arResult["SECTIONS_COUNT"]).", ".$arResult["TOTAL_COUNT"]." ".formatApartment($arResult["TOTAL_COUNT"]));
+            else
+                //$APPLICATION->SetPageProperty("h1", $APPLICATION->GetProperty("subtitle"));
+                $APPLICATION->SetPageProperty("h1", "#AIMT_ZAG_1#");
             ?>
             <div class="title-big cursive-title-top-center"><span class="dop-title">Все новостройки</span>
-                <h1><?=$APPLICATION->ShowProperty("subtitle")?></h1>
+                <h1><?=$APPLICATION->ShowTitle("h1")?></h1>
             </div>
             <?
         }else{
             ?><div class="title-big cursive-title-top-center">Нет результатов для ваших условий</div><?
         }
         ?>
-
 <?if($arResult["TOTAL_COUNT"]){
-
     if($view=="map") $count = 1000; else $count = 10;
 $APPLICATION->IncludeComponent(
 	"custom:catalog.section.list",
@@ -311,60 +309,70 @@ global $SELECTED_FILTER_ITEM;
 if($SELECTED_FILTER_ITEM){?>
 <section class="bg-gray">
     <div class="container">
-        <?$APPLICATION->IncludeComponent(
-            "bitrix:news.detail",
-            "",
-            Array(
-                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                "ADD_ELEMENT_CHAIN" => "N",
-                "ADD_SECTIONS_CHAIN" => "N",
-                "AJAX_MODE" => "N",
-                "AJAX_OPTION_ADDITIONAL" => "",
-                "AJAX_OPTION_HISTORY" => "N",
-                "AJAX_OPTION_JUMP" => "N",
-                "AJAX_OPTION_STYLE" => "N",
-                "BROWSER_TITLE" => "-",
-                "CACHE_GROUPS" => "Y",
-                "CACHE_TIME" => "36000000",
-                "CACHE_TYPE" => "A",
-                "CHECK_DATES" => "N",
-                "COMPOSITE_FRAME_MODE" => "A",
-                "COMPOSITE_FRAME_TYPE" => "AUTO",
-                "DETAIL_URL" => "",
-                "DISPLAY_BOTTOM_PAGER" => "N",
-                "DISPLAY_DATE" => "N",
-                "DISPLAY_NAME" => "N",
-                "DISPLAY_PICTURE" => "N",
-                "DISPLAY_PREVIEW_TEXT" => "N",
-                "DISPLAY_TOP_PAGER" => "N",
-                "ELEMENT_CODE" => "",
-                "ELEMENT_ID" => $SELECTED_FILTER_ITEM,
-                "FIELD_CODE" => array("DETAIL_TEXT",""),
-                "IBLOCK_ID" => "24",
-                "IBLOCK_TYPE" => "dictionary",
-                "IBLOCK_URL" => "",
-                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                "MESSAGE_404" => "",
-                "META_DESCRIPTION" => "-",
-                "META_KEYWORDS" => "-",
-                "PAGER_BASE_LINK_ENABLE" => "N",
-                "PAGER_SHOW_ALL" => "N",
-                "PAGER_TEMPLATE" => ".default",
-                "PAGER_TITLE" => "",
-                "PROPERTY_CODE" => array("",""),
-                "SET_BROWSER_TITLE" => "N",
-                "SET_CANONICAL_URL" => "N",
-                "SET_LAST_MODIFIED" => "N",
-                "SET_META_DESCRIPTION" => "N",
-                "SET_META_KEYWORDS" => "N",
-                "SET_STATUS_404" => "N",
-                "SET_TITLE" => "N",
-                "SHOW_404" => "N",
-                "STRICT_SECTION_CHECK" => "N",
-                "USE_PERMISSIONS" => "N",
-                "USE_SHARE" => "N"
-            )
-        );?>
+        <div class="filter-data-description-wrapper">
+            <div class="filter-data-description">
+
+                #AIMT_TEXT_1#
+            </div>
+        </div>
+        <?/*$APPLICATION->IncludeComponent("bitrix:news.detail", "seo_text", Array(
+	"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
+		"ADD_ELEMENT_CHAIN" => "N",	// Включать название элемента в цепочку навигации
+		"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
+		"AJAX_MODE" => "N",	// Включить режим AJAX
+		"AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
+		"AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
+		"AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
+		"AJAX_OPTION_STYLE" => "N",	// Включить подгрузку стилей
+		"BROWSER_TITLE" => "-",	// Установить заголовок окна браузера из свойства
+		"CACHE_GROUPS" => "Y",	// Учитывать права доступа
+		"CACHE_TIME" => "36000000",	// Время кеширования (сек.)
+		"CACHE_TYPE" => "A",	// Тип кеширования
+		"CHECK_DATES" => "N",	// Показывать только активные на данный момент элементы
+		"COMPOSITE_FRAME_MODE" => "A",	// Голосование шаблона компонента по умолчанию
+		"COMPOSITE_FRAME_TYPE" => "AUTO",	// Содержимое компонента
+		"DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
+		"DISPLAY_BOTTOM_PAGER" => "N",	// Выводить под списком
+		"DISPLAY_DATE" => "N",	// Выводить дату элемента
+		"DISPLAY_NAME" => "N",	// Выводить название элемента
+		"DISPLAY_PICTURE" => "N",	// Выводить детальное изображение
+		"DISPLAY_PREVIEW_TEXT" => "N",	// Выводить текст анонса
+		"DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
+		"ELEMENT_CODE" => "",	// Код новости
+		"ELEMENT_ID" => $SELECTED_FILTER_ITEM,	// ID новости
+		"FIELD_CODE" => array(	// Поля
+			0 => "DETAIL_TEXT",
+			1 => "",
+		),
+		"IBLOCK_ID" => "24",	// Код информационного блока
+		"IBLOCK_TYPE" => "dictionary",	// Тип информационного блока (используется только для проверки)
+		"IBLOCK_URL" => "",	// URL страницы просмотра списка элементов (по умолчанию - из настроек инфоблока)
+		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",	// Включать инфоблок в цепочку навигации
+		"MESSAGE_404" => "",	// Сообщение для показа (по умолчанию из компонента)
+		"META_DESCRIPTION" => "-",	// Установить описание страницы из свойства
+		"META_KEYWORDS" => "-",	// Установить ключевые слова страницы из свойства
+		"PAGER_BASE_LINK_ENABLE" => "N",	// Включить обработку ссылок
+		"PAGER_SHOW_ALL" => "N",	// Показывать ссылку "Все"
+		"PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
+		"PAGER_TITLE" => "",	// Название категорий
+		"PROPERTY_CODE" => array(	// Свойства
+			0 => "",
+			1 => "",
+		),
+		"SET_BROWSER_TITLE" => "N",	// Устанавливать заголовок окна браузера
+		"SET_CANONICAL_URL" => "N",	// Устанавливать канонический URL
+		"SET_LAST_MODIFIED" => "N",	// Устанавливать в заголовках ответа время модификации страницы
+		"SET_META_DESCRIPTION" => "N",	// Устанавливать описание страницы
+		"SET_META_KEYWORDS" => "N",	// Устанавливать ключевые слова страницы
+		"SET_STATUS_404" => "N",	// Устанавливать статус 404
+		"SET_TITLE" => "N",	// Устанавливать заголовок страницы
+		"SHOW_404" => "N",	// Показ специальной страницы
+		"STRICT_SECTION_CHECK" => "N",	// Строгая проверка раздела для показа элемента
+		"USE_PERMISSIONS" => "N",	// Использовать дополнительное ограничение доступа
+		"USE_SHARE" => "N",	// Отображать панель соц. закладок
+	),
+	false
+);*/?>
     </div>
 </section>
 <?}?>

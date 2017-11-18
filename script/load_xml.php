@@ -67,10 +67,6 @@ if($_POST["go"] && $_POST["file"]) {
             $arFields = $ob->GetFields();
             $propMetroArr[$arFields["XML_ID"]] = $arFields;
         }
-        $property_enums = CIBlockPropertyEnum::GetList(Array("SORT" => "ASC"), Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "CODE" => "rooms"));
-        while ($enum_fields = $property_enums->GetNext()) {
-            $propRoomsArr[$enum_fields["XML_ID"]] = $enum_fields;
-        }
         $property_enums = CIBlockPropertyEnum::GetList(Array("SORT" => "ASC"), Array("IBLOCK_ID" => CATALOG_IBLOCK_ID, "CODE" => "payment"));
         while ($enum_fields = $property_enums->GetNext()) {
             $propPaymentArr[$enum_fields["XML_ID"]] = $enum_fields;
@@ -131,7 +127,6 @@ if($_POST["go"] && $_POST["file"]) {
                     if($propCRC == $crc){
                         $updatedElements[]=$arFields["ID"];
                     }else {
-                        $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
                         $arItemPropsArray = array(
                             "region" => $item["properties"]["location"]["region"],
                             "locality_name" => $item["properties"]["location"]["locality-name"],
@@ -147,7 +142,6 @@ if($_POST["go"] && $_POST["file"]) {
                             "bathroom_unit" => $item["properties"]["bathroom-unit"],
                             "floor" => $item["properties"]["floor"],
                             "floors_total" => $item["properties"]["floors-total"],
-                            "rooms" => $propRoomsArr[$rooms]["ID"],
                             "building_section" => $item["properties"]["building-section"],
                             "renovation" => $item["properties"]["furnish"],
                             "ceiling_height" => $item["properties"]["ceiling-height"],
@@ -157,6 +151,13 @@ if($_POST["go"] && $_POST["file"]) {
                             "building_state" => $propStateArr[$item["properties"]["building-state"]],
                             "crc" => $crc
                         );
+                        $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
+                        if($rooms){
+                            $code = "flat_".$rooms;
+                            if($propFilterArr[$code]) {
+                                $arItemPropsArray["rooms"] = $propFilterArr[$code]["ID"];
+                            }
+                        }
                         if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
                         elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
                         elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];
@@ -349,7 +350,6 @@ if($_POST["go"] && $_POST["file"]) {
 
                 }else{
                     $el = new CIBlockElement;
-                    $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
                     $crc = md5(json_encode($item["properties"]));
                     $arItemPropsArray = array(
                         "region" => $item["properties"]["location"]["region"],
@@ -366,7 +366,6 @@ if($_POST["go"] && $_POST["file"]) {
                         "bathroom_unit" => $item["properties"]["bathroom-unit"],
                         "floor" => $item["properties"]["floor"],
                         "floors_total" => $item["properties"]["floors-total"],
-                        "rooms" => $propRoomsArr[$rooms]["ID"],
                         "building_section" => $item["properties"]["building-section"],
                         "renovation" => $item["properties"]["furnish"],
                         "ceiling_height" => $item["properties"]["ceiling-height"],
@@ -376,6 +375,13 @@ if($_POST["go"] && $_POST["file"]) {
                         "building_state" => $propStateArr[$item["properties"]["building-state"]],
                         "crc" => $crc
                     );
+                    $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
+                    if($rooms){
+                        $code = "flat_".$rooms;
+                        if($propFilterArr[$code]) {
+                            $arItemPropsArray["rooms"] = $propFilterArr[$code]["ID"];
+                        }
+                    }
                     if ($item["properties"]["maternal-capital"]) $arItemPropsArray["payment"][] = $propPaymentArr["maternal-capital"]["ID"];
                     elseif ($item["properties"]["military-mortgage"]) $arItemPropsArray["payment"][] = $propPaymentArr["military-mortgage"]["ID"];
                     elseif ($item["properties"]["developers-subsidies"]) $arItemPropsArray["payment"][] = $propPaymentArr["developers-subsidies"]["ID"];

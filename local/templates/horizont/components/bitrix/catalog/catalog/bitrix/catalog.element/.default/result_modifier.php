@@ -40,3 +40,8 @@ if ($arSection = $rsSections->GetNext())
 
     }
 }
+if($arResult["PROPERTIES"]["rooms"]["VALUE"]){
+    $res = CIBlockElement::GetByID($arResult["PROPERTIES"]["rooms"]["VALUE"]);
+    if($ar_res = $res->GetNext())
+        $arResult["PROPERTIES"]["rooms"]["VALUE"] = $ar_res['NAME'];
+}

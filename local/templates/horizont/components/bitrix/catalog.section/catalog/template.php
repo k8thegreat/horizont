@@ -37,7 +37,7 @@ $roomsTitleArr = array(
     "3" => "3-к.кв.",
     "4" => "4-к.кв.",
     "5" => "5-к.кв.",
-    "studio" => "Студии"
+    "0" => "Студии"
 );
 
 $elementEdit = CIBlock::GetArrayByID($arParams['IBLOCK_ID'], 'ELEMENT_EDIT');
@@ -67,7 +67,7 @@ $containerName = 'container-'.$navParams['NavNum'];
                 <?}?>
             </div>
             <div class="dop-location">
-                <?=($arResult["UF_SUBLOCALITY"] ? '<a href="">'.$arResult["UF_SUBLOCALITY"].'</a>' : '')?><?if($arResult["UF_ADDRESS"]){?>, <?=$arResult["UF_ADDRESS"]?><?}?>
+                <?=($arResult["UF_LOCALITY_NAME"] ? '<a href="">'.$arResult["UF_LOCALITY_NAME"].'</a>' : '')?><?if($arResult["UF_ADDRESS"]){?>, <?=$arResult["UF_ADDRESS"]?><?}?>
             </div>
         </div>
     </div>

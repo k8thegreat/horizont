@@ -30,6 +30,8 @@ define("MENU_ICON", '<svg class="menu-btn-ico" version="1.1" xmlns="http://www.w
 define("PHONE_ICON", '<svg class="callback-ico" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve"><path d="M492.438,397.75l-2.375-7.156c-5.625-16.719-24.063-34.156-41-38.75l-62.688-17.125c-17-4.625-41.25,1.594-53.688,14.031 L310,371.438c-82.453-22.281-147.109-86.938-169.359-169.375l22.688-22.688c12.438-12.438,18.656-36.656,14.031-53.656L160.266,63 c-4.625-16.969-22.094-35.406-38.781-40.969l-7.156-2.406c-16.719-5.563-40.563,0.063-53,12.5L27.391,66.094 c-6.063,6.031-9.938,23.281-9.938,23.344C16.266,197.188,58.516,301,134.734,377.219c76.031,76.031,179.453,118.219,286.891,117.313 c0.563,0,18.313-3.813,24.375-9.844l33.938-33.938C492.375,438.313,498,414.469,492.438,397.75z"/></svg>');
 define("ARROW_LEFT_BLUE", '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 451.847 451.847" xml:space="preserve"><g><path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/></g></svg>');
 
+
+
 if (CModule::IncludeModule("iblock")) {
     $res = CIBlockElement::GetList(Array("PROPERTY_RATE" => "ASC"), Array("IBLOCK_ID" => BANKS_IBLOCK_ID, "ACTIVE" => "Y", ">PROPERTY_RATE" => 0), false, array());
     if ($ob = $res->GetNextElement()) {
@@ -50,7 +52,7 @@ while ($arSection = $rsSections->GetNext())
     $arFIlterSections[$arSection["CODE"]] = $arSection;
 }
 
-$res = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>FILTER_IBLOCK_ID, "ACTIVE"=>"Y"), false, Array(), Array("ID", "NAME", "XML_ID"));
+$res = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>FILTER_IBLOCK_ID, "ACTIVE"=>"Y"), false, Array(), Array("ID", "NAME", "XML_ID", "CODE"));
 while($ob = $res->GetNextElement()) {
     $arFields = $ob->GetFields();
     $propFilterArr[$arFields["XML_ID"]] = $arFields;

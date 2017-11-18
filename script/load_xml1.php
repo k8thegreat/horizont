@@ -122,19 +122,16 @@ if($_POST["go"] && $_POST["file"]) {
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
                 if ($ob = $res->GetNextElement()){
                     $arFields = $ob->GetFields();
-                    if(!in_array($arFields["IBLOCK_SECTION_ID"], $updated)){
-                        $bs = new CIBlockSection;
-                        $arSectionFields = Array(
-                            "UF_SUB_LOCALITY_NAME" => $item["properties"]["location"]["sub-locality-name"],
-                            "UF_DISTRICT" => $item["properties"]["location"]["district"],
-                            "UF_REGION" => $item["properties"]["location"]["region"],
-                            "UF_LOCALITY_NAME" => $item["properties"]["location"]["locality-name"]
-                        );
-                        $bs->Update($arFields["IBLOCK_SECTION_ID"], $arSectionFields);
-                    }
-                    $updated[] = $arFields["IBLOCK_SECTION_ID"];
+                    $rooms = ($item["properties"]["studio"] ? "studio" : $item["properties"]["rooms"]);
+                    if($rooms){
+                        $code = "flat_".$rooms;
+                        if($propFilterArr[$code]) {
+                            $arItemPropsArray["rooms2"] = $propFilterArr[$code]["ID"];
+                        }
+                        echo $rooms;
 
-                    unset($el);
+                    }
+                    //CIBlockElement::SetPropertyValuesEx($arFields["ID"], false, $arItemPropsArray);
                 }
             }
         });
