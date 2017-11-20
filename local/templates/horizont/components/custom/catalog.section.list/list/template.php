@@ -22,7 +22,7 @@ $roomsTitleArr = array(
     "3" => "3-к.кв.",
     "4" => "4-к.кв.",
     "5" => "5-к.кв.",
-    "studio" => "Студии"
+    "0" => "Студии"
 );
 ?>
 <div class="result-list list-mod">

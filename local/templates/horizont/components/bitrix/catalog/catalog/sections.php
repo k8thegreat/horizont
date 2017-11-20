@@ -190,15 +190,24 @@ banner
     <div class="container">
         <?
         if($arResult["TOTAL_COUNT"]){
-            if(!$APPLICATION->GetProperty("subtitle"))
-                $APPLICATION->SetTitle("Найдено ".$arResult["SECTIONS_COUNT"]." ".formatObjectString($arResult["SECTIONS_COUNT"]).", ".$arResult["TOTAL_COUNT"]." ".formatApartment($arResult["TOTAL_COUNT"]));
-            else
+            if(!$APPLICATION->GetProperty("subtitle")) {
+                $APPLICATION->SetTitle("Найдено " . $arResult["SECTIONS_COUNT"] . " " . formatObjectString($arResult["SECTIONS_COUNT"]) . ", " . $arResult["TOTAL_COUNT"] . " " . formatApartment($arResult["TOTAL_COUNT"]));
+            }else {
                 //$APPLICATION->SetPageProperty("h1", $APPLICATION->GetProperty("subtitle"));
                 $APPLICATION->SetPageProperty("h1", "#AIMT_ZAG_1#");
+            }
             ?>
             <div class="title-big cursive-title-top-center"><span class="dop-title">Все новостройки</span>
                 <h1><?=$APPLICATION->ShowTitle("h1")?></h1>
             </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    console.log($("h1").text());
+                    if($("h1").text()==""){
+                        $("h1").text("Найдено <?=$arResult["SECTIONS_COUNT"]?> <?=formatObjectString($arResult["SECTIONS_COUNT"])?>, <?=number_format($arResult["TOTAL_COUNT"], 0,".", " ")?> <?=formatApartment($arResult["TOTAL_COUNT"])?>");
+                    }
+                });
+                </script>
             <?
         }else{
             ?><div class="title-big cursive-title-top-center">Нет результатов для ваших условий</div><?

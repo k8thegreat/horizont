@@ -1,13 +1,13 @@
 <?
 $arUrlRewrite = array(
 	array(
-		"CONDITION" => "#^/location/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/(.*)#",
-		"RULE" => "CODE=\$1&CODE2=\$2",
+		"CONDITION" => "#^/location/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/(\\?(.*))?#",
+		"RULE" => "CODE=\$1&TYPE=\$2",
 		"ID" => "",
 		"PATH" => "/filter/index.php",
 	),
     array(
-        "CONDITION" => "#^/metro/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/(.*)#",
+        "CONDITION" => "#^/metro/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/(\\?(.*))?#",
         "RULE" => "CODE=\$1&TYPE=\$2",
         "ID" => "",
         "PATH" => "/filter/index.php",
@@ -19,13 +19,13 @@ $arUrlRewrite = array(
 		"PATH" => "/pereustupki/detail.php",
 	),
 	array(
-		"CONDITION" => "#^/location/([0-9a-zA-Z_-]+)/#",
+		"CONDITION" => "#^/location/([0-9a-zA-Z_-]+)/(\\?(.*))?#",
 		"RULE" => "CODE=\$1",
 		"ID" => "",
 		"PATH" => "/filter/index.php",
 	),
 	array(
-		"CONDITION" => "#^/metro/([0-9a-zA-Z_-]+)/#",
+		"CONDITION" => "#^/metro/([0-9a-zA-Z_-]+)/(\\?(.*))?#",
 		"RULE" => "CODE=\$1",
 		"ID" => "",
 		"PATH" => "/filter/index.php",

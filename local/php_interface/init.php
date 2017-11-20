@@ -43,19 +43,22 @@ if (CModule::IncludeModule("iblock")) {
         define("RATE_MIN_GLOBAL", false);
 }
 
-global $arFIlterSections, $propFilterArr;
+global $arFIlterSections, $propFilterArr, $propFilterArrByID;
 
 $arFIlterSections = array();
 $rsSections = CIBlockSection::GetList(array(), array('IBLOCK_ID' => FILTER_IBLOCK_ID, "ACTIVE" => "Y"), false, array("ID", "NAME", "CODE", "XML_ID"));
 while ($arSection = $rsSections->GetNext())
 {
     $arFIlterSections[$arSection["CODE"]] = $arSection;
+    $arFIlterSectionsByID[$arSection["ID"]] = $arSection;
 }
 
-$res = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>FILTER_IBLOCK_ID, "ACTIVE"=>"Y"), false, Array(), Array("ID", "NAME", "XML_ID", "CODE"));
+$res = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>FILTER_IBLOCK_ID, "ACTIVE"=>"Y"), false, Array(), Array("ID", "NAME", "XML_ID", "CODE", "IBLOCK_SECTION_ID"));
 while($ob = $res->GetNextElement()) {
     $arFields = $ob->GetFields();
-    $propFilterArr[$arFields["XML_ID"]] = $arFields;
+    $arFields["SECTION"] = $arFIlterSectionsByID[$arFields["IBLOCK_SECTION_ID"]]["CODE"];
+    $propFilterArr[$arFields["XML_ID"]] = $propFilterArrByID[$arFields["ID"]] = $arFields;
+
 }
 
 

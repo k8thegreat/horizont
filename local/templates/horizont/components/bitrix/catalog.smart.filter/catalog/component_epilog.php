@@ -14,7 +14,7 @@ global $SELECTED_FILTER_ITEM;
     }
 if(count($cheackedArr==1)){
     $SELECTED_FILTER_ITEM = $ELEMENT_ID;
-    $ipropValues = new InheritedProperty\ElementValues(FILTER_IBLOCK_ID, $ELEMENT_ID);
+    /*$ipropValues = new InheritedProperty\ElementValues(FILTER_IBLOCK_ID, $ELEMENT_ID);
     $arResult["IPROPERTY_VALUES"] = $ipropValues->getValues();
     $arResult["META_TAGS"]["TITLE"] = (
     $arResult["IPROPERTY_VALUES"]["ELEMENT_PAGE_TITLE"] != ""
@@ -38,6 +38,6 @@ if(count($cheackedArr==1)){
 
     if ($arResult["META_TAGS"]["DESCRIPTION"] !== '')
         $APPLICATION->SetPageProperty("description", $arResult["META_TAGS"]["DESCRIPTION"]);
-
+*/
 }
 ?>

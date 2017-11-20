@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Новостройки");
 $APPLICATION->AddChainItem("Новостройки", "/novostroyki/");
-global $FILTER_CONDITION, $FILTER_VALUE_CODE, $propFilterArr;
+global $FILTER_CONDITION, $FILTER_VALUE_CODE, $propFilterArr, $arrFilter;
 if($_REQUEST["CODE"]){
     $FILTER_VALUE_CODE = $_REQUEST["CODE"];
 }
@@ -290,7 +290,6 @@ function fillItemValues(&$resultItem, $arProperty, $flag = null)
 
 foreach(CIBlockSectionPropertyLink::GetArray(CATALOG_IBLOCK_ID, "") as $PID => $arLink)
 {
-
     $rsProperty = CIBlockProperty::GetByID($PID);
     $arProperty = $rsProperty->Fetch();
     if($arProperty)
@@ -313,9 +312,7 @@ foreach(CIBlockSectionPropertyLink::GetArray(CATALOG_IBLOCK_ID, "") as $PID => $
     }
 }
 $facet = new \Bitrix\Iblock\PropertyIndex\Facet(CATALOG_IBLOCK_ID);
-//echo $facet->isValid();
-//if ($facet->isValid())
-if (true)
+if ($facet->isValid())
 {
     $filter = array(
         "ACTIVE_DATE" => "Y",
@@ -374,7 +371,7 @@ foreach ($activeItemID as $activeItem){
 }
 
 if($items_active){
-    $_REQUEST["set_filter"] = $_GET["set_filter"] = "Y";
+    $_REQUEST["set_filter"] = $_GET["set_filter"] = "y";
 }
 ?>
     <div class="mobile-prev">
@@ -416,7 +413,7 @@ if($items_active){
 	array(
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "3600",
-		"CACHE_TYPE" => "A",
+		"CACHE_TYPE" => "N",
 		"DISPLAY_ELEMENT_COUNT" => "N",
 		"FILTER_NAME" => "arrFilter",
 		"FILTER_VIEW_MODE" => "horizontal",
@@ -504,9 +501,9 @@ banner
                 "PRODUCT_QUANTITY_VARIABLE" => "",
                 "PRODUCT_PROPS_VARIABLE" => "",
                 "FILTER_NAME" => "arrFilter",
-                "CACHE_FILTER" => "N",
+                "CACHE_FILTER" => "Y",
                 "CACHE_GROUPS" => "Y",
-                "CACHE_TIME" => "36000000",
+                "CACHE_TIME" => "360000",
                 "CACHE_TYPE" => "N",
                 "SET_TITLE" => "N",
                 "MESSAGE_404" => "",
@@ -543,14 +540,14 @@ banner
                 "MESS_BTN_LAZY_LOAD" => $arParams["~MESS_BTN_LAZY_LOAD"],
                 "LOAD_ON_SCROLL" => $arParams["LOAD_ON_SCROLL"],
 
-                "OFFERS_CART_PROPERTIES" => $arParams["OFFERS_CART_PROPERTIES"],
-                "OFFERS_FIELD_CODE" => $arParams["LIST_OFFERS_FIELD_CODE"],
-                "OFFERS_PROPERTY_CODE" => $arParams["LIST_OFFERS_PROPERTY_CODE"],
-                "OFFERS_SORT_FIELD" => $arParams["OFFERS_SORT_FIELD"],
-                "OFFERS_SORT_ORDER" => $arParams["OFFERS_SORT_ORDER"],
-                "OFFERS_SORT_FIELD2" => $arParams["OFFERS_SORT_FIELD2"],
-                "OFFERS_SORT_ORDER2" => $arParams["OFFERS_SORT_ORDER2"],
-                "OFFERS_LIMIT" => $arParams["LIST_OFFERS_LIMIT"],
+                "OFFERS_CART_PROPERTIES" => "",
+                "OFFERS_FIELD_CODE" => "",
+                "OFFERS_PROPERTY_CODE" => "",
+                "OFFERS_SORT_FIELD" => "",
+                "OFFERS_SORT_ORDER" => "",
+                "OFFERS_SORT_FIELD2" => "",
+                "OFFERS_SORT_ORDER2" => "",
+                "OFFERS_LIMIT" => "",
 
                 "SECTION_ID" => "",
                 "SECTION_CODE" => "",
@@ -624,12 +621,20 @@ banner
                     if(!$APPLICATION->GetProperty("subtitle"))
                         $APPLICATION->SetTitle("Найдено ".$arResult["SECTIONS_COUNT"]." ".formatObjectString($arResult["SECTIONS_COUNT"]).", ".$arResult["TOTAL_COUNT"]." ".formatApartment($arResult["TOTAL_COUNT"]));
                     else
-                        //$APPLICATION->SetPageProperty("h1", $APPLICATION->GetProperty("subtitle"));
+                        $APPLICATION->SetPageProperty("h1", $APPLICATION->GetProperty("subtitle"));
                         $APPLICATION->SetPageProperty("h1", "#AIMT_ZAG_1#");
                     ?>
                     <div class="title-big cursive-title-top-center"><span class="dop-title">Все новостройки</span>
                         <h1><?=$APPLICATION->ShowTitle("h1")?></h1>
                     </div>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            console.log($("h1").text());
+                            if($("h1").text()==""){
+                                $("h1").text("Найдено <?=$arResult["SECTIONS_COUNT"]?> <?=formatObjectString($arResult["SECTIONS_COUNT"])?>, <?=number_format($arResult["TOTAL_COUNT"], 0,".", " ")?> <?=formatApartment($arResult["TOTAL_COUNT"])?>");
+                            }
+                        });
+                    </script>
                     <?
                 }else{
                     ?><div class="title-big cursive-title-top-center">Нет результатов для ваших условий</div><?
@@ -644,9 +649,10 @@ banner
                         "IBLOCK_ID" => "1",
                         "IBLOCK_TYPE" => "catalog",
                         "CACHE_GROUPS" => "Y",
-                        "CACHE_TIME" => "36000000",
-                        "COUNT_ELEMENTS" => $arParams["SECTION_COUNT_ELEMENTS"],
-                        "TOP_DEPTH" => $arParams["SECTION_TOP_DEPTH"],
+                        "CACHE_TIME" => "3600",
+                        "CACHE_TYPE" => "N",
+                        "COUNT_ELEMENTS" => "",
+                        "TOP_DEPTH" => "",
                         "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
                         "VIEW_MODE" => $arParams["SECTIONS_VIEW_MODE"],
                         "SHOW_PARENT_NAME" => $arParams["SECTIONS_SHOW_PARENT_NAME"],
@@ -669,8 +675,7 @@ banner
                         "SORT_BY2" => "SORT",
                         "SORT_ORDER2" => "ASC"
                     ),
-                    $component,
-                    array("HIDE_ICONS" => "N")
+                    false
                 );
                 ?>
             </div>
@@ -692,7 +697,7 @@ banner
                         array(
                             "ADD_SECTIONS_CHAIN" => "N",
                             "CACHE_GROUPS" => "Y",
-                            "CACHE_TIME" => "36000000",
+                            "CACHE_TIME" => "3600",
                             "CACHE_TYPE" => "N",
                             "COUNT_ELEMENTS" => "N",
                             "IBLOCK_ID" => "1",

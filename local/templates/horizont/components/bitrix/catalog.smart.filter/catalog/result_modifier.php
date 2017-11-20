@@ -1,6 +1,7 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $arResult["FORM_ACTION"] = "/novostroyki/";
-//$arResult["FILTER_URL"] = "/novostroyki/";
+$url = parse_url($arResult["FILTER_URL"]);
+$arResult["FILTER_URL"] = "/novostroyki/".($url["query"] ? "?".$url["query"] : "");
 $res = CIBlockElement::GetList(Array(), Array("IBLOCK_ID"=>FILTER_IBLOCK_ID, "ACTIVE"=>"Y"), false, Array(), Array("ID", "NAME", "XML_ID", "CODE"));
 while($ob = $res->GetNextElement()) {
     $arFields = $ob->GetFields();

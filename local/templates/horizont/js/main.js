@@ -874,7 +874,7 @@ function testValue(item, term){
     return false;
 }
 $(document).ready(function(){
-    $(".tablesorter").tablesorter( {sortList: [[0,0], [1,0]]} );
+    $(".tablesorter").tablesorter( {sortList: [[8,0], [9,0]]} );
     $("body").on("click", ".ui-autocomplete .ui-menu-item-wrapper", function () {
         $("#autocomplete").val("");
 
